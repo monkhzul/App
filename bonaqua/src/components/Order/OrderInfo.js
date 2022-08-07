@@ -64,13 +64,12 @@ export default function OrderInfo() {
               const orderId = ordernumber[0].OrderID;
               setRandom(orderNumber);
               setOrderid(orderId);
-         
+              console.log(orderNumber)
+              sessionStorage.setItem("random", orderNumber);
+              sessionStorage.setItem("orderid", orderId);
             });
           })
-          
-          console.log(random)
-          sessionStorage.setItem("random", random);
-          sessionStorage.setItem("orderid", orderid);
+        
           // history.push('/payment');
           window.location.href = '/payment'
       // }
