@@ -39,8 +39,8 @@ export default function OrderHistory() {
 
   let element = useRoutes([
     {path: '/', element: <AllOrder/>},
-    {path: '/orderHistory/orderConfirm', element: <OrderConfirm/>},
-    {path: '/orderHistory/orderDelivered', element: <OrderDelivered/>}
+    {path: 'orderConfirm', element: <OrderConfirm/>},
+    {path: 'orderDelivered', element: <OrderDelivered/>}
   ])
 
   return (
