@@ -1,0 +1,144 @@
+import React, {useState, useEffect, useContext} from 'react';
+import { useRoutes } from 'react-router-dom';
+import bonaqua from '../../images/546A4010.png';
+import bigflower from '../../images/svg/home/tsetseg tom.svg';
+import lineflower from '../../images/svg/order 2/Group 550.svg';
+import {Router, Route, NavLink, Link } from "react-router-dom";
+import AllOrder from '../orderHistory/AllOrder';
+import OrderConfirm from '../orderHistory/OrderConfirm';
+import OrderDelivered from '../orderHistory/OrderDelivered';
+import Social from '../Social';
+import { AppContext } from "../../App";
+
+export default function OrderHistory() {
+  // const { orderHistory, value } = useContext(AppContext);
+  const [render, setRender] = useState(false);
+
+  const dugaarc = sessionStorage.getItem("dugaar");
+
+  // useEffect(() => {
+  //   var getData = async () => {
+  //     try {
+  //       var data = await fetch('http://localhost:8008/api/bonaqua/orderHistory');
+  //       var resData = await data.json();
+  //       setHistory(resData)
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  //   getData();
+  // }, [])
+
+  // var tuuh = [];
+  // var dugaar = []
+
+  // orderHistory.forEach(x => { 
+  //   tuuh.push(x.orderno)
+  //   dugaar.push(x.phonenumber)
+  // })
+
+  let element = useRoutes([
+    {path: '/orderHistory', element: <AllOrder/>},
+    {path: '/orderHistory/orderConfirm', element: <OrderConfirm/>},
+    {path: '/orderHistory/orderDelivered', element: <OrderDelivered/>}
+  ])
+
+  return (
+    <div className='mx-auto flex flex-col justify-between'>
+      <div className='flex flex-col xl:flex-row'>
+        <div className='choosing w-full xl:w-1/2 flex items-center justify-center relative mt-14'>
+          <div className='bona flex justify-center items-start relative'>
+            <div className='flower absolute'>
+              <img src={bigflower} alt="" className='bigflower' />
+            </div>
+            <img src={bonaqua} alt="" className='' />
+            <div className='toirog absolute'>
+              <div className='white flex justify-center items-center'>
+                <div className='circle relative flex justify-center items-center'>
+                  <p className='text-white font-semibold text-sm 9xl:text-4xl' id='capaInCircle'>bonaqua</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='info w-full xl:w-1/2 mr-14 mt-3'>
+          <h1 className=''>Захиалгын түүх</h1>
+        
+            <div className='orderHistoryLink'>
+              <div className='link flex py-3 w-full'>
+                <div className='flex'>
+                  <div>
+                    <NavLink className={({isActive}) => (isActive ? "is-active" : "nav-link")} to="/orderHistory">
+                      Бүгд
+                    </NavLink>
+                  </div>
+                  <div className='mx-3'>
+                    <NavLink className={({isActive}) => (isActive ? "is-active" : "nav-link")} to="/orderHistory/orderConfirm">
+                      Баталгаажсан
+                    </NavLink>
+                  </div>
+                  <div>
+                    <NavLink className={({isActive}) => (isActive ? "is-active" : "nav-link")} to="/orderHistory/orderDelivered">
+                      Хүргэгдсэн
+                    </NavLink>
+                  </div>
+                </div>
+
+                {/* <div className='link flex justify-between py-3 mr-[20%]'>
+                  <NavLink className="nav-link" exact to='/orderHistory' activeClassName='is-active'>
+                    Бүгд
+                  </NavLink>
+                  <NavLink className="nav-link" to='/orderHistory/orderConfirm' activeClassName='is-active'>
+                    Баталгаажсан
+                  </NavLink>
+                  <NavLink className="nav-link" to='/orderHistory/orderDelivered' activeClassName='is-active'>
+                    Хүргэгдсэн
+                  </NavLink>
+                </div> */}
+
+                <div className="sort flex justify-end">
+                  <select name="" id="" className='select w-full'>
+                    <option value="" className=''>Сүүлийнх нь эхэндээ</option>
+                    <option value=""></option>
+                  </select>
+                </div>
+              </div>
+              <div className=''>
+               {element}
+              </div>
+            </div>
+
+          <div className='my-14'>
+            <img src={lineflower} alt="" className='w-full' />
+          </div>
+
+          {/* <div>
+            <Link className="nav-link" to="/payment">
+              <button className='backPaymentButton'>
+                Төлбөр төлөх хэсэг рүү буцах
+              </button>
+            </Link>
+          </div> */}
+          <div>
+            <a className="nav-link" href="/">
+              <button className='backPaymentButton' onClick={() => {
+                   
+                  window.location.pathname = '/'
+                  // history.push('/');
+                  sessionStorage.clear();  
+                  window.location.reload();
+                }}>
+                Гарах
+              </button>
+            </a>
+            
+          </div>
+
+        </div>
+
+        <Social />
+      </div>
+    </div>
+  )
+}
+
