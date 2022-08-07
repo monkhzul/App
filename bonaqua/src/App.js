@@ -47,8 +47,9 @@ function App() {
     {path: '/payment', element: <Payment/>},
     {
       path: '/orderHistory', element: <OrderHistory/>,
-      children: [{path: '/orderHistory/orderConfirm', element: <OrderConfirm/>},
-                 {path: '/orderHistory/orderDelivered', element: <OrderDelivered/>}]
+      children: [
+                 {path: 'orderConfirm', element: <OrderConfirm/>},
+                 {path: 'orderDelivered', element: <OrderDelivered/>}]
     },
   ])
 

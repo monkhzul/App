@@ -70,82 +70,88 @@ export default function Payment() {
       }); 
   }
 
-  // useEffect(() => {
-  //   var QPay = async () => {
-  //     fetch('https://api.qpay.mn/v1/auth/token', {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         "Authorization": "Basic TUNTOmFoTlpGT00x"
-  //       },
-  //       body: JSON.stringify({
-  //         "client_id": "qpay_test",
-  //         "client_secret": "sdZv9k9m",
-  //         "grant_type": "client",
-  //         "refresh_token": ""
-  //       })
-  //     })
-  //       .then(res => {
-  //         const data = res.json()
-  //         data.then(res => {
-  //           const token = res.access_token;
-  //           setAccess_Token(token);
-  //         })
-  //       })
+  useEffect(() => {
+    var QPay = async () => {
+      fetch('https://api.qpay.mn/v1/auth/token', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Basic TUNTOmFoTlpGT00x"
+        },
+        body: JSON.stringify({
+          "client_id": "qpay_test",
+          "client_secret": "sdZv9k9m",
+          "grant_type": "client",
+          "refresh_token": ""
+        })
+      })
+        .then(res => {
+          const data = res.json()
+          data.then(res => {
+            const token = res.access_token;
+            setAccess_Token(token);
+          })
+        })
+    }
+    QPay();
+  }, [])
 
-  //       fetch('https://api.qpay.mn/v1/bill/create', {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         "Authorization": `Bearer ${access_token}`
-  //       },
-  //       body: JSON.stringify({
-  //         "template_id": "TEST_INVOICE",
-  //         "merchant_id": "TEST_MERCHANT",
-  //         "branch_id": "1",
-  //         "pos_id": "1",
-  //         "receiver": {
-  //           "id": "CUST_001",
-  //           "register_no": "ddf",
-  //           "name": "Central",
-  //           "email": "info@info.mn",
-  //           "phone_number": "99888899",
-  //           "note": "zulaa"
-  //         },
-  //         "transactions": [{
-  //           "description": "qpay",
-  //           "amount": 10000,
-  //           "accounts": [{
-  //             "bank_code": "050000",
-  //             "name": "zulaa",
-  //             "number": "5084107767",
-  //             "currency": "MNT"
-  //           }]
-  //         }],
-  //         "bill_no": random,
-  //         "date": new Date(),
-  //         "description": "bonaqua qpay",
-  //         "amount": sum,
-  //         "btuk_code": "",
-  //         "vat_flag": "0"
-  //       })
-  //     })
-  //       .then(res => {
-  //         const data = res.json()
-  //         data.then(res => {
-  //           console.log(res)
-  //           setQR_text(res.qPay_QRcode);
-  //           setPayment_id(res.payment_id);
-  //         })
-  //       })
-  //   }
-  //   QPay();
-  // }, [])
+  console.log(access_token)
 
+  useEffect(() => {
+    var Token = async () => {
+    fetch('https://api.qpay.mn/v1/bill/create', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${access_token}`
+          },
+          body: JSON.stringify({
+            "template_id": "TEST_INVOICE",
+            "merchant_id": "TEST_MERCHANT",
+            "branch_id": "1",
+            "pos_id": "1",
+            "receiver": {
+              "id": "CUST_001",
+              "register_no": "ddf",
+              "name": "Central",
+              "email": "info@info.mn",
+              "phone_number": "99888899",
+              "note": "zulaa"
+            },
+            "transactions": [{
+              "description": "qpay",
+              "amount": 10000,
+              "accounts": [{
+                "bank_code": "050000",
+                "name": "zulaa",
+                "number": "5084107767",
+                "currency": "MNT"
+              }]
+            }],
+            "bill_no": random,
+            "date": new Date(),
+            "description": "bonaqua qpay",
+            "amount": sum,
+            "btuk_code": "",
+            "vat_flag": "0"
+          })
+        })
+          .then(res => {
+            const data = res.json()
+            data.then(res => {
+              console.log(res)
+              setQR_text(res.qPay_QRcode);
+              setPayment_id(res.payment_id);
+            })
+          })
+    }
+    Token()
+  }, [])
 
-  // QRCode.toDataURL(qr_text).then((data) => {
-  //   setQR_image(data);
-  // })
+  QRCode.toDataURL(qr_text).then((data) => {
+    setQR_image(data);
+  })
 
   function CancelOrder() {
     toast("Захиалга цуцлагдлаа!")

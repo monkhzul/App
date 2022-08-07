@@ -38,7 +38,7 @@ export default function OrderHistory() {
   // })
 
   let element = useRoutes([
-    {path: '/orderHistory', element: <AllOrder/>},
+    {path: '/', element: <AllOrder/>},
     {path: '/orderHistory/orderConfirm', element: <OrderConfirm/>},
     {path: '/orderHistory/orderDelivered', element: <OrderDelivered/>}
   ])
@@ -65,7 +65,7 @@ export default function OrderHistory() {
           <h1 className=''>Захиалгын түүх</h1>
         
             <div className='orderHistoryLink'>
-              <div className='link flex py-3 w-full'>
+              <div className='link flex justify-between py-3 w-full'>
                 <div className='flex'>
                   <div>
                     <NavLink className={({isActive}) => (isActive ? "is-active" : "nav-link")} to="/orderHistory">

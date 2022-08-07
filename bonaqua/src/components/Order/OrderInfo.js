@@ -64,15 +64,15 @@ export default function OrderInfo() {
               const orderId = ordernumber[0].OrderID;
               setRandom(orderNumber);
               setOrderid(orderId);
-              sessionStorage.setItem("random", orderNumber);
-              sessionStorage.setItem("orderid", orderId);
-              console.log(orderNumber)
+         
             });
           })
           
-   
+          console.log(random)
+          sessionStorage.setItem("random", random);
+          sessionStorage.setItem("orderid", orderid);
           // history.push('/payment');
-          window.location.pathname = '/payment'
+          window.location.href = '/payment'
       // }
       // else {
       //   toast("Та нэр эсвэл утасны дугаараа шалгана уу!");
