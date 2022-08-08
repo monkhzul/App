@@ -19,7 +19,7 @@ export default function OrderHistory() {
   // useEffect(() => {
   //   var getData = async () => {
   //     try {
-  //       var data = await fetch('http://localhost:8008/api/bonaqua/orderHistory');
+  //       var data = await fetch('http://192.168.244.6:8089/api/bonaqua/orderHistory');
   //       var resData = await data.json();
   //       setHistory(resData)
   //     } catch (err) {
