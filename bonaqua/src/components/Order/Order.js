@@ -9,7 +9,7 @@ import bonaqua330 from '../../images/546A4006.png';
 import bonaqua15 from '../../images/546A4015.png';
 import bonaqua45 from '../../images/546A4021.png';
 import bonaqua800 from '../../images/546A4025.png';
-import addButton from '../../images/svg/order 1/+.svg';
+import addButton from '../../images/svg/order 1/add.svg';
 import removeButton from '../../images/svg/order 1/hasah.svg';
 import deleteButton from '../../images/svg/order 1/x.svg';
 import bigflower from '../../images/svg/home/tsetseg tom.svg';
