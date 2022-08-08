@@ -238,7 +238,7 @@ export default function Content() {
         )}
       </div> */}
 
-          <div className='bona flex justify-center items-start relative'>
+          <div className='bona flex justify-center items-end relative'>
             <div className='flower absolute'>
               <img src={bigflower} alt="" className='bigflower' />
             </div>
