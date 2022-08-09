@@ -40,7 +40,7 @@ export default function OrderHistory() {
   let element = useRoutes([
     {path: '/', element: <AllOrder/>},
     {path: 'orderConfirm', element: <OrderConfirm/>},
-    {path: 'orderDelivered', element: <OrderDelivered/>}
+    {path: 'orderWaiting', element: <OrderDelivered/>}
   ])
 
   return (
@@ -78,8 +78,8 @@ export default function OrderHistory() {
                     </NavLink>
                   </div>
                   <div>
-                    <NavLink className={({isActive}) => (isActive ? "is-active" : "nav-link")} to="/orderHistory/orderDelivered">
-                      Хүргэгдсэн
+                    <NavLink className={({isActive}) => (isActive ? "is-active" : "nav-link")} to="/orderHistory/orderWaiting">
+                      Хүлээгдэж буй
                     </NavLink>
                   </div>
                 </div>
@@ -91,7 +91,7 @@ export default function OrderHistory() {
                   <NavLink className="nav-link" to='/orderHistory/orderConfirm' activeClassName='is-active'>
                     Баталгаажсан
                   </NavLink>
-                  <NavLink className="nav-link" to='/orderHistory/orderDelivered' activeClassName='is-active'>
+                  <NavLink className="nav-link" to='/orderHistory/orderWaiting' activeClassName='is-active'>
                     Хүргэгдсэн
                   </NavLink>
                 </div> */}

@@ -24,7 +24,6 @@ export default function OrderInfo() {
   const [doornumber, setDoorNumber] = useState("");
   const [add, setAdd] = useState("");
   const [data, setData] = useState([]);
-  const [data1, setData1] = useState([]);
   const { setRandom, random, pack, orderid, setOrderid, size, incase, setAccess_Token, access_token } = useContext(AppContext)
 
   const arrays = sessionStorage.getItem("array");

@@ -4,6 +4,8 @@ import ReactPaginate from "react-paginate";
 
 export default function AllOrder() {
   const [data, setData] = useState([]);
+  const [status, setStatus] = useState(0);
+  const [payment_status, setPayment_status] = useState(0);
   const [tOrder, settOrder] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
 
@@ -13,6 +15,7 @@ export default function AllOrder() {
   const userarrays = sessionStorage.getItem("userarray");
   const userArray = JSON.parse(userarrays);
   const random = sessionStorage.getItem("random");
+  console.log(random)
 
   const dugaarc = sessionStorage.getItem("dugaar");
 
@@ -28,20 +31,6 @@ export default function AllOrder() {
     }
     getData();
   }, [])
-
-
-  const ordernoNumber = [];
-
-  for (let i = 0; i < data.length; i++) {
-    if (data[i].phonenumber == dugaarc) {
-      ordernoNumber.push({
-        phonenumber: data[i].phonenumber,
-        orderno: data[i].orderno,
-        date: data[i].DDate,
-        totalPrice: data[i].TotalAmount
-      });
-    }
-  }
 
   useEffect(() => {
     function CheckQpay() {
@@ -60,14 +49,27 @@ export default function AllOrder() {
             const data = res.json()
             data.then(res => {
               const paymentStatus = res.payment_info.payment_status;
-              // setPayment_status(paymentStatus)
+              setPayment_status(paymentStatus)
               console.log(res.payment_info.payment_status)
             })
           })
     }
     CheckQpay()
   }, [])
-  
+
+  const ordernoNumber = [];
+
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].phonenumber == dugaarc) {
+      ordernoNumber.push({
+        phonenumber: data[i].phonenumber,
+        orderno: data[i].orderno,
+        date: data[i].DDate,
+        totalPrice: data[i].TotalAmount,
+        status: 0
+      });
+    }
+  }
 
   const display = ordernoNumber.slice(pagesVisited, pagesVisited + perPage)
     .map(data => {
@@ -85,7 +87,7 @@ export default function AllOrder() {
           </div>
           <div className="state">
             <p className="text-gray-500 leading-3">Төлөв</p>
-            <p className="font-semibold">Баталгаажсан</p>
+            <p className="font-semibold">{status}</p>
           </div>
           </div>
           <div className="flex flex-row w-full sm:w-1/2 justify-around">
