@@ -30,7 +30,8 @@ export default function Payment() {
   const userarrays = sessionStorage.getItem("userarray");
   const userArray = JSON.parse(userarrays);
   const random = sessionStorage.getItem("random");
-  console.log(random)
+  // var para = new URLSearchParams(window.location.search);
+  // var random = para.get("random")
 
   orderArray.forEach(x => {
     pack.push(x.size)
@@ -67,91 +68,71 @@ export default function Payment() {
           console.log(data.invoice);
           window.location.href = `https://ecommerce.golomtbank.com/socialpay/mn/${data.invoice}`;
         })
-      }); 
+      });
   }
 
-  useEffect(() => {
-    var QPay = async () => {
-      fetch('https://api.qpay.mn/v1/auth/token', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Basic TUNTOmFoTlpGT00x"
-        },
-        body: JSON.stringify({
-          "client_id": "qpay_test",
-          "client_secret": "sdZv9k9m",
-          "grant_type": "client",
-          "refresh_token": ""
-        })
-      })
-        .then(res => {
-          const data = res.json()
-          data.then(res => {
-            const token = res.access_token;
-            setAccess_Token(token);
-          })
-        })
-    }
-    QPay();
-  }, [])
 
-  console.log(access_token)
+  const token = sessionStorage.getItem("token");
 
-  useEffect(() => {
-    var Token = async () => {
-    fetch('https://api.qpay.mn/v1/bill/create', {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${access_token}`
-          },
-          body: JSON.stringify({
-            "template_id": "TEST_INVOICE",
-            "merchant_id": "TEST_MERCHANT",
-            "branch_id": "1",
-            "pos_id": "1",
-            "receiver": {
-              "id": "CUST_001",
-              "register_no": "ddf",
-              "name": "Central",
-              "email": "info@info.mn",
-              "phone_number": "99888899",
-              "note": "zulaa"
-            },
-            "transactions": [{
-              "description": "qpay",
-              "amount": 10000,
-              "accounts": [{
-                "bank_code": "050000",
-                "name": "zulaa",
-                "number": "5084107767",
-                "currency": "MNT"
-              }]
-            }],
-            "bill_no": random,
-            "date": new Date(),
-            "description": "bonaqua qpay",
-            "amount": sum,
-            "btuk_code": "",
-            "vat_flag": "0"
-          })
-        })
-          .then(res => {
-            const data = res.json()
-            data.then(res => {
-              console.log(res)
-              setQR_text(res.qPay_QRcode);
-              setPayment_id(res.payment_id);
-            })
-          })
-    }
-    Token()
-  }, [])
+  // useEffect(() => {
+  //   var Token = () => {
+  //     fetch('https://api.qpay.mn/v1/bill/create', {
+  //           method: "POST",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //             "Authorization": `Bearer ${token}`
+  //           },
+  //           body: JSON.stringify({
+  //             "template_id": "TEST_INVOICE",
+  //             "merchant_id": "TEST_MERCHANT",
+  //             "branch_id": "1",
+  //             "pos_id": "1",
+  //             "receiver": {
+  //               "id": "CUST_001",
+  //               "register_no": "ddf",
+  //               "name": "Central",
+  //               "email": "info@info.mn",
+  //               "phone_number": "99888899",
+  //               "note": "zulaa"
+  //             },
+  //             "transactions": [{
+  //               "description": "qpay",
+  //               "amount": 10000,
+  //               "accounts": [{
+  //                 "bank_code": "050000",
+  //                 "name": "zulaa",
+  //                 "number": "5084107767",
+  //                 "currency": "MNT"
+  //               }]
+  //             }],
+  //             "bill_no": random,
+  //             "date": new Date(),
+  //             "description": "bonaqua qpay",
+  //             "amount": sum,
+  //             "btuk_code": "",
+  //             "vat_flag": "0"
+  //           })
+  //         })
+  //           .then(res => {
+  //             const data = res.json()
+  //             data.then(res => {
+  //               console.log(res)
+  //               setQR_text(res.qPay_QRcode);
+  //               setPayment_id(res.payment_id);
+  //             })
+  //           })
+  //     }
+  //     Token()
+  // }, [])
 
-  QRCode.toDataURL(qr_text).then((data) => {
+
+  const text = sessionStorage.getItem("qpay");
+  // console.log(text)
+
+  QRCode.toDataURL(text).then((data) => {
     setQR_image(data);
   })
+
 
   function CancelOrder() {
     toast("Захиалга цуцлагдлаа!")
@@ -228,7 +209,7 @@ export default function Payment() {
                       <img src={sags} alt="" className="flowerImg" />
                     </div>
                     <div className="row px-4">
-                      <p className='text-gray-500 text-2xl'>Таны захиалгын дугаар: <span className="ordernumber font-semibold text-2xl"> {random} </span> </p>
+                      <p className='text-gray-500 text-2xl'>Таны захиалгын дугаар: <span className="ordernumber font-semibold text-2xl" id="random"> {random} </span> </p>
                       <p className="text-gray-500 text-base"> Та гүйлгээний утга дээрээ захиалгын дугаараа бичихийг анхаарна уу!</p>
                     </div>
                     <div className="flex w-full justify-around">
@@ -246,7 +227,6 @@ export default function Payment() {
                       </div>
 
                       <div className="flex flex-col justify-center items-center w-1/2 ">
-                        {/* <a href="#" onClick={QPay}> <img src={qr} alt="" className="w-1/2" /> </a> */}
                         <div id="qrcode">
                           <img src={qr_image} alt="" />
                         </div>

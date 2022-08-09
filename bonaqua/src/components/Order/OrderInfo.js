@@ -23,11 +23,35 @@ export default function OrderInfo() {
   const [doornumber, setDoorNumber] = useState("");
   const [add, setAdd] = useState("");
   const [data, setData] = useState([]);
-  const { setRandom, random, pack, orderid, setOrderid, size, incase } = useContext(AppContext)
+  const { setRandom, random, pack, orderid, setOrderid, size, incase, setAccess_Token, access_token } = useContext(AppContext)
 
   const arrays = sessionStorage.getItem("array");
   const orderArray = JSON.parse(arrays);
   const sum = sessionStorage.getItem("sum");
+
+  useEffect(() => {
+    fetch('https://api.qpay.mn/v1/auth/token', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Basic TUNTOmFoTlpGT00x"
+      },
+      body: JSON.stringify({
+        "client_id": "qpay_test",
+        "client_secret": "sdZv9k9m",
+        "grant_type": "client",
+        "refresh_token": ""
+      })
+    })
+      .then(res => {
+        const data = res.json()
+        data.then(res => {
+          const token = res.access_token;
+          setAccess_Token(res.access_token);
+          sessionStorage.setItem("token", token);
+        })
+      })
+  }, [])
 
   function getUserData() {
 
@@ -38,46 +62,95 @@ export default function OrderInfo() {
     // else {
     //   var phoneno = /^[7-9]\d{7}$/;
     //   var regName = /^[a-zA-Z ]{2,30}$/;
-         var today = new Date();
+    var today = new Date();
     //   if (number.match(phoneno) && name.match(regName)) {
 
-        fetch('http://192.168.244.6:8089/api/bonaqua/addOrder', {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            date: today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate(),
-            description: [`ner: ${name}, duureg: ${district}, horoo: ${committee}, 
+    fetch('http://192.168.244.6:8089/api/bonaqua/addOrder', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        date: today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate(),
+        description: [`ner: ${name}, duureg: ${district}, horoo: ${committee}, 
                          bair/gudamj: ${apartment}, orts: ${entrance}, ortsnii kod: ${code},
                          haalganii dugaar: ${doornumber}, nemelt: ${add}`].join(","),
-            phone: number,
-            array: orderArray,
-            pricedisc: 0,
-        
+        phone: number,
+        array: orderArray,
+        pricedisc: 0,
+
+      })
+    })
+      .then((res) => {
+        const data = res.json();
+        data.then(ordernumber => {
+          const orderNumber = ordernumber[0].OrderNumber;
+          const orderId = ordernumber[0].OrderID;
+          setRandom(orderNumber);
+          setOrderid(orderId);
+          console.log(orderNumber)
+          sessionStorage.setItem("random", orderNumber);
+          sessionStorage.setItem("orderid", orderId);
+
+          const token = sessionStorage.getItem("random");
+
+          fetch('https://api.qpay.mn/v1/bill/create', {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${access_token}`
+            },
+            body: JSON.stringify({
+              "template_id": "TEST_INVOICE",
+              "merchant_id": "TEST_MERCHANT",
+              "branch_id": "1",
+              "pos_id": "1",
+              "receiver": {
+                "id": "CUST_001",
+                "register_no": "ddf",
+                "name": "Central",
+                "email": "info@info.mn",
+                "phone_number": "99888899",
+                "note": "zulaa"
+              },
+              "transactions": [{
+                "description": "qpay",
+                "amount": 10000,
+                "accounts": [{
+                  "bank_code": "050000",
+                  "name": "zulaa",
+                  "number": "5084107767",
+                  "currency": "MNT"
+                }]
+              }],
+              "bill_no": orderNumber,
+              "date": new Date(),
+              "description": "bonaqua qpay",
+              "amount": sum,
+              "btuk_code": "",
+              "vat_flag": "0"
+            })
           })
-        })
-          .then((res) => {
-            const data = res.json();
-            data.then(ordernumber => {
-              const orderNumber = ordernumber[0].OrderNumber;
-              const orderId = ordernumber[0].OrderID;
-              setRandom(orderNumber);
-              setOrderid(orderId);
-              console.log(orderNumber)
-              sessionStorage.setItem("random", orderNumber);
-              sessionStorage.setItem("orderid", orderId);
-            });
-          })
-        
-          // history.push('/payment');
-          window.location.href = '/payment'
-      // }
-      // else {
-      //   toast("Та нэр эсвэл утасны дугаараа шалгана уу!");
-      // }
+            .then(res => {
+              const data = res.json()
+              data.then(res => {
+                console.log(res)
+                // setQR_text(res.qPay_QRcode);
+                // setPayment_id(res.payment_id);
+                sessionStorage.setItem("qpay", res.qPay_QRcode);
+                window.location.href = '/payment';
+              })
+            })
+        });
+      })
+
+    // }
+    // else {
+    //   toast("Та нэр эсвэл утасны дугаараа шалгана уу!");
+    // }
     // }
   }
+
 
   const horoo = Array(32).fill(0).map((e, i) => i + 1);
 
