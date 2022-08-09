@@ -117,16 +117,16 @@ export default function Payment() {
           data.then(res => {
             setQR_text(res.qPay_QRcode);
             setPayment_id(res.payment_id);
+
+            QRCode.toDataURL(res.qPay_QRcode).then((data) => {
+              setQR_image(data);
+            })
           })
         })
     }
     QRcode()
   }, [])
 
-
-  QRCode.toDataURL(qr_text).then((data) => {
-    setQR_image(data);
-  })
 
   function CancelOrder() {
     toast("Захиалга цуцлагдлаа!")
