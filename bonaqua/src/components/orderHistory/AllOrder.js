@@ -12,6 +12,7 @@ export default function AllOrder() {
 
   const userarrays = sessionStorage.getItem("userarray");
   const userArray = JSON.parse(userarrays);
+  const random = sessionStorage.getItem("random");
 
   const dugaarc = sessionStorage.getItem("dugaar");
 
@@ -41,6 +42,32 @@ export default function AllOrder() {
       });
     }
   }
+
+  useEffect(() => {
+    function CheckQpay() {
+      fetch(`https://api.qpay.mn/v1/bill/check`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVyYXRvcl9jb2RlIjoiVEVTVF9NRVJDSEFOVCIsImlkIjoiVEVTVF9NRVJDSEFOVCIsImlhdCI6MTY1ODg5MjAyOCwiZXhwIjoxNjU5NzU2MDI4fQ.0B1FIJu8jVHYRFCZ4Sno9ZppYepOVfCP4IxhLhXDsJY"
+          },
+          body: JSON.stringify({
+            "merchant_id": "TEST_MERCHANT",
+            "bill_no": random
+          })
+        })
+          .then(res => {
+            const data = res.json()
+            data.then(res => {
+              const paymentStatus = res.payment_info.payment_status;
+              // setPayment_status(paymentStatus)
+              console.log(res.payment_info.payment_status)
+            })
+          })
+    }
+    CheckQpay()
+  }, [])
+  
 
   const display = ordernoNumber.slice(pagesVisited, pagesVisited + perPage)
     .map(data => {

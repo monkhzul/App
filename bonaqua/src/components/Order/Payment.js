@@ -71,68 +71,62 @@ export default function Payment() {
       });
   }
 
+  const token = sessionStorage.getItem("token")
 
-  const token = sessionStorage.getItem("token");
-
-  // useEffect(() => {
-  //   var Token = () => {
-  //     fetch('https://api.qpay.mn/v1/bill/create', {
-  //           method: "POST",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             "Authorization": `Bearer ${token}`
-  //           },
-  //           body: JSON.stringify({
-  //             "template_id": "TEST_INVOICE",
-  //             "merchant_id": "TEST_MERCHANT",
-  //             "branch_id": "1",
-  //             "pos_id": "1",
-  //             "receiver": {
-  //               "id": "CUST_001",
-  //               "register_no": "ddf",
-  //               "name": "Central",
-  //               "email": "info@info.mn",
-  //               "phone_number": "99888899",
-  //               "note": "zulaa"
-  //             },
-  //             "transactions": [{
-  //               "description": "qpay",
-  //               "amount": 10000,
-  //               "accounts": [{
-  //                 "bank_code": "050000",
-  //                 "name": "zulaa",
-  //                 "number": "5084107767",
-  //                 "currency": "MNT"
-  //               }]
-  //             }],
-  //             "bill_no": random,
-  //             "date": new Date(),
-  //             "description": "bonaqua qpay",
-  //             "amount": sum,
-  //             "btuk_code": "",
-  //             "vat_flag": "0"
-  //           })
-  //         })
-  //           .then(res => {
-  //             const data = res.json()
-  //             data.then(res => {
-  //               console.log(res)
-  //               setQR_text(res.qPay_QRcode);
-  //               setPayment_id(res.payment_id);
-  //             })
-  //           })
-  //     }
-  //     Token()
-  // }, [])
+  useEffect(() => {
+    const QRcode = () => {
+      fetch('https://api.qpay.mn/v1/bill/create', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          "template_id": "TEST_INVOICE",
+          "merchant_id": "TEST_MERCHANT",
+          "branch_id": "1",
+          "pos_id": "1",
+          "receiver": {
+            "id": "CUST_001",
+            "register_no": "ddf",
+            "name": "Central",
+            "email": "info@info.mn",
+            "phone_number": "99888899",
+            "note": "zulaa"
+          },
+          "transactions": [{
+            "description": "qpay",
+            "amount": 10000,
+            "accounts": [{
+              "bank_code": "050000",
+              "name": "zulaa",
+              "number": "5084107767",
+              "currency": "MNT"
+            }]
+          }],
+          "bill_no": random,
+          "date": new Date(),
+          "description": "bonaqua qpay",
+          "amount": sum,
+          "btuk_code": "",
+          "vat_flag": "0"
+        })
+      })
+        .then(res => {
+          const data = res.json()
+          data.then(res => {
+            setQR_text(res.qPay_QRcode);
+            setPayment_id(res.payment_id);
+          })
+        })
+    }
+    QRcode()
+  }, [])
 
 
-  const text = sessionStorage.getItem("qpay");
-  // console.log(text)
-
-  QRCode.toDataURL(text).then((data) => {
+  QRCode.toDataURL(qr_text).then((data) => {
     setQR_image(data);
   })
-
 
   function CancelOrder() {
     toast("Захиалга цуцлагдлаа!")
@@ -166,7 +160,7 @@ export default function Payment() {
                   <div className='order1selectTotal flex justify-center items-center overflow-scroll'>
                     <div className="flex mx-2 w-full flex-column mt-3">
                       {orderArray.map((data, i) =>
-                        <p className='total font-semibold'>
+                        <p className='totalInfo font-semibold'>
                           {`${pack[i]} - ${size[i]} авдар (${incase[i] * size[i]}ш),`}
                         </p>
                       )}
@@ -220,10 +214,10 @@ export default function Payment() {
                     <div className="flex justify-around instructionPayment">
 
                       <div className="paymentInstruction flex flex-col items-center justify-center w-1/2 px-2">
-                        <a href="#" className="py-2 px-4 socialpay text-white font-semibold text-base"
+                        <Link to="#" className="py-2 px-4 socialpay text-white font-semibold text-base"
                           onClick={SocialPay}>
                           Social Pay - ээр төлөх
-                        </a>
+                        </Link>
                       </div>
 
                       <div className="flex flex-col justify-center items-center w-1/2 ">

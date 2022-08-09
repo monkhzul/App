@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SlideImage from "../SlideImage";
 import Social from "../Social";
+import QRCode from 'qrcode';
 
 export default function OrderInfo() {
   const [show, setShow] = useState(false);
@@ -23,6 +24,7 @@ export default function OrderInfo() {
   const [doornumber, setDoorNumber] = useState("");
   const [add, setAdd] = useState("");
   const [data, setData] = useState([]);
+  const [data1, setData1] = useState([]);
   const { setRandom, random, pack, orderid, setOrderid, size, incase, setAccess_Token, access_token } = useContext(AppContext)
 
   const arrays = sessionStorage.getItem("array");
@@ -30,7 +32,8 @@ export default function OrderInfo() {
   const sum = sessionStorage.getItem("sum");
 
   useEffect(() => {
-    fetch('https://api.qpay.mn/v1/auth/token', {
+    const QPay = () => {
+      fetch('https://api.qpay.mn/v1/auth/token', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -47,10 +50,12 @@ export default function OrderInfo() {
         const data = res.json()
         data.then(res => {
           const token = res.access_token;
-          setAccess_Token(res.access_token);
+          setAccess_Token(token);
           sessionStorage.setItem("token", token);
         })
       })
+    }
+    QPay()
   }, [])
 
   function getUserData() {
@@ -88,59 +93,10 @@ export default function OrderInfo() {
           const orderId = ordernumber[0].OrderID;
           setRandom(orderNumber);
           setOrderid(orderId);
-          console.log(orderNumber)
           sessionStorage.setItem("random", orderNumber);
           sessionStorage.setItem("orderid", orderId);
-
-          const token = sessionStorage.getItem("random");
-
-          fetch('https://api.qpay.mn/v1/bill/create', {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": `Bearer ${access_token}`
-            },
-            body: JSON.stringify({
-              "template_id": "TEST_INVOICE",
-              "merchant_id": "TEST_MERCHANT",
-              "branch_id": "1",
-              "pos_id": "1",
-              "receiver": {
-                "id": "CUST_001",
-                "register_no": "ddf",
-                "name": "Central",
-                "email": "info@info.mn",
-                "phone_number": "99888899",
-                "note": "zulaa"
-              },
-              "transactions": [{
-                "description": "qpay",
-                "amount": 10000,
-                "accounts": [{
-                  "bank_code": "050000",
-                  "name": "zulaa",
-                  "number": "5084107767",
-                  "currency": "MNT"
-                }]
-              }],
-              "bill_no": orderNumber,
-              "date": new Date(),
-              "description": "bonaqua qpay",
-              "amount": sum,
-              "btuk_code": "",
-              "vat_flag": "0"
-            })
-          })
-            .then(res => {
-              const data = res.json()
-              data.then(res => {
-                console.log(res)
-                // setQR_text(res.qPay_QRcode);
-                // setPayment_id(res.payment_id);
-                sessionStorage.setItem("qpay", res.qPay_QRcode);
-                window.location.href = '/payment';
-              })
-            })
+          
+            window.location.href = 'http://localhost:3000/payment';
         });
       })
 
@@ -169,6 +125,7 @@ export default function OrderInfo() {
   }
 
   window.onload = (event) => {
+    event.preventDefault();
     Options();
   };
 
@@ -252,7 +209,7 @@ export default function OrderInfo() {
                   <div className='order1selectTotal flex justify-center items-center overflow-scroll'>
                     <div className="flex mx-2 w-full flex-column mt-3">
                       {orderArray.map((data, i) =>
-                        <p className='total font-semibold'>
+                        <p className='totalInfo font-semibold'>
                           {`${pack[i]} - ${size[i]} авдар (${incase[i] * size[i]}ш),`}
                         </p>
                       )}
