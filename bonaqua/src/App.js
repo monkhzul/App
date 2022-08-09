@@ -40,13 +40,11 @@ function App() {
     {
      path: '/', element: <Content/>,
      children: [{ path: "/instruction", element: <Instruction /> }, 
-                { path: "/nutrition", element: <Nutrition/>},
-                {path: '/order', element: <Order/>},
-                {path: '/userinfo', element: <OrderInfo/>},
-                {path: '/payment', element: <Payment/>}
-               ]
+                { path: "/nutrition", element: <Nutrition/>}]
     },
-    
+    {path: '/order', element: <Order/>},
+    {path: '/userinfo', element: <OrderInfo/>},
+    {path: '/payment', element: <Payment/>},
     {
       path: '/orderHistory', element: <OrderHistory/>,
       children: [
