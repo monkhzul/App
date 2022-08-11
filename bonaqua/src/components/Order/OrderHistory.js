@@ -47,7 +47,7 @@ export default function OrderHistory() {
     <div className='mx-auto flex flex-col justify-between'>
       <div className='flex flex-col xl:flex-row'>
         <div className='choosing w-full xl:w-1/2 flex items-center justify-center relative mt-14'>
-          <div className='bona flex justify-center items-start relative'>
+          <div className='bona flex justify-center items-end relative'>
             <div className='flower absolute'>
               <img src={bigflower} alt="" className='bigflower' />
             </div>
@@ -55,7 +55,7 @@ export default function OrderHistory() {
             <div className='toirog absolute'>
               <div className='white flex justify-center items-center'>
                 <div className='circle relative flex justify-center items-center'>
-                  <p className='text-white font-semibold text-sm 9xl:text-4xl' id='capaInCircle'>bonaqua</p>
+                  <p className='text-white font-semibold text-xs 9xl:text-4xl' id='capaInCircle'>bonaqua</p>
                 </div>
               </div>
             </div>

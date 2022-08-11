@@ -127,6 +127,34 @@ export default function Payment() {
     QRcode()
   }, [])
 
+  useEffect(() => {
+    const CheckQpay = async () => {
+      await fetch(`https://api.qpay.mn/v1/bill/check`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            "merchant_id": "TEST_MERCHANT",
+            "bill_no": random
+          })
+        })
+          .then(res => {
+            const data = res.json()
+            data.then(res => {
+              const paymentStatus = res.payment_info.payment_status;
+              setPayment_status(paymentStatus)
+              console.log(res.payment_info.payment_status)
+            })
+          })
+    }
+    CheckQpay()
+  }, [])
+
+  sessionStorage.setItem("status", payment_status);
+
+  console.log(payment_status)
 
   function CancelOrder() {
     toast("Захиалга цуцлагдлаа!")

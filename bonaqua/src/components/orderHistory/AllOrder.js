@@ -15,9 +15,9 @@ export default function AllOrder() {
   const userarrays = sessionStorage.getItem("userarray");
   const userArray = JSON.parse(userarrays);
   const random = sessionStorage.getItem("random");
-  console.log(random)
 
   const dugaarc = sessionStorage.getItem("dugaar");
+  var Pay_Status = sessionStorage.getItem("status");
 
   useEffect(() => {
     var getData = async () => {
@@ -32,30 +32,30 @@ export default function AllOrder() {
     getData();
   }, [])
 
-  useEffect(() => {
-    function CheckQpay() {
-      fetch(`https://api.qpay.mn/v1/bill/check`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVyYXRvcl9jb2RlIjoiVEVTVF9NRVJDSEFOVCIsImlkIjoiVEVTVF9NRVJDSEFOVCIsImlhdCI6MTY1ODg5MjAyOCwiZXhwIjoxNjU5NzU2MDI4fQ.0B1FIJu8jVHYRFCZ4Sno9ZppYepOVfCP4IxhLhXDsJY"
-          },
-          body: JSON.stringify({
-            "merchant_id": "TEST_MERCHANT",
-            "bill_no": random
-          })
-        })
-          .then(res => {
-            const data = res.json()
-            data.then(res => {
-              const paymentStatus = res.payment_info.payment_status;
-              setPayment_status(paymentStatus)
-              console.log(res.payment_info.payment_status)
-            })
-          })
-    }
-    CheckQpay()
-  }, [])
+  // useEffect(() => {
+  //   const CheckQpay = async () => {
+  //     await fetch(`https://api.qpay.mn/v1/bill/check`, {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVyYXRvcl9jb2RlIjoiVEVTVF9NRVJDSEFOVCIsImlkIjoiVEVTVF9NRVJDSEFOVCIsImlhdCI6MTY1ODg5MjAyOCwiZXhwIjoxNjU5NzU2MDI4fQ.0B1FIJu8jVHYRFCZ4Sno9ZppYepOVfCP4IxhLhXDsJY"
+  //         },
+  //         body: JSON.stringify({
+  //           "merchant_id": "TEST_MERCHANT",
+  //           "bill_no": "BC9999000165"
+  //         })
+  //       })
+  //         .then(res => {
+  //           const data = res.json()
+  //           data.then(res => {
+  //             const paymentStatus = res.payment_info.payment_status;
+  //             setPayment_status(paymentStatus)
+  //             console.log(res.payment_info.payment_status)
+  //           })
+  //         })
+  //   }
+  //   CheckQpay()
+  // }, [])
 
   const ordernoNumber = [];
 
@@ -66,7 +66,7 @@ export default function AllOrder() {
         orderno: data[i].orderno,
         date: data[i].DDate,
         totalPrice: data[i].TotalAmount,
-        status: 0
+        status: Pay_Status === 'PAID' ? 'Баталгаажсан': 'Хүлээгдэж буй'
       });
     }
   }
@@ -87,7 +87,7 @@ export default function AllOrder() {
           </div>
           <div className="state">
             <p className="text-gray-500 leading-3">Төлөв</p>
-            <p className="font-semibold">{status}</p>
+            <p className="font-semibold">{data.status}</p>
           </div>
           </div>
           <div className="flex flex-row w-full sm:w-1/2 justify-around">

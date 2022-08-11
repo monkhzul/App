@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useRef } from 'react';
 import './css/style.css';
 import './css/mediaQuery.css';
 import Header from './components/Header';
@@ -36,6 +36,7 @@ function App() {
   const [qr_text, setQR_text] = useState("");
   const [qr_image, setQR_image] = useState("")
 
+
   let element = useRoutes([
     {
      path: '/', element: <Content/>,
@@ -52,6 +53,7 @@ function App() {
                  {path: 'orderWaiting', element: <OrderDelivered/>}]
     },
   ])
+
 
   return (
     <AppContext.Provider
@@ -74,7 +76,6 @@ function App() {
 
       }}
       render={{ render, setRender }}>
-
       <div className="contain">
         <Header />
         <div className='routes'>

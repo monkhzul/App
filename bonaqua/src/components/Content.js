@@ -380,7 +380,6 @@ export default function Content() {
                 )}
                 
                 </div>
-            
                 
             <div className='productInfo'>
               <img src={productInfo} alt="" className='productImg' />
