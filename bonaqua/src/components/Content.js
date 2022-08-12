@@ -78,12 +78,13 @@ export default function Content() {
     const number = document.getElementById('avdar').value;
     const title = document.getElementById('title');
     const caseinunit = document.getElementById('caseinunit');
+    const result = document.getElementById("result");
 
     setTotal(incase)
     const totals = (incase * price) * number;
     sessionStorage.setItem('total', totals);
     title.innerHTML = `Bonaqua ${size} - ${price}₮`;
-    // result.innerHTML = `${totals}₮`;
+    result.innerHTML = `${totals}₮`;
     caseinunit.innerHTML = `1 авдар доторх ширхэгийн тоо - ${incase}ш`;
 
     imageArray.map(img => {

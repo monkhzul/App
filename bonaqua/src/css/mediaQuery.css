@@ -331,7 +331,7 @@
       line-height: 12px;
     }
     .order1Img img {
-      width: 70%;
+      width: 100%;
     }
     .order1tablenames {
       width: 22rem !important;
@@ -376,6 +376,9 @@
     max-height: 14rem;
     overflow: scroll;
     margin-bottom: 5%;
+  }
+  .link {
+    width: 100%;
   }
 }
 

@@ -66,8 +66,8 @@ export default function OrderHistory() {
         
             <div className='orderHistoryLink'>
               <div className='link flex justify-between py-3 w-full'>
-                <div className='flex'>
-                  <div>
+                <div className='flex w-[80%] justify-around'>
+                  <div className=''>
                     <NavLink className={({isActive}) => (isActive ? "is-active" : "nav-link")} to="/orderHistory">
                       Бүгд
                     </NavLink>
@@ -77,7 +77,7 @@ export default function OrderHistory() {
                       Баталгаажсан
                     </NavLink>
                   </div>
-                  <div>
+                  <div className=''>
                     <NavLink className={({isActive}) => (isActive ? "is-active" : "nav-link")} to="/orderHistory/orderWaiting">
                       Хүлээгдэж буй
                     </NavLink>
