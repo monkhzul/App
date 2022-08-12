@@ -77,7 +77,7 @@ export default function Header() {
               <div className='dun'>
                 <Link className="nav-link" to='/order' id='submit'>
                   <p className='busket' id='resultH'>
-                    {sum == null ? '0₮' : `${sum}₮`}
+                    {sum == null ? '0₮' : `${sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮`}
                   </p>
                   <p className='yourBusket'>Таны сагсанд</p>
                 </Link>
@@ -89,7 +89,7 @@ export default function Header() {
               <img src={history} alt="" className='' />
               <div className='dun cursor-pointer'>
                 <p className='busket'>
-                  { log == null ? '********' : log }
+                  { log == null ? `**** ****` : log }
                 </p>
                 <ToastContainer/>
                 {

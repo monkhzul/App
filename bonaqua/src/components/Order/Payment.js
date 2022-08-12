@@ -32,16 +32,18 @@ export default function Payment() {
   const random = sessionStorage.getItem("random");
   // var para = new URLSearchParams(window.location.search);
   // var random = para.get("random")
-
-  if (orderArray === '') {
+console.log(orderArray)
+  if (orderArray === null) {
     console.log("array hooson")
-  } else {
-      orderArray.forEach(x => {
-        pack.push(x.size)
-        incase.push(x.incase)
-        size.push(x.avdar)
-      })
-  }
+    
+  } 
+  // else {
+  //     orderArray.forEach(x => {
+  //       pack.push(x.size)
+  //       incase.push(x.incase)
+  //       size.push(x.avdar)
+  //     })
+  // }
 
   const key = "bsuTPNVvbM#sAI2#";
   var checksum = random + sum + "POST" + "http://localhost:3000/orderHistory";
@@ -158,8 +160,6 @@ export default function Payment() {
 
   sessionStorage.setItem("status", payment_status);
 
-  console.log(payment_status)
-
   function CancelOrder() {
     toast("Захиалга цуцлагдлаа!")
     setTimeout(() => {
@@ -191,7 +191,7 @@ export default function Payment() {
                 <div className="seeTotalInfo flex relative">
                   <div className='order1selectTotal flex justify-center items-center overflow-scroll'>
                     <div className="flex mx-2 w-full flex-column mt-3">
-                      {orderArray === '' ? '' : orderArray.map((data, i) =>
+                      {orderArray === '' || orderArray === null ? '' : orderArray.map((data, i) =>
                         <p className='totalInfo font-semibold'>
                           {`${pack[i]} - ${size[i]} авдар (${incase[i] * size[i]}ш),`}
                         </p>
@@ -206,7 +206,7 @@ export default function Payment() {
                     </div>
                   </div> */}
                   <div className='order1selectTotal2'>
-                    <p className='total pt-3 text-red-700 text-3xl font-semibold'>{sum}₮</p>
+                    <p className='total pt-3 text-red-700 text-3xl font-semibold'>{sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>
                   </div>
                   <div className='order2tablenames absolute flex flex-row text-xs 9xl:text-3xl'>
                     <div className='flex'>

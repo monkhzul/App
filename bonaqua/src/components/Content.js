@@ -58,7 +58,6 @@ export default function Content() {
     getData();
   }, [])
 
-
   var fprice = [];
   var fsize = [];
   var ftotal;
@@ -83,8 +82,8 @@ export default function Content() {
     // setTotal(incase)
     const totals = (incase * price) * number;
     sessionStorage.setItem('total', totals);
-    title.innerHTML = `Bonaqua ${size} - ${price}₮`;
-    result.innerHTML = `${totals}₮`;
+    title.innerHTML = `Bonaqua ${size} - ${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮`;
+    result.innerHTML = `${totals.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮`;
     caseinunit.innerHTML = `1 авдар доторх ширхэгийн тоо - ${incase}ш`;
 
     imageArray.map(img => {
@@ -182,7 +181,6 @@ export default function Content() {
       this.className += " bona-active";
       });
     }
-
 
     let element = useRoutes([
       {path: '/', element: <Product/>},
@@ -292,7 +290,7 @@ export default function Content() {
 
                   <div className='selectTotal flex justify-center items-center text-center'>
                     <p className='total text-red-700 pt-4 9xl:text-3xl' id='result'>
-                      {ftotal}₮
+                      {ftotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮
                     </p>
                   </div>
                   <div className='tablenames absolute flex flex-col md:flex-row text-sm 9xl:text-3xl mt-1'>
@@ -339,7 +337,7 @@ export default function Content() {
                         </div>
 
                         <div className="order1Price flex justify-between items-center">
-                          <h3 className="9xl:text-5xl">{data.price}₮ </h3>
+                          <h3 className="9xl:text-5xl">{data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮ </h3>
                           <div className="order1Button flex justify-between">
                             <button className="" onClick={() => {
                               if (data.avdar > 1 && sum > 0) {
@@ -382,10 +380,9 @@ export default function Content() {
                 )}
                 </div>
                 
-                {
-                  total === 0 ? '' : 
+                {total === 0 ? '' : 
                   <div className='font-semibold flex justify-center w-[80%] xl:hidden'>
-                  <p>Нийт дүн: <span className='text-[#3dbee3] text-lg'> {total}₮ </span> </p>
+                  <p>Нийт дүн: <span className='text-[#3dbee3] text-lg'> {total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮ </span> </p>
                 </div>
                 }
                 

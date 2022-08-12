@@ -46,12 +46,37 @@ export default function AllOrder() {
     }
   }
 
-  const HistoryToPayment = (orderno, price) => {
+
+  function HistoryToPayment(orderno, price) {
+      const QPay = () => {
+        fetch('https://api.qpay.mn/v1/auth/token', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Basic TUNTOmFoTlpGT00x"
+        },
+        body: JSON.stringify({
+          "client_id": "qpay_test",
+          "client_secret": "sdZv9k9m",
+          "grant_type": "client",
+          "refresh_token": ""
+        })
+      })
+        .then(res => {
+          const data = res.json()
+          data.then(res => {
+            const token = res.access_token;
+            sessionStorage.setItem("token", token);
+          })
+        })
+      }
+      QPay()
+
+    
     sessionStorage.setItem("random", orderno);
     sessionStorage.setItem("sum", price);
-
-    // window.location.pathname = '/payment'
-    console.log('clicked')
+    
+    window.location.pathname = '/payment';
   }
 
   const display = ordernoNumber.slice(pagesVisited, pagesVisited + perPage)
@@ -80,12 +105,16 @@ export default function AllOrder() {
               </div>
               <div className="amount">
                 <p className="text-gray-500 leading-3">Дүн</p>
-                <p className="font-semibold">{data.totalPrice}₮</p>
+                <p className="font-semibold">{data.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>
               </div>
             </div>
             {data.status === 'Хүлээгдэж буй' ?
               <div className="font-semibold text-sm flex justify-center text-[#3dbee3] opacity-80 hover:opacity-100"
-                onClick={HistoryToPayment(data.orderno, data.totalPrice)}>
+                onClick={() => 
+                  {
+                    HistoryToPayment(data.orderno, data.totalPrice);
+                  }
+                }>
                 <p className="cursor-pointer">Төлбөр төлөх</p>
               </div>
               : ''

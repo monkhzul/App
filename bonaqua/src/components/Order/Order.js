@@ -83,7 +83,7 @@ export default function Order() {
 
     const totals = (incase * price) * number;
     sessionStorage.setItem('total', totals);
-    result.innerHTML = `${totals}₮`;
+    result.innerHTML = `${totals.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮`;
 
     imgArr.map((img, i) => {
       if (img.size == size) {
@@ -226,7 +226,7 @@ export default function Order() {
                         </div>
 
                         <div className="order1Price flex justify-between items-center">
-                          <h3 className="9xl:text-5xl">{data.price}₮ </h3>
+                          <h3 className="9xl:text-5xl">{data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮ </h3>
                           <div className="order1Button flex justify-between">
                             <button className="" onClick={() => {
                               if (data.avdar > 1 && sum > 0) {
@@ -285,7 +285,7 @@ export default function Order() {
                 <div className='order1selectTotal1 flex flex-col'>
                   <p className='text-gray-500 flex ml-3 text-sm 9xl:text-3xl'>Нийт үнэ</p>
                   {sum == 0 || sum == null ? <p className='total text-red-700 text-3xl font-semibold' id="resultO"></p>
-                    : <p className='total text-red-700 text-xl md:text-3xl font-semibold mt-[10%] sm:mt-0' id="resultO">{sum}₮</p>}
+                    : <p className='total text-red-700 text-xl md:text-3xl font-semibold mt-[10%] sm:mt-0' id="resultO">{sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>}
                 </div>
 
                 <Link className="nav-link cursor-pointer" to="#" id='submit' >
@@ -321,7 +321,7 @@ export default function Order() {
 
                   <div className='selectTotal flex justify-center items-center text-center'>
                     <p className='total text-red-700 pt-4 9xl:text-3xl' id='result'>
-                      {ftotal}₮
+                      {ftotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮
                     </p>
                   </div>
                   <div className='tablenames absolute flex flex-col md:flex-row text-sm 9xl:text-3xl mt-1'>
