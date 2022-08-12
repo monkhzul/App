@@ -922,9 +922,12 @@ a {
       list-style: none;
       margin-top: 10%;
       display: flex !important;
+      flex-wrap: wrap;
       justify-content: center !important;
     }
-
+    .paginationBttns li {
+      margin-top: 1rem;
+    }
     .paginationBttns a {
       padding: 5px 10px;
       margin: 0.5rem;
@@ -933,18 +936,14 @@ a {
       color: var(--blue-color) !important;
       cursor: pointer;
     }
-
     .paginationBttns a:hover {
       color: white !important;
       background-color: var(--blue-color);
     }
-
     .paginationActive a {
       color: white !important;
       background-color: var(--blue-color);
     }
-
-
     .ilchleg {
       border: 1px solid var(--blue-color);
       border-radius: 0.5rem;

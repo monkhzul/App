@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import bona from '../../images/bona0.5.png';
 import ReactPaginate from "react-paginate";
+import { Link } from "react-router-dom";
 
 export default function AllOrder() {
   const [data, setData] = useState([]);
@@ -80,7 +81,7 @@ export default function AllOrder() {
         </div>
 
         <div className="orderHistoryInfo flex flex-col sm:flex-row justify-between w-full mx-2 9xl:mx-8 my-2 items-center 9xl:text-3xl">
-          <div className="flex flex-row w-full sm:w-1/2 justify-around">
+          <div className="flex flex-row w-full sm:w-1/2 justify-around items-center">
           <div className="date">
             <p className="text-gray-500 9xl:text-3xl leading-3">Огноо</p>
             <p className="font-semibold 9xl:text-3xl">{(data.date).slice(0,10)}</p>
@@ -90,7 +91,7 @@ export default function AllOrder() {
             <p className="font-semibold">{data.status}</p>
           </div>
           </div>
-          <div className="flex flex-row w-full sm:w-1/2 justify-around">
+          <div className="flex flex-row w-full sm:w-1/2 justify-around items-center">
           <div className="orderNumber">
             <p className="text-gray-500 leading-3">Захиалгын дугаар</p>
             <p className="font-semibold">{data.orderno}</p>
@@ -100,6 +101,11 @@ export default function AllOrder() {
             <p className="font-semibold">{data.totalPrice}₮</p>
           </div>
           </div>
+          {data.status === 'PAID' ? '' : 
+          <div className="font-semibold text-sm flex justify-center text-[#3dbee3] opacity-80 hover:opacity-100">
+            <p className="cursor-pointer">Төлбөр төлөх</p>
+          </div>
+          }
         </div>
       </div>
       )
