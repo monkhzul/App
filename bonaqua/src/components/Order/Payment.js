@@ -32,11 +32,11 @@ export default function Payment() {
   const random = sessionStorage.getItem("random");
   // var para = new URLSearchParams(window.location.search);
   // var random = para.get("random")
-console.log(orderArray)
-  if (orderArray === null) {
-    console.log("array hooson")
+
+  // if (orderArray === null) {
+  //   console.log("array hooson")
     
-  } 
+  // } 
   // else {
   //     orderArray.forEach(x => {
   //       pack.push(x.size)

@@ -48,6 +48,8 @@ export default function AllOrder() {
 
 
   function HistoryToPayment(orderno, price) {
+    sessionStorage.setItem("random", orderno);
+    sessionStorage.setItem("sum", price);
       const QPay = () => {
         fetch('https://api.qpay.mn/v1/auth/token', {
         method: "POST",
@@ -67,16 +69,11 @@ export default function AllOrder() {
           data.then(res => {
             const token = res.access_token;
             sessionStorage.setItem("token", token);
+            window.location.pathname = '/payment';
           })
         })
       }
       QPay()
-
-    
-    sessionStorage.setItem("random", orderno);
-    sessionStorage.setItem("sum", price);
-    
-    window.location.pathname = '/payment';
   }
 
   const display = ordernoNumber.slice(pagesVisited, pagesVisited + perPage)
