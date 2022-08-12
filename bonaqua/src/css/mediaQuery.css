@@ -415,7 +415,12 @@
     height: 95vh;
     width: 90%;
   }
-
+  .water {
+    width: 80%;
+  }
+  .bigflower {
+    height: 90%;
+  }
   }
 
   @media (min-width: 2049px) and (max-width: 3119px) {
