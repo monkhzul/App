@@ -780,11 +780,9 @@ a {
       justify-content: center;
       margin: 1rem 0;
     }
-
     input::-webkit-calendar-picker-indicator {
       opacity: 0;
     }
-
     .zahialga::-webkit-scrollbar {
       width: 0.4rem;
       height: 100%;
@@ -822,28 +820,6 @@ a {
       font-weight: bolder;
       font-size: larger;
     }
-     /* .list-active {
-        display: block;
-      }
-
-      .main ul li {
-        display: block;
-      }
-      .main li.li-active ul li {
-        display: block;
-        color: var(--blue-color);
-        font-size: 1.5rem;
-        font-weight: 500;
-        padding-left: 0;
-      }
-      .main li.li-active li {
-        color: var(--blue-color);
-      }
-      .main ul ul li {
-        display: block;
-        width: 4rem;
-      } */
-
     input:invalid, select:invalid {
       border: 1px solid #f0baba;
     }
@@ -853,7 +829,6 @@ a {
       padding: 0.5rem;
       border-radius: 0.5rem;
     }
-
     .cart-animation-helper {
       margin: 0 20%;
       width: 0;
@@ -884,13 +859,11 @@ a {
         max-height 0.4s ease-out,
         max-width 0.4s ease-out;
     }
-
     .phoneBusket {
       /* display: none; */
       max-height: 20rem;
       overflow: scroll;
     }
-    
     .phoneBusket::-webkit-scrollbar {
       height: 10%;
       width: 0.4rem;

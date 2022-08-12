@@ -101,7 +101,7 @@ export default function AllOrder() {
             <p className="font-semibold">{data.totalPrice}₮</p>
           </div>
           </div>
-          {data.status === 'PAID' ? '' : 
+          {data.status === 'Баталгаажсан' ? '' : 
           <div className="font-semibold text-sm flex justify-center text-[#3dbee3] opacity-80 hover:opacity-100">
             <p className="cursor-pointer">Төлбөр төлөх</p>
           </div>
