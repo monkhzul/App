@@ -71,7 +71,7 @@
       overflow: scroll;
     }
     .select {
-      border-left: 1px solid #d6d1d1;
+      border-right: none;
     }
     .selectTotal {
       width: 100% !important;
@@ -195,6 +195,9 @@
     }
     .logo img {
       height: 7rem;
+    }
+    .select {
+      border-right: none;
     }
   }
 

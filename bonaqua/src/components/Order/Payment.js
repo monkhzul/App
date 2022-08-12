@@ -33,11 +33,15 @@ export default function Payment() {
   // var para = new URLSearchParams(window.location.search);
   // var random = para.get("random")
 
-  orderArray.forEach(x => {
-    pack.push(x.size)
-    incase.push(x.incase)
-    size.push(x.avdar)
-  })
+  if (orderArray === '') {
+    console.log("array hooson")
+  } else {
+      orderArray.forEach(x => {
+        pack.push(x.size)
+        incase.push(x.incase)
+        size.push(x.avdar)
+      })
+  }
 
   const key = "bsuTPNVvbM#sAI2#";
   var checksum = random + sum + "POST" + "http://localhost:3000/orderHistory";
@@ -187,7 +191,7 @@ export default function Payment() {
                 <div className="seeTotalInfo flex relative">
                   <div className='order1selectTotal flex justify-center items-center overflow-scroll'>
                     <div className="flex mx-2 w-full flex-column mt-3">
-                      {orderArray.map((data, i) =>
+                      {orderArray === '' ? '' : orderArray.map((data, i) =>
                         <p className='totalInfo font-semibold'>
                           {`${pack[i]} - ${size[i]} авдар (${incase[i] * size[i]}ш),`}
                         </p>

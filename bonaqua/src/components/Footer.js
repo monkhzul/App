@@ -6,7 +6,7 @@ import footer from '../images/svg/order 1/dood tsetseg.svg';
 export default function Footer() {
   const path = window.location.pathname;
   return (
-    path == '/' ?
+    path == '/' || path == '/instruction' || path == '/nutrition' ?
       <div className='footer'>
         <img src={footer} alt="" className='footer1flower' />
         <img src={footerw} alt="" className='md:ml-14' />

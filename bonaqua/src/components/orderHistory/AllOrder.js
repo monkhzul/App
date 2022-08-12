@@ -32,32 +32,6 @@ export default function AllOrder() {
     }
     getData();
   }, [])
-
-  // useEffect(() => {
-  //   const CheckQpay = async () => {
-  //     await fetch(`https://api.qpay.mn/v1/bill/check`, {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVyYXRvcl9jb2RlIjoiVEVTVF9NRVJDSEFOVCIsImlkIjoiVEVTVF9NRVJDSEFOVCIsImlhdCI6MTY1ODg5MjAyOCwiZXhwIjoxNjU5NzU2MDI4fQ.0B1FIJu8jVHYRFCZ4Sno9ZppYepOVfCP4IxhLhXDsJY"
-  //         },
-  //         body: JSON.stringify({
-  //           "merchant_id": "TEST_MERCHANT",
-  //           "bill_no": "BC9999000165"
-  //         })
-  //       })
-  //         .then(res => {
-  //           const data = res.json()
-  //           data.then(res => {
-  //             const paymentStatus = res.payment_info.payment_status;
-  //             setPayment_status(paymentStatus)
-  //             console.log(res.payment_info.payment_status)
-  //           })
-  //         })
-  //   }
-  //   CheckQpay()
-  // }, [])
-
   const ordernoNumber = [];
 
   for (let i = 0; i < data.length; i++) {
@@ -67,47 +41,57 @@ export default function AllOrder() {
         orderno: data[i].orderno,
         date: data[i].DDate,
         totalPrice: data[i].TotalAmount,
-        status: Pay_Status === 'PAID' ? 'Баталгаажсан': 'Хүлээгдэж буй'
+        status: Pay_Status === 'PAID' ? 'Баталгаажсан' : 'Хүлээгдэж буй'
       });
     }
+  }
+
+  const HistoryToPayment = (orderno, price) => {
+    sessionStorage.setItem("random", orderno);
+    sessionStorage.setItem("sum", price);
+
+    // window.location.pathname = '/payment'
+    console.log('clicked')
   }
 
   const display = ordernoNumber.slice(pagesVisited, pagesVisited + perPage)
     .map(data => {
       return (
-      <div className="orderHistory flex mb-2">
-        <div className="orderHistoryImg flex justify-center">
-          <img src={bona} alt="" className="" />
-        </div>
+        <div className="orderHistory flex mb-2">
+          <div className="orderHistoryImg flex justify-center">
+            <img src={bona} alt="" className="" />
+          </div>
 
-        <div className="orderHistoryInfo flex flex-col sm:flex-row justify-between w-full mx-2 9xl:mx-8 my-2 items-center 9xl:text-3xl">
-          <div className="flex flex-row w-full sm:w-1/2 justify-around items-center">
-          <div className="date">
-            <p className="text-gray-500 9xl:text-3xl leading-3">Огноо</p>
-            <p className="font-semibold 9xl:text-3xl">{(data.date).slice(0,10)}</p>
+          <div className="orderHistoryInfo flex flex-col sm:flex-row justify-between w-full mx-2 9xl:mx-8 my-2 items-center 9xl:text-3xl">
+            <div className="flex flex-row w-full sm:w-1/2 justify-around items-center">
+              <div className="date">
+                <p className="text-gray-500 9xl:text-3xl leading-3">Огноо</p>
+                <p className="font-semibold 9xl:text-3xl">{(data.date).slice(0, 10)}</p>
+              </div>
+              <div className="state">
+                <p className="text-gray-500 leading-3">Төлөв</p>
+                <p className="font-semibold">{data.status}</p>
+              </div>
+            </div>
+            <div className="flex flex-row w-full sm:w-1/2 justify-around items-center">
+              <div className="orderNumber">
+                <p className="text-gray-500 leading-3">Захиалгын дугаар</p>
+                <p className="font-semibold">{data.orderno}</p>
+              </div>
+              <div className="amount">
+                <p className="text-gray-500 leading-3">Дүн</p>
+                <p className="font-semibold">{data.totalPrice}₮</p>
+              </div>
+            </div>
+            {data.status === 'Хүлээгдэж буй' ?
+              <div className="font-semibold text-sm flex justify-center text-[#3dbee3] opacity-80 hover:opacity-100"
+                onClick={HistoryToPayment(data.orderno, data.totalPrice)}>
+                <p className="cursor-pointer">Төлбөр төлөх</p>
+              </div>
+              : ''
+            }
           </div>
-          <div className="state">
-            <p className="text-gray-500 leading-3">Төлөв</p>
-            <p className="font-semibold">{data.status}</p>
-          </div>
-          </div>
-          <div className="flex flex-row w-full sm:w-1/2 justify-around items-center">
-          <div className="orderNumber">
-            <p className="text-gray-500 leading-3">Захиалгын дугаар</p>
-            <p className="font-semibold">{data.orderno}</p>
-          </div>
-          <div className="amount">
-            <p className="text-gray-500 leading-3">Дүн</p>
-            <p className="font-semibold">{data.totalPrice}₮</p>
-          </div>
-          </div>
-          {data.status === 'Баталгаажсан' ? '' : 
-          <div className="font-semibold text-sm flex justify-center text-[#3dbee3] opacity-80 hover:opacity-100">
-            <p className="cursor-pointer">Төлбөр төлөх</p>
-          </div>
-          }
         </div>
-      </div>
       )
     })
 
