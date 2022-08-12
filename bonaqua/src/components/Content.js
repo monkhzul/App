@@ -80,7 +80,7 @@ export default function Content() {
     const caseinunit = document.getElementById('caseinunit');
     const result = document.getElementById("result");
 
-    setTotal(incase)
+    // setTotal(incase)
     const totals = (incase * price) * number;
     sessionStorage.setItem('total', totals);
     title.innerHTML = `Bonaqua ${size} - ${price}₮`;
@@ -182,6 +182,7 @@ export default function Content() {
       this.className += " bona-active";
       });
     }
+
 
     let element = useRoutes([
       {path: '/', element: <Product/>},
@@ -379,8 +380,14 @@ export default function Content() {
                   </div>
                   </div>
                 )}
-                
                 </div>
+                
+                {
+                  total === 0 ? '' : 
+                  <div className='font-semibold flex justify-center w-[80%] xl:hidden'>
+                  <p>Нийт дүн: <span className='text-[#3dbee3] text-lg'> {total}₮ </span> </p>
+                </div>
+                }
                 
             <div className='productInfo'>
               <img src={productInfo} alt="" className='productImg' />
