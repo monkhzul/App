@@ -91,6 +91,42 @@ exports.addOrderDetail = async(req, res) => {
     }
 }
 
+exports.getOrderDetail = async(req, res) => {
+
+    const orderno = req.body.orderno;
+
+    const order = await db.sequelize.query(`SELECT [DocumentId]
+    FROM [SMTTerms].[dbo].[t_Orders] WHERE DocumentNo = '${orderno}'`, { type: QueryTypes.SELECT });
+
+    try {
+        if(order != 0) {
+            console.log(order[0].DocumentId)
+            const doc = await db.sequelize.query(`SELECT [DocumentId] ,[Article] ,[Quantity] ,[Amount] ,[Price] ,[PriceWODiscount]
+            FROM [SMTTerms].[dbo].[t_OrderDetails] where DocumentId = '${order[0].DocumentId}'`, { type: QueryTypes.SELECT })
+        
+                res.status(200).send(doc);
+            
+            // for(var i in doc) {
+            // const capa = await db.sequelize.query(`select Capacity, p.InCase, pr.BPrice 
+            // from SMTTerms.dbo.vGoods_Elements t
+            // left join SMTTerms.dbo.t_Products p
+            // on t.Article=p.Article
+            // left join SMTTerms.dbo.t_Pricelists pr
+            // on pr.Article=p.Article
+            // and pr.PLTypeId=1
+            // where Brand like '%bonaqua%' and FlavorName like '%still%' and p.Article = '${doc[i].Article}'`, { type: QueryTypes.SELECT })
+            
+            // res.status(200).send(capa); }
+        } else {
+            res.status(404).json({ message: "No data to insert." });
+            return;
+        }
+    } catch(err) {
+        res.status(500).json({ message: err.message });
+        return;
+    }
+}
+
 exports.updateOrder = async(req, res) => {
 
     const orderid = req.body.orderid;

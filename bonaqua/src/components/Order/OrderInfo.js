@@ -69,7 +69,7 @@ export default function OrderInfo() {
     var today = new Date();
     //   if (number.match(phoneno) && name.match(regName)) {
 
-    fetch('http://192.168.244.6:8089/api/bonaqua/addOrder', {
+    fetch('http://localhost:8008/api/bonaqua/addOrder', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

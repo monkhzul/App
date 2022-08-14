@@ -43,7 +43,7 @@ export default function Order() {
   useEffect(() => {
     var getData = async () => {
       try {
-        var data = await fetch('http://192.168.244.6:8089/api/bonaqua');
+        var data = await fetch('http://localhost:8008/api/bonaqua');
         var resData = await data.json();
         setData(resData)
       } catch (err) {
@@ -226,7 +226,7 @@ export default function Order() {
                         </div>
 
                         <div className="order1Price flex justify-between items-center">
-                          <h3 className="9xl:text-5xl">{data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮ </h3>
+                          <h3 className="text-2xl 9xl:text-5xl">{data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮ </h3>
                           <div className="order1Button flex justify-between">
                             <button className="" onClick={() => {
                               if (data.avdar > 1 && sum > 0) {
@@ -285,7 +285,7 @@ export default function Order() {
                 <div className='order1selectTotal1 flex flex-col'>
                   <p className='text-gray-500 flex ml-3 text-sm 9xl:text-3xl'>Нийт үнэ</p>
                   {sum == 0 || sum == null ? <p className='total text-red-700 text-3xl font-semibold' id="resultO"></p>
-                    : <p className='total text-red-700 text-xl md:text-3xl font-semibold mt-[10%] sm:mt-0' id="resultO">{sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>}
+                    : <p className='total text-red-700 text-2xl md:text-3xl font-bold mt-[15%] sm:mt-0' id="resultO">{sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>}
                 </div>
 
                 <Link className="nav-link cursor-pointer" to="#" id='submit' >

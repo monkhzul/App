@@ -30,6 +30,7 @@ export default function Payment() {
   const userarrays = sessionStorage.getItem("userarray");
   const userArray = JSON.parse(userarrays);
   const random = sessionStorage.getItem("random");
+  const orderid = sessionStorage.getItem("orderid");
   // var para = new URLSearchParams(window.location.search);
   // var random = para.get("random")
 

@@ -16,6 +16,7 @@ export default function AllOrder() {
   const userarrays = sessionStorage.getItem("userarray");
   const userArray = JSON.parse(userarrays);
   const random = sessionStorage.getItem("random");
+  const orderid = sessionStorage.getItem("orderid");
 
   const dugaarc = sessionStorage.getItem("dugaar");
   var Pay_Status = sessionStorage.getItem("status");
@@ -23,7 +24,7 @@ export default function AllOrder() {
   useEffect(() => {
     var getData = async () => {
       try {
-        var data = await fetch('http://192.168.244.6:8089/api/bonaqua/orderHistory');
+        var data = await fetch('http://localhost:8008/api/bonaqua/orderHistory');
         var resData = await data.json();
         setData(resData)
       } catch (err) {
@@ -41,15 +42,35 @@ export default function AllOrder() {
         orderno: data[i].orderno,
         date: data[i].DDate,
         totalPrice: data[i].TotalAmount,
+        orderid: orderid,
         status: Pay_Status === 'PAID' ? 'Баталгаажсан' : 'Хүлээгдэж буй'
       });
     }
   }
 
-
   function HistoryToPayment(orderno, price) {
     sessionStorage.setItem("random", orderno);
     sessionStorage.setItem("sum", price);
+
+    const Orderid = () => {
+      fetch('http://localhost:8008/api/bonaqua/getDetail', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Basic TUNTOmFoTlpGT00x"
+      },
+      body: JSON.stringify({
+        orderno: random
+      })
+    })
+      .then(res => {
+        const data = res.json()
+        data.then(res => console.log(res))
+      })
+    }
+    Orderid()
+  
+
       const QPay = () => {
         fetch('https://api.qpay.mn/v1/auth/token', {
         method: "POST",
@@ -69,14 +90,39 @@ export default function AllOrder() {
           data.then(res => {
             const token = res.access_token;
             sessionStorage.setItem("token", token);
-            window.location.pathname = '/payment';
+            // window.location.pathname = '/payment';
           })
         })
       }
       QPay()
   }
 
-  const display = ordernoNumber.slice(pagesVisited, pagesVisited + perPage)
+  function getDetail() {
+    const Orderid = () => {
+      fetch('http://localhost:3000/api/bonaqua/getDetail', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Basic TUNTOmFoTlpGT00x"
+      },
+      body: JSON.stringify({
+        orderid: orderid
+      })
+    })
+      .then(res => {
+        const data = res.json()
+        data.then(res => {
+          console.log("res")
+        })
+      })
+    }
+    Orderid()
+  }
+
+  // console.log(ordernoNumber[0].date.slice(0,10), today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate())
+
+
+  const display = ordernoNumber.sort((a, b) => a.date - b.date).slice(pagesVisited, pagesVisited + perPage)
     .map(data => {
       return (
         <div className="orderHistory flex mb-2">
@@ -88,11 +134,15 @@ export default function AllOrder() {
             <div className="flex flex-row w-full sm:w-1/2 justify-around items-center">
               <div className="date">
                 <p className="text-gray-500 9xl:text-3xl leading-3">Огноо</p>
-                <p className="font-semibold 9xl:text-3xl">{(data.date).slice(0, 10)}</p>
+                <p className="font-semibold 9xl:text-3xl">{(data.date).slice(0,10)}</p>
               </div>
               <div className="state">
                 <p className="text-gray-500 leading-3">Төлөв</p>
-                <p className="font-semibold">{data.status}</p>
+                {
+                  data.status === 'Баталгаажсан' ? <p className="font-semibold text-green-400">{data.status}</p>
+                  : <p className="font-semibold text-orange-400">{data.status}</p>
+                }
+              
               </div>
             </div>
             <div className="flex flex-row w-full sm:w-1/2 justify-around items-center">

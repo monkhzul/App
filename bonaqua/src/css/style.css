@@ -507,7 +507,8 @@ a {
       }
       .order1selectTotal::-webkit-scrollbar, .order1selectTotal1::-webkit-scrollbar, #submit::-webkit-scrollbar, .seeTotalInfo > *::-webkit-scrollbar   {
         width: 10%;
-        height: 0.3rem;
+        height: 0;
+        overflow: scroll;
         display: none;
       }
       .order1selectTotal::-webkit-scrollbar-track, .order2TotalInfo .order1selectTotal1::-webkit-scrollbar-track{
@@ -799,7 +800,7 @@ a {
       width: 0.8rem;
       height: 0.8rem;
       background-color: #8a8888;
-       border-radius: 50%;
+      border-radius: 50%;
       margin: 1rem;
     }
     .bonaquaType:hover {
@@ -809,7 +810,7 @@ a {
       width: 0.8rem;
       height: 0.8rem;
       background-color: #8a8888;
-       border-radius: 50%;
+      border-radius: 50%;
       margin: 1rem;
     }
     .bona-active {

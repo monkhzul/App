@@ -19,7 +19,7 @@ export default function OrderHistory() {
   // useEffect(() => {
   //   var getData = async () => {
   //     try {
-  //       var data = await fetch('http://192.168.244.6:8089/api/bonaqua/orderHistory');
+  //       var data = await fetch('http://localhost:8008/api/bonaqua/orderHistory');
   //       var resData = await data.json();
   //       setHistory(resData)
   //     } catch (err) {
@@ -84,19 +84,7 @@ export default function OrderHistory() {
                   </div>
                 </div>
 
-                {/* <div className='link flex justify-between py-3 mr-[20%]'>
-                  <NavLink className="nav-link" exact to='/orderHistory' activeClassName='is-active'>
-                    Бүгд
-                  </NavLink>
-                  <NavLink className="nav-link" to='/orderHistory/orderConfirm' activeClassName='is-active'>
-                    Баталгаажсан
-                  </NavLink>
-                  <NavLink className="nav-link" to='/orderHistory/orderWaiting' activeClassName='is-active'>
-                    Хүргэгдсэн
-                  </NavLink>
-                </div> */}
-
-                <div className="sort flex justify-end">
+                <div className="sort flex justify-end ml-5">
                   <select name="" id="" className='select w-full'>
                     <option value="" className=''>Сүүлийнх нь эхэндээ</option>
                     <option value=""></option>
@@ -111,14 +99,7 @@ export default function OrderHistory() {
           <div className='my-14'>
             <img src={lineflower} alt="" className='w-full' />
           </div>
-
-          {/* <div>
-            <Link className="nav-link" to="/payment">
-              <button className='backPaymentButton'>
-                Төлбөр төлөх хэсэг рүү буцах
-              </button>
-            </Link>
-          </div> */}
+          
           <div>
             <a className="nav-link" href="/">
               <button className='backPaymentButton' onClick={() => {
