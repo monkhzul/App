@@ -37,6 +37,28 @@ export default function AllOrder() {
   }, [])
 
 
+  useEffect(() => {
+    const status = () => {
+      fetch('http://localhost:8008/api/bonaqua/getStatus', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          orderno: random
+        })
+      })
+        .then((res) => {
+          const data = res.json();
+          data.then(res => {
+            console.log(res[0].State)
+          });
+        })
+    }
+    status()
+  }, [])
+
+
   const ordernoNumber = [];
 
   for (let i = 0; i < data.length; i++) {
@@ -46,7 +68,6 @@ export default function AllOrder() {
         orderno: data[i].orderno,
         date: data[i].DDate,
         totalPrice: data[i].TotalAmount,
-        orderid: orderid,
         status: Pay_Status === 'PAID' ? 'Баталгаажсан' : Pay_Status === 'Canceled' ? 'Цуцлагдсан' : 'Хүлээгдэж буй'
       });
     }

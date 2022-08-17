@@ -11,6 +11,7 @@ module.exports = app => {
     router.get("/orderHistory", bonaqua.orderHistory);
     router.get("/payment", bonaqua.Payment);
     router.post("/getDetail", bonaqua.getOrderDetail);
+    router.post("/getStatus", bonaqua.t_Orders_Status);
 
     app.use('/api/bonaqua', router);
 };

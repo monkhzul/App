@@ -182,6 +182,26 @@ exports.orderHistory = async(req, res) => {
     };
 };
 
+exports.t_Orders_Status = async(req, res) => {
+    const orderno = req.body.orderno
+
+    const bonaqua = await db.sequelize.query(`SELECT [DocumentId],[DocumentNo],[PaymentTermId]
+    ,[DDate],[State],[Description],[DateCreate]
+    FROM [SMTTerms].[dbo].[t_Orders] where DocumentNo = '${orderno}'`, { type: QueryTypes.SELECT });
+
+    try {
+        if(bonaqua != 0) {
+            res.status(200).send(bonaqua);
+        } else {
+            res.status(404).json({ message: "Couldn't find bonaqua." });
+            return;
+        }
+    } catch(err) {
+        res.status(500).json({ message: err.message });
+        return;
+    };
+};
+
 async function TokenGet() {
 
     const result = await fetch('https://122.201.28.34:8080/api/MyCokeGetTokenQPay', {
