@@ -51,12 +51,20 @@ export default function AllOrder() {
         .then((res) => {
           const data = res.json();
           data.then(res => {
-            console.log(res[0].State)
+            const state = res[0].State;
+            console.log(state)
+            setStatus(state)
           });
         })
     }
     status()
   }, [])
+
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].phonenumber == dugaarc) {
+
+    }
+  }
 
 
   const ordernoNumber = [];
@@ -68,7 +76,7 @@ export default function AllOrder() {
         orderno: data[i].orderno,
         date: data[i].DDate,
         totalPrice: data[i].TotalAmount,
-        status: Pay_Status === 'PAID' ? 'Баталгаажсан' : Pay_Status === 'Canceled' ? 'Цуцлагдсан' : 'Хүлээгдэж буй'
+        status: status === 1 ? 'Баталгаажсан' : status === 10 ? 'Хүлээгдэж буй' : 'Цуцлагдсан' 
       });
     }
   }
