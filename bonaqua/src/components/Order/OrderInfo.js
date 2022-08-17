@@ -95,7 +95,7 @@ export default function OrderInfo() {
           sessionStorage.setItem("random", orderNumber);
           sessionStorage.setItem("orderid", orderId);
           
-            window.location.href = 'http://localhost:3000/payment';
+            window.location.href = '/payment';
         });
       })
 

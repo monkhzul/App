@@ -21,7 +21,7 @@ export default function Payment() {
   const [qr_image, setQR_image] = useState("");
   const [payment_id, setPayment_id] = useState("");
   const [payment_status, setPayment_status] = useState("");
-  const [refreshToken, setRefreshToken] = useState("");
+  const [payment, setPayment] = useState("Хүлээгдэж буй");
 
   const arrays = sessionStorage.getItem("array");
   const orderArray = JSON.parse(arrays);
@@ -34,23 +34,29 @@ export default function Payment() {
   // var para = new URLSearchParams(window.location.search);
   // var random = para.get("random")
 
-  // if (orderArray === null) {
-  //   console.log("array hooson")
-    
-  // } 
-  // else {
-  //     orderArray.forEach(x => {
-  //       pack.push(x.size)
-  //       incase.push(x.incase)
-  //       size.push(x.avdar)
-  //     })
-  // }
+  if (orderArray === null) {
+    console.log("array hooson")
+  } 
+  else {
+      orderArray.forEach(x => {
+        pack.push(x.size)
+        incase.push(x.incase)
+        size.push(x.avdar)
+      })
+  }
 
   const key = "bsuTPNVvbM#sAI2#";
   var checksum = random + sum + "POST" + "http://localhost:3000/orderHistory";
   var checksum1 = checksum.toString();
   const hash = crypto.HmacSHA256(`${checksum1}`, key);
   let sha256 = hash.toString(crypto.enc.Hex);
+
+
+  var checksum1 = random + random;
+  var checksum2 = checksum1.toString();
+  const hash1 = crypto.HmacSHA256(`${checksum2}`, key);
+  let sha2561 = hash1.toString(crypto.enc.Hex);
+
 
   function SocialPay() {
     const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNRVJDSEFOVF9NQ1NfQ09DQV9DT0xBIiwiaWF0IjoxNjMyNzkxOTM4fQ.Tji9cxZsRZPcNJ1xtxx7O3lq2TDn9VZhbx9n6YZ7yOs";
@@ -76,7 +82,59 @@ export default function Payment() {
           window.location.href = `https://ecommerce.golomtbank.com/socialpay/mn/${data.invoice}`;
         })
       });
+
+      // setTimeout(() => {
+      //     fetch('https://ecommerce.golomtbank.com/api/inquiry', {
+      //       method: 'POST',
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //         "Authorization": `Bearer ${token}`,
+      //       },
+      //       body: JSON.stringify({
+      //         checksum: sha2561,
+      //         transactionId: random
+      //       })
+      //     })
+      //     .then(res => {
+      //       const data = res.json()
+      //       data.then(data => {
+      //         console.log(data)
+      //       })
+      //     });
+      // }, 1000);
   }
+
+  const Inquiry = () => {
+          fetch('https://ecommerce.golomtbank.com/api/inquiry', {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNRVJDSEFOVF9NQ1NfQ09DQV9DT0xBIiwiaWF0IjoxNjMyNzkxOTM4fQ.Tji9cxZsRZPcNJ1xtxx7O3lq2TDn9VZhbx9n6YZ7yOs`,
+            },
+            body: JSON.stringify({
+              checksum: sha2561,
+              transactionId: random
+            })
+          })
+          .then(res => {
+            const data = res.json()
+            data.then(data => {
+              setPayment_status(data.status)
+            })
+          });
+    };
+
+  Inquiry();
+
+  setTimeout(() => {
+    
+    if (payment_status === 'PENDING') {
+        setPayment('Canceled')
+        // sessionStorage.clear()
+    }
+  }, 2000);
+  
+  console.log(payment)
 
   const token = sessionStorage.getItem("token")
 
@@ -134,7 +192,6 @@ export default function Payment() {
     QRcode()
   }, [])
 
-  useEffect(() => {
     const CheckQpay = async () => {
       await fetch(`https://api.qpay.mn/v1/bill/check`, {
           method: "POST",
@@ -152,14 +209,15 @@ export default function Payment() {
             data.then(res => {
               const paymentStatus = res.payment_info.payment_status;
               setPayment_status(paymentStatus)
-              console.log(res.payment_info.payment_status)
+              // console.log(res.payment_info.payment_status)
             })
           })
     }
-    CheckQpay()
-  }, [])
+  setTimeout(() => {
+    
+  }, 2000);
 
-  sessionStorage.setItem("status", payment_status);
+  sessionStorage.setItem("status", payment);
 
   function CancelOrder() {
     toast("Захиалга цуцлагдлаа!")

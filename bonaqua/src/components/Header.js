@@ -93,10 +93,10 @@ export default function Header() {
                 </p>
                 <ToastContainer/>
                 {
-                  log != null ? <Link to="/orderHistory">
+                  log != null ? <Link className="nav-link" to="/orderHistory">
                     <p className='yourBusket'>Захиалгын түүх</p>
                   </Link>
-                    : <Link to='#' onClick={handleShow}>
+                    : <Link className="nav-link" to='#' onClick={handleShow}>
                       <p className='yourBusket'>Захиалгын түүх</p>
                     </Link>
                 }
