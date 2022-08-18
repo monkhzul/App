@@ -934,4 +934,17 @@ a {
       border-right: 1px solid var(--blue-color);
     }
 
+    .css-1s2u09g-control {
+      border-color: none !important;
+      border-radius: 0 !important;
+      border-style: none !important;
+      min-height: 100% !important;
+    }
+    .css-tj5bde-Svg {
+      fill: var(--blue-color) !important;
+    }
+    .css-1okebmr-indicatorSeparator {
+      display: none;
+    }
+
     

@@ -19,13 +19,14 @@ import SlideImage from "../SlideImage";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Social from "../Social";
+import CreatableSelect from 'react-select/creatable';
 
 export default function Order() {
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
-
   const [render, setRender] = useState(false);
   const [image, setImage] = useState("");
+  const [select, setSelect] = useState(1);
 
   const { setTotal, value } = useContext(AppContext);
 
@@ -71,17 +72,33 @@ export default function Order() {
     // setRender(!render)
   }
 
+  const options = [];
+
+  for (let i = 1; i < 11; i++) {
+      options.push({ value: i, label: i }) 
+  }
+
+  const handleChange = (selectedOption) => {
+    setSelect(selectedOption.value)
+    const price = document.getElementById('mlselect').value.split(',')[1];
+    const incase = document.getElementById('mlselect').value.split(',')[2];
+
+    const totals = (incase * price) * selectedOption.value;
+    sessionStorage.setItem('total', totals);
+    const result = document.getElementById("result");
+    result.innerHTML = `${totals.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮`;
+  }
+
   // Нэмэлт захиалгын хэсэг /утга авах/
   function setValue() {
     const size = document.getElementById('mlselect').value.split(',')[0];
     const price = document.getElementById('mlselect').value.split(',')[1];
     const incase = document.getElementById('mlselect').value.split(',')[2];
-    const number = document.getElementById('avdar').value;
     const result = document.getElementById('result');
 
     const imgArr = JSON.parse(sessionStorage.getItem("imagearray"));
 
-    const totals = (incase * price) * number;
+    const totals = (incase * price) * select;
     sessionStorage.setItem('total', totals);
     result.innerHTML = `${totals.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮`;
 
@@ -103,7 +120,7 @@ export default function Order() {
     const incase = document.getElementById('mlselect').value.split(',')[2];
     const article = document.getElementById('mlselect').value.split(',')[3];
 
-    const bagts = parseInt(document.getElementById('avdar').value);
+    const bagts = select;
     const totalPrice = prices * incase * bagts;
 
     var index = orderArray.findIndex(x => x.size == size);
@@ -312,12 +329,19 @@ export default function Order() {
                     )}
                   </select>
 
-                  <input type="number" list="case" id="avdar" className='select' onChange={setValue} placeholder="Авдарны тоо" defaultValue="1" />
+                  {/* <input type="number" list="case" id="avdar" className='select' onChange={setValue} placeholder="Авдарны тоо" defaultValue="1" />
                   <datalist id='case'>
                     {number.map(res =>
                       <option value={res} id='number'></option>
                     )}
-                  </datalist>
+                  </datalist> */}
+                  <CreatableSelect 
+                    className='select'
+                    id='avdar'
+                    onChange={handleChange}
+                    options={options}
+                    defaultValue={{ value: 1, label: 1 }}
+                  />
 
                   <div className='selectTotal flex justify-center items-center text-center'>
                     <p className='total text-red-700 pt-4 9xl:text-3xl' id='result'>

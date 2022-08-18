@@ -22,6 +22,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Social from './Social';
 import $, { ready } from 'jquery';
+import CreatableSelect from 'react-select/creatable';
 
 export default function Content() {
   var { array, setTotal, total, setItem, item, setValues } = useContext(AppContext);
@@ -29,7 +30,7 @@ export default function Content() {
   const [render, setRender] = useState(false);
   const [capacity, setCapacity] = useState("");
   const [image, setImage] = useState(bonaqua15);
-  const [active, setActive] = useState(false);
+  const [select, setSelect] = useState(1);
   // const [article, setArticle] = useState("");
   const [text, setText] = useState("");
 
@@ -70,17 +71,34 @@ export default function Content() {
   })
   ftotal = fprice[0] * fincase[0];
 
+  const options = [];
+
+  for (let i = 1; i < 11; i++) {
+      options.push({ value: i, label: i }) 
+  }
+
+  const handleChange = (selectedOption) => {
+    setSelect(selectedOption.value)
+    const price = document.getElementById('mlselect').value.split(',')[1];
+    const incase = document.getElementById('mlselect').value.split(',')[2];
+
+    const totals = (incase * price) * selectedOption.value;
+    sessionStorage.setItem('total', totals);
+    const result = document.getElementById("result");
+    result.innerHTML = `${totals.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮`;
+  }
+
   function setValue() {
     const size = document.getElementById('mlselect').value.split(',')[0];
     const price = document.getElementById('mlselect').value.split(',')[1];
     const incase = document.getElementById('mlselect').value.split(',')[2];
-    const number = document.getElementById('avdar').value;
+    // const number = document.getElementById('avdar').value;
     const title = document.getElementById('title');
     const caseinunit = document.getElementById('caseinunit');
     const result = document.getElementById("result");
 
     // setTotal(incase)
-    const totals = (incase * price) * number;
+    const totals = (incase * price) * select;
     sessionStorage.setItem('total', totals);
     title.innerHTML = `Bonaqua ${size} - ${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮`;
     result.innerHTML = `${totals.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮`;
@@ -101,7 +119,8 @@ export default function Content() {
     const incase = document.getElementById('mlselect').value.split(',')[2];
     const article = document.getElementById('mlselect').value.split(',')[3];
 
-    const bagts = parseInt(document.getElementById('avdar').value);
+    // const bagts = parseInt(document.getElementById('avdar').value);
+    const bagts = select;
     
     var index = array.findIndex(x => x.size == size);
 
@@ -274,19 +293,20 @@ export default function Content() {
                       <option id="incase" value={[res.Capacity, res.BPrice, res.InCase, res.Article]}>{res.Capacity}</option>
                     )}
                   </select>
-
                   
-                  <datalist id='case'>
+                  {/* <datalist id='case'>
                     {number.map(res =>
                       <option value={res} id='number'>{res}</option>
                     )}
                   </datalist>
-                  <input type="text" list="case" id="avdar" className='select' onChange={setValue} placeholder="Авдарны тоо" defaultValue={1}/>
-                  {/* <select type="text" name="" id="avdar" className='select' >
-                  {number.map(res =>
-                      <option value={res} id='number'>{res}</option>
-                    )}
-                  </select> */}
+                  <input type="text" list="case" id="avdar" className='select' onChange={setValue} placeholder="Авдарны тоо" defaultValue={1}/> */}
+                  <CreatableSelect 
+                    className='select'
+                    id='avdar'
+                    onChange={handleChange}
+                    options={options}
+                    defaultValue={{ value: 1, label: 1 }}
+                  />
 
                   <div className='selectTotal flex justify-center items-center text-center'>
                     <p className='total text-red-700 pt-4 9xl:text-3xl' id='result'>
