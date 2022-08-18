@@ -939,12 +939,18 @@ a {
       border-radius: 0 !important;
       border-style: none !important;
       min-height: 100% !important;
+      cursor: pointer;
     }
     .css-tj5bde-Svg {
       fill: var(--blue-color) !important;
     }
     .css-1okebmr-indicatorSeparator {
       display: none;
+    }
+    .css-1pahdxg-control {
+      border-color: var(--blue-color) !important;
+      box-shadow: 0 0 0 1px var(--blue-color) !important;
+      min-height: 100% !important;
     }
 
     
