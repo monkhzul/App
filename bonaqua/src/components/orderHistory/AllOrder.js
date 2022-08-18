@@ -60,13 +60,6 @@ export default function AllOrder() {
     status()
   }, [])
 
-  for (let i = 0; i < data.length; i++) {
-    if (data[i].phonenumber == dugaarc) {
-
-    }
-  }
-
-
   const ordernoNumber = [];
 
   for (let i = 0; i < data.length; i++) {
@@ -130,7 +123,6 @@ export default function AllOrder() {
   }
 
   // console.log(ordernoNumber[0].date.slice(0,10), today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate())
-
 
   const display = ordernoNumber.sort((a, b) => a.date - b.date).slice(pagesVisited, pagesVisited + perPage)
     .map(data => {

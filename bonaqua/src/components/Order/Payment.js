@@ -21,6 +21,7 @@ export default function Payment() {
   const [qr_image, setQR_image] = useState("");
   const [payment_id, setPayment_id] = useState("");
   const [payment_status, setPayment_status] = useState("");
+  const [QPay_status, setQPay_status] = useState("");
   const [payment, setPayment] = useState("Хүлээгдэж буй");
 
   const arrays = sessionStorage.getItem("array");
@@ -70,7 +71,7 @@ export default function Payment() {
         amount: sum,
         callback: "http://localhost:3000/orderHistory",
         checksum: sha256,
-        genToken: "N",
+        genToken: "Y",
         returnType: "POST",
         transactionId: random
       })
@@ -82,59 +83,28 @@ export default function Payment() {
           window.location.href = `https://ecommerce.golomtbank.com/socialpay/mn/${data.invoice}`;
         })
       });
-
-      // setTimeout(() => {
-      //     fetch('https://ecommerce.golomtbank.com/api/inquiry', {
-      //       method: 'POST',
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //         "Authorization": `Bearer ${token}`,
-      //       },
-      //       body: JSON.stringify({
-      //         checksum: sha2561,
-      //         transactionId: random
-      //       })
-      //     })
-      //     .then(res => {
-      //       const data = res.json()
-      //       data.then(data => {
-      //         console.log(data)
-      //       })
-      //     });
-      // }, 1000);
   }
 
-  const Inquiry = () => {
-          fetch('https://ecommerce.golomtbank.com/api/inquiry', {
-            method: 'POST',
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNRVJDSEFOVF9NQ1NfQ09DQV9DT0xBIiwiaWF0IjoxNjMyNzkxOTM4fQ.Tji9cxZsRZPcNJ1xtxx7O3lq2TDn9VZhbx9n6YZ7yOs`,
-            },
-            body: JSON.stringify({
-              checksum: sha2561,
-              transactionId: random
-            })
-          })
-          .then(res => {
-            const data = res.json()
-            data.then(data => {
-              setPayment_status(data.status)
-            })
-          });
-    };
-
-  Inquiry();
-
-  setTimeout(() => {
-    
-    if (payment_status === 'PENDING') {
-        setPayment('Canceled')
-        // sessionStorage.clear()
-    }
-  }, 2000);
+    const Inquiry = () => {
+      fetch('https://ecommerce.golomtbank.com/api/inquiry', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNRVJDSEFOVF9NQ1NfQ09DQV9DT0xBIiwiaWF0IjoxNjMyNzkxOTM4fQ.Tji9cxZsRZPcNJ1xtxx7O3lq2TDn9VZhbx9n6YZ7yOs`,
+        },
+        body: JSON.stringify({
+          checksum: sha2561,
+          transactionId: random
+        })
+      })
+      .then(res => {
+        const data = res.json()
+        data.then(data => {
+          setPayment_status(data)
+        })
+      });
+};
   
-  console.log(payment)
 
   const token = sessionStorage.getItem("token")
 
@@ -208,14 +178,28 @@ export default function Payment() {
             const data = res.json()
             data.then(res => {
               const paymentStatus = res.payment_info.payment_status;
-              setPayment_status(paymentStatus)
+              setQPay_status(paymentStatus)
+              console.log(paymentStatus)
               // console.log(res.payment_info.payment_status)
             })
           })
     }
-  setTimeout(() => {
-    
-  }, 2000);
+
+
+    useEffect(() => {
+      Inquiry();
+    }, [])
+
+    // useEffect(() => {
+    //   setTimeout(() => {
+    //     Inquiry();
+    //     CheckQpay();
+    //     console.log(payment_status, QPay_status)
+    //     // if (payment_status === 'PENDING' && QPay_status === 'NOT_PAID') {
+    //     // }
+    //   }, 2000);
+    // }, [])
+   
 
   sessionStorage.setItem("status", payment);
 
