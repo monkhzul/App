@@ -40,14 +40,14 @@ function App() {
   let element = useRoutes([
     {
      path: '/', element: <Content/>,
-     children: [{ path: "/instruction", element: <Instruction /> }, 
-                { path: "/nutrition", element: <Nutrition/>}]
+     children: [{ path: "instruction", element: <Instruction /> }, 
+                { path: "nutrition", element: <Nutrition/>}]
     },
-    {path: '/order', element: <Order/>},
-    {path: '/userinfo', element: <OrderInfo/>},
-    {path: '/payment', element: <Payment/>},
+    {path: 'order', element: <Order/>},
+    {path: 'userinfo', element: <OrderInfo/>},
+    {path: 'payment', element: <Payment/>},
     {
-      path: '/orderHistory', element: <OrderHistory/>,
+      path: 'orderHistory', element: <OrderHistory/>,
       children: [
                  {path: 'orderConfirm', element: <OrderConfirm/>},
                  {path: 'orderWaiting', element: <OrderDelivered/>}]
@@ -73,20 +73,17 @@ function App() {
         invoice_id, setInvoice_id,
         qr_text, setQR_text,
         qr_image, setQR_image
-
       }}
       render={{ render, setRender }}>
       <div className="contain">
         <Header />
         <div className='routes'>
           {/* <Routes>
-            <Switch>
-              <Route exact path="/" component={Content} />
-              <Route path="/order" component={Order} />
-              <Route path="/userinfo" component={OrderInfo} />
-              <Route path="/payment" component={Payment} render = {{render, setRender}}/>
-              <Route path="/orderHistory" component={OrderHistory} />
-            </Switch>
+              <Route exact path="/" element={<Content/>} />
+              <Route path="order" element={<Order/>} />
+              <Route path="userinfo" component={<OrderInfo/>} />
+              <Route path="payment" component={<Payment/>} />
+              <Route path="orderHistory" component={<OrderHistory/>} />
           </Routes> */}
         {element}
         </div>
