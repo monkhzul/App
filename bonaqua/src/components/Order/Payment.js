@@ -185,7 +185,6 @@ export default function Payment() {
           })
     }
 
-
     useEffect(() => {
       Inquiry();
     }, [])
@@ -200,7 +199,6 @@ export default function Payment() {
     //   }, 2000);
     // }, [])
    
-
   sessionStorage.setItem("status", payment);
 
   function CancelOrder() {
