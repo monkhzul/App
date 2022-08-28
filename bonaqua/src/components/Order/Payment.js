@@ -22,7 +22,7 @@ export default function Payment() {
   const [payment_id, setPayment_id] = useState("");
   const [payment_status, setPayment_status] = useState("");
   const [QPay_status, setQPay_status] = useState("");
-  const [payment, setPayment] = useState("Хүлээгдэж буй");
+  var [payment, setPayment] = useState("Хүлээгдэж буй");
 
   const arrays = sessionStorage.getItem("array");
   const orderArray = JSON.parse(arrays);
@@ -103,7 +103,7 @@ export default function Payment() {
           setPayment_status(data)
         })
       });
-};
+    };
   
 
   const token = sessionStorage.getItem("token")
@@ -179,27 +179,25 @@ export default function Payment() {
             data.then(res => {
               const paymentStatus = res.payment_info.payment_status;
               setQPay_status(paymentStatus)
-              console.log(paymentStatus)
               // console.log(res.payment_info.payment_status)
             })
           })
     }
-
+    
     useEffect(() => {
-      Inquiry();
+      setTimeout(() => {
+        Inquiry();
+        CheckQpay();
+
+        if (QPay_status != 'PAID' && payment_status.status == 'CANCEL' ) {
+          payment = 0;
+          sessionStorage.setItem("status", payment);
+        }
+        console.log(QPay_status) 
+        console.log(payment_status.status)
+      }, 2000)
     }, [])
 
-    // useEffect(() => {
-    //   setTimeout(() => {
-    //     Inquiry();
-    //     CheckQpay();
-    //     console.log(payment_status, QPay_status)
-    //     // if (payment_status === 'PENDING' && QPay_status === 'NOT_PAID') {
-    //     // }
-    //   }, 2000);
-    // }, [])
-   
-  sessionStorage.setItem("status", payment);
 
   function CancelOrder() {
     toast("Захиалга цуцлагдлаа!")

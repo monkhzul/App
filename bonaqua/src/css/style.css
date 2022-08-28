@@ -364,7 +364,7 @@ a {
         border-top: 1px solid #d6d1d1;
         border-bottom: 1px solid #d6d1d1;
         border-right: 1px solid #d6d1d1;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         padding-top: 0.4rem;
         font-weight: 500;
         cursor: pointer;
@@ -679,13 +679,18 @@ a {
     .groupS{
       position:relative;
     }
+    .groupS .select {
+      border-left: 1px solid #d6d1d1;
+      border-radius: 0.5rem;
+    }
     .groupS>label{
       padding:0 0.2em;
       position:absolute;
-      top:-0.6em;
+      top:-0.7em;
       left:1em;
       background-color:white;
       color: #807e7e;
+      z-index: 1;
     }
     .groupS>select{
       padding:0.5em;

@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import SlideImage from "../SlideImage";
 import Social from "../Social";
 import QRCode from 'qrcode';
+import Select from 'react-select';
 
 export default function OrderInfo() {
   const [show, setShow] = useState(false);
@@ -24,6 +25,7 @@ export default function OrderInfo() {
   const [doornumber, setDoorNumber] = useState("");
   const [add, setAdd] = useState("");
   const [data, setData] = useState([]);
+  const [select, setSelect] = useState([]);
   const { setRandom, random, pack, orderid, setOrderid, size, incase, setAccess_Token, access_token } = useContext(AppContext)
 
   const arrays = sessionStorage.getItem("array");
@@ -107,7 +109,7 @@ export default function OrderInfo() {
   }
 
 
-  const horoo = Array(32).fill(0).map((e, i) => i + 1);
+  // const options = Array(32).fill(0).map((e, i) => i + 1);
 
   orderArray.forEach(x => {
     pack.push(x.size)
@@ -115,18 +117,37 @@ export default function OrderInfo() {
     size.push(x.avdar)
   });
 
-  var options = "<option value=''></option>";
-  function Options() {
-    for (let i = 1; i < 33; i++) {
-      options += "<option value='" + i + "'>" + i + "-р хороо</option>";
-    }
-    document.getElementById('committee').innerHTML = options;
+  const districts = [
+    {name: "Баянгол дүүрэг"},
+    {name: "Баянзүрх дүүрэг"},
+    {name: "Хан-Уул дүүрэг"},
+    {name: "Чингэлтэй дүүрэг"},
+    {name: "Сонгино-Хайрхан дүүрэг"},
+    {name: "Сүхбаатар дүүрэг"},
+    // {name: "Налайх дүүрэг"},
+    // {name: "Багахангай дүүрэг"},
+    // {name: "Багануур дүүрэг"},
+  ]
+  const dist = [];
+
+  for (let i = 0; i < districts.length; i++) {
+    dist.push({ value: districts[i].name, label: districts[i].name }) 
   }
 
-  window.onload = (event) => {
-    event.preventDefault();
-    Options();
-  };
+  const handleDistrict = (selectedOption) => {
+    setDistrict(selectedOption.value)
+    console.log(selectedOption.value)
+  }
+
+  const options = [];
+
+  for (let i = 1; i < 33; i++) {
+      options.push({ value: i, label: i + '-р хороо' }) 
+  }
+
+  const handleChange = (selectedOption) => {
+    setCommittee(selectedOption.value)
+  }
 
   useEffect(() => {
     var getData = async () => {
@@ -152,52 +173,6 @@ export default function OrderInfo() {
           <div className="orderInfo flex flex-col justify-between">
             <h1 className="mb-3 9xl:text-7xl">Захиалгын мэдээлэл</h1>
 
-            {/* Захиалгын мэдээлэл*/}
-            {/* <div className="">
-              <div className="flex justify-between">
-                <img src={orderinfo} alt="" className="userImg mb-3" />
-                <img src={sags} alt="" className="flowerImg" />
-              </div>
-              <div className="order2TotalInfo">
-                <div className="seeTotalInfo flex relative">
-                  <div className='order1selectTotal flex justify-center items-center overflow-scroll'>
-                    <div className="min-w-0 flex mx-2">
-                      {orderArray.map(data =>
-                        <p className='total text-xl font-semibold'>{data.size}</p>
-                      )}
-                    </div>
-                  </div>
-                  <div className='order1selectTotal1 flex justify-center items-center overflow-scroll'>
-                    <div className="min-w-0 flex mx-2 items-center">
-                      {orderArray.map(data =>
-                        <p className='total text-xl flex justify-center items-center font-semibold mr-2'>{data.incase}x{data.avdar}</p>
-                      )}
-                    </div>
-                  </div>
-                  <div className='order1selectTotal2'>
-                    <p className='total pt-3 text-red-700 text-3xl font-semibold'>{sum}₮</p>
-                  </div>
-                  <div className='order2tablenames absolute flex flex-row text-xs 9xl:text-3xl'>
-                    <div className='flex sizecomment'>
-                      <p className=''>Хэмжээ</p>
-                          {
-                            orderArray.map(data =>
-                              <span className="sizetext">{data.size}</span>
-                            )
-                          }
-                    </div>
-                    <div className='flex'>
-                      <p className=''>Багц</p>
-                    </div>
-                    <div className='flex'>
-                      <p className=''>Нийт үнэ</p>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div> */}
-
             <div className="">
               <div className="flex justify-between">
                 <img src={orderinfo} alt="" className="userImg mb-3" />
@@ -214,13 +189,7 @@ export default function OrderInfo() {
                       )}
                     </div>
                   </div>
-                  {/* <div className='order1selectTotal1 flex justify-center items-center overflow-scroll'>
-                    <div className="min-w-0 flex mx-2 items-center">
-                      {orderArray.map(data =>
-                        <p className='total text-xl flex justify-center items-center font-semibold mr-2'>{data.incase}x{data.avdar}</p>
-                      )}
-                    </div>
-                  </div> */}
+
                   <div className='order1selectTotal2'>
                     <p className='total pt-3 text-red-700 text-3xl font-semibold'>{sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>
                   </div>
@@ -260,21 +229,6 @@ export default function OrderInfo() {
                           dugaar.push(x.phonenumber)
                         })
 
-                        // if (dugaar.includes(e.target.value)) {
-                        //   console.log("yes")
-
-                        //   var proceed = confirm("Та өмнөх захиалгын хаягаа ашиглах уу?");
-                        //   if (proceed) {
-                        //     for (let i = 0; i < data.length; i++) {
-                        //       if (data[i].phonenumber == e.target.value) {
-                        //         document.getElementById("apartment").placeholder = data[i].orderno;
-                        //       }
-                        //     }
-                        //   } else {
-                        //     document.getElementById("apartment").placeholder = ""
-                        //   }
-                        // }
-
                       }}
                       required="required" />
                   </div>
@@ -299,28 +253,21 @@ export default function OrderInfo() {
                     <div className="flex district justify-between">
                       <div className="groupS mr-3 w-1/2">
                         <label htmlFor="" className="form-label">Дүүрэг</label>
-                        <select name="" id="district" className='select w-full 9xl:text-4xl check' onChange={(e) => setDistrict(e.target.value)} required="required">
-                          <option value="" className='option'></option>
-                          <option value="Bayangol">Баянгол</option>
-                          <option value="Bayanzurh">Баянзүрх</option>
-                          <option value="Han-Uul">Хан-Уул</option>
-                          <option value="Songino-Hairhan">Сонгино-Хайрхан</option>
-                          <option value="Chingeltei">Чингэлтэй</option>
-                          <option value="Suhbaatar">Сүхбаатар</option>
-                          <option value="Nalaih">Налайх</option>
-                          <option value="Baganuur">Багануур</option>
-                          <option value="Bagahangai">Багахангай</option>
-                        </select>
+                        <Select 
+                          className='select w-full 9xl:text-4xl check'
+                          id='district'
+                          onChange={handleDistrict}
+                          options={dist}
+                        />
                       </div>
                       <div className="groupS w-1/2">
                         <label htmlFor="" className="form-label">Хороо</label>
-                        <select name="" id="committee" className='select w-full 9xl:text-4xl check' onChange={(e) => setCommittee(e.target.value)} required="required">
-                          {/* { 
-                            horoo.map(horoo =>
-                              options += <option value={horoo}>{horoo}-р хороо</option>
-                            )
-                          } */}
-                        </select>
+                        <Select 
+                          className='select w-full 9xl:text-4xl check'
+                          id='committee'
+                          onChange={handleChange}
+                          options={options}
+                        />
                       </div>
                     </div>
 
@@ -375,25 +322,6 @@ export default function OrderInfo() {
         </div>
         <Social />
       </div>
-      {/* <Modal show={show} onHide={() => setShow(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title className="d-flex w-100 flex justify-center items-center" >
-            <h2 className="my-2">Захиалгын дугаар</h2>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form className="was-validated d-flex flex-column" id="" onSubmit="">
-            <div className="row p-4">
-              <p className='text-gray-500'>Таны захиалгын дугаар: <span className="ordernumber font-semibold text-2xl"> {random} </span>.
-                Та захиалгын дугаараа гүйлгээний утга дээрээ бичих тул тэмдэглэж авна уу! <span> Төлбөр төлөгдсөний дараа захиалга баталгаажина.</span> <br />
-                <span className="text-black font-semibold">Захиалгын дугаараар захиалга идэвхжихийг анхаарна уу!</span></p>
-            </div>
-            <Button type="submit" className="w-50 mx-auto continueButton" onClick={Continue} href="/payment">
-              Үргэлжлүүлэх
-            </Button>
-          </form>
-        </Modal.Body>
-      </Modal> */}
     </div>
   );
 }

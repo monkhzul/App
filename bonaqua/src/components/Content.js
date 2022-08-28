@@ -236,26 +236,6 @@ export default function Content() {
               
             </div>
           </div>
-          {/* <div className='choose'>
-        {data.map((res, index) =>
-          <ul>
-            <li key={index} >
-              <NavLink exact to={`#${res.Capacity}`} id="bonaq" className={res === active ? "current" : "nav-link"} onClick={() => {
-                setCapacity(res.Capacity)
-                imageArray.map(img => {
-                  if (img.size == res.Capacity) {
-                    setImage(img.img)
-                  }
-                })
-                setActive(res)
-              }}>
-                <img src={point} alt="" id='list' className='listing' />
-                <li className='lists'>{res.Capacity}</li>
-              </NavLink>
-            </li>
-          </ul>
-        )}
-      </div> */}
 
           <div className='bona flex justify-center items-end relative'>
             <div className='flower absolute'>
