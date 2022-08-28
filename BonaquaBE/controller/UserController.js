@@ -104,19 +104,29 @@ exports.getOrderDetail = async(req, res) => {
             const doc = await db.sequelize.query(`SELECT [DocumentId] ,[Article] ,[Quantity] ,[Amount] ,[Price] ,[PriceWODiscount]
             FROM [SMTTerms].[dbo].[t_OrderDetails] where DocumentId = '${order[0].DocumentId}'`, { type: QueryTypes.SELECT })
         
-                res.status(200).send(doc);
-            
-            // for(var i in doc) {
-            // const capa = await db.sequelize.query(`select Capacity, p.InCase, pr.BPrice 
-            // from SMTTerms.dbo.vGoods_Elements t
-            // left join SMTTerms.dbo.t_Products p
-            // on t.Article=p.Article
-            // left join SMTTerms.dbo.t_Pricelists pr
-            // on pr.Article=p.Article
-            // and pr.PLTypeId=1
-            // where Brand like '%bonaqua%' and FlavorName like '%still%' and p.Article = '${doc[i].Article}'`, { type: QueryTypes.SELECT })
-            
-            // res.status(200).send(capa); }
+                
+               
+                var arr = [];
+                for(var i in doc) {
+                    arr.push({
+                        article: doc[i].Article,
+                    })
+                }
+
+                var array = [];
+                for(var i in arr) {
+                const article = await db.sequelize.query(`select t.Article, t.Capacity, p.InCase, pr.BPrice 
+                            from SMTTerms.dbo.vGoods_Elements t
+                            left join SMTTerms.dbo.t_Products p
+                            on t.Article=p.Article
+                            left join SMTTerms.dbo.t_Pricelists pr
+                            on pr.Article=p.Article
+                            and pr.PLTypeId=1
+                            where Brand like '%bonaqua%' and t.Article = ${arr[i].article}`)
+                            
+                            array.push(article)
+                        }
+                res.status(200).send(array);
         } else {
             res.status(404).json({ message: "No data to insert." });
             return;
@@ -126,6 +136,27 @@ exports.getOrderDetail = async(req, res) => {
         return;
     }
 }
+
+exports.getQuantity = async(req, res) => {
+
+    const docid = req.body.docid;
+
+    const order = await db.sequelize.query(`SELECT [DocumentId] ,[Article] ,[Quantity] ,[Amount] ,[Price] ,[PriceWODiscount]
+    FROM [SMTTerms].[dbo].[t_OrderDetails] where DocumentId = '${docid}'`, { type: QueryTypes.SELECT });
+
+    try {
+        if(order != 0) {
+            res.status(200).send(order);
+        } else {
+            res.status(404).json({ message: "No data to insert." });
+            return;
+        }
+    } catch(err) {
+        res.status(500).json({ message: err.message });
+        return;
+    }
+}
+
 
 exports.updateOrder = async(req, res) => {
 

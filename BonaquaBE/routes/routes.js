@@ -12,6 +12,7 @@ module.exports = app => {
     router.get("/payment", bonaqua.Payment);
     router.post("/getDetail", bonaqua.getOrderDetail);
     router.post("/getStatus", bonaqua.t_Orders_Status);
+    router.post("/getQuantity", bonaqua.getQuantity);
 
     app.use('/api/bonaqua', router);
 };

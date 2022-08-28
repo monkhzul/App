@@ -13,7 +13,7 @@ export default function Header() {
   const [phoneNumber, setPhone] = useState("");
   const [orderHistory, setHistory] = useState([]);
   const arrays = sessionStorage.getItem("array");
-  const orderArray = JSON.parse(arrays);
+  // const orderArray = JSON.parse(arrays);
 
   var sum = sessionStorage.getItem("sum");
   var item = sessionStorage.getItem("item");

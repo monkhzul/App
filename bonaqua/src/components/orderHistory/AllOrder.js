@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function AllOrder() {
   const [data, setData] = useState([]);
-  const [status, setStatus] = useState(0);
+  var [status, setStatus] = useState(10);
   const [payment_status, setPayment_status] = useState(0);
   const [tOrder, settOrder] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
@@ -20,8 +20,6 @@ export default function AllOrder() {
 
   const dugaarc = sessionStorage.getItem("dugaar");
   var Pay_Status = sessionStorage.getItem("status");
-
-  console.log(Pay_Status)
   
   useEffect(() => {
     var getData = async () => {
@@ -52,13 +50,23 @@ export default function AllOrder() {
           const data = res.json();
           data.then(res => {
             const state = res[0].State;
-            console.log(state)
             setStatus(state)
           });
         })
     }
-    status()
+    status();
   }, [])
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (status == 10 || status == 0) {
+  //       status = 0;
+  //     }
+
+  //   }, 2000)
+  // }, [])
+
+  console.log(status)
 
   const ordernoNumber = [];
 
@@ -91,7 +99,15 @@ export default function AllOrder() {
     })
       .then(res => {
         const data = res.json()
-        data.then(res => console.log(res))
+        var arr = [];
+        data.then((res) => {
+          for (let i = 0; i < res.length; i++) {
+            console.log(res[i][0][0].Capacity)
+            arr.push({
+              size: res[i][0][0].Capacity
+            })
+          }
+        })
       })
     }
     Orderid()
@@ -115,7 +131,7 @@ export default function AllOrder() {
           data.then(res => {
             const token = res.access_token;
             sessionStorage.setItem("token", token);
-            window.location.pathname = '/payment';
+            // window.location.pathname = '/payment';
           })
         })
       }
