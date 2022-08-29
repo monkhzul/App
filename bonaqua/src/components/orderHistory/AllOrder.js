@@ -140,7 +140,12 @@ export default function AllOrder() {
 
   // console.log(ordernoNumber[0].date.slice(0,10), today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate())
 
-  const display = ordernoNumber.sort((a, b) => a.date - b.date).slice(pagesVisited, pagesVisited + perPage)
+  const sortedDesc = ordernoNumber.sort(
+    (objA, objB) => 
+    new Date(objB.date) - new Date(objA.date)
+  );
+
+  const display = sortedDesc.slice(pagesVisited, pagesVisited + perPage)
     .map(data => {
       return (
         <div className="orderHistory flex mb-2">
