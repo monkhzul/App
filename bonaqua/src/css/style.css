@@ -157,6 +157,9 @@ a {
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
     opacity: 0.9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .sagslahButton:hover {
     opacity: 1;

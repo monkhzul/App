@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import sags from "../../images/svg/order 1/sagsnii medelel.svg";
 import add from '../../images/svg/order 1/nemelt zahialga.svg';
 import bona from '../../images/bona0.5.png';
@@ -29,6 +29,8 @@ export default function Order() {
   const [select, setSelect] = useState(1);
 
   const { setTotal, value } = useContext(AppContext);
+
+  const history = useNavigate();
 
   const imageArray = [
     { "img": bonaqua15, "size": "1.5L" },
@@ -174,8 +176,8 @@ export default function Order() {
       setShow(true);
     }
     else {
-      window.location.pathname = '/userinfo';
-      // history.push('/userinfo');
+      // window.location.pathname = '/userinfo';
+      history('/userinfo');
     }
   }
 
@@ -305,11 +307,11 @@ export default function Order() {
                     : <p className='total text-red-700 text-2xl md:text-3xl font-bold mt-[15%] sm:mt-0' id="resultO">{sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>}
                 </div>
 
-                <Link className="nav-link cursor-pointer" to="#" id='submit' >
-                  <button className="sagslahButton text-xl 9xl:text-5xl" onClick={Ordering}>
+                <div className="nav-link cursor-pointer flex" id='submit' >
+                  <div className="sagslahButton text-xl 9xl:text-5xl" onClick={Ordering}>
                     Захиалах
-                  </button>
-                </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

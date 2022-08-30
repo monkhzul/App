@@ -7,7 +7,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { useState, useEffect, useContext } from 'react';
 import { AppContext } from '../App';
 import { ToastContainer, toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Header() {
   const [phoneNumber, setPhone] = useState("");
@@ -17,6 +17,8 @@ export default function Header() {
 
   var sum = sessionStorage.getItem("sum");
   var item = sessionStorage.getItem("item");
+
+  const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
 
@@ -48,7 +50,8 @@ export default function Header() {
   const Continue = () => {
     if (dugaar.includes(phoneNumber)) {
         sessionStorage.setItem("dugaar", phoneNumber);
-        window.location.pathname = '/orderHistory';
+        // window.location.pathname = '/orderHistory';
+        navigate('/orderHistory')
         sessionStorage.setItem("login", login)
     }
     else {
@@ -96,9 +99,9 @@ export default function Header() {
                   log != null ? <Link className="nav-link" to="/orderHistory">
                     <p className='yourBusket'>Захиалгын түүх</p>
                   </Link>
-                    : <Link className="nav-link" to='#' onClick={handleShow}>
+                    : <div className="nav-link" onClick={handleShow}>
                       <p className='yourBusket'>Захиалгын түүх</p>
-                    </Link>
+                    </div>
                 }
               </div>
             </div>

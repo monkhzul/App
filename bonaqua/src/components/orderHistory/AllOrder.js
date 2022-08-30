@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import bona from '../../images/bona0.5.png';
 import ReactPaginate from "react-paginate";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function AllOrder() {
   const [data, setData] = useState([]);
@@ -9,6 +9,8 @@ export default function AllOrder() {
   const [payment_status, setPayment_status] = useState(0);
   const [tOrder, settOrder] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
+
+  const navigate = useNavigate();
 
   const perPage = 5;
   const pagesVisited = pageNumber * perPage;
@@ -131,7 +133,7 @@ export default function AllOrder() {
           data.then(res => {
             const token = res.access_token;
             sessionStorage.setItem("token", token);
-            // window.location.pathname = '/payment';
+            navigate('/payment')
           })
         })
       }
@@ -154,7 +156,7 @@ export default function AllOrder() {
           </div>
 
           <div className="orderHistoryInfo flex flex-col sm:flex-row justify-between w-full mx-2 9xl:mx-8 my-2 items-center 9xl:text-3xl">
-            <div className="flex flex-row w-full sm:w-1/2 justify-around items-center">
+            <div className="flex flex-row w-full sm:w-1/2 justify-around">
               <div className="date">
                 <p className="text-gray-500 9xl:text-3xl leading-3">Огноо</p>
                 <p className="font-semibold 9xl:text-3xl">{(data.date).slice(0,10)}</p>
@@ -169,7 +171,7 @@ export default function AllOrder() {
               
               </div>
             </div>
-            <div className="flex flex-row w-full sm:w-1/2 justify-around items-center">
+            <div className="flex flex-row w-full sm:w-1/2 justify-around">
               <div className="orderNumber">
                 <p className="text-gray-500 leading-3">Захиалгын дугаар</p>
                 <p className="font-semibold">{data.orderno}</p>
@@ -186,7 +188,7 @@ export default function AllOrder() {
                     HistoryToPayment(data.orderno, data.totalPrice);
                   }
                 }>
-                <p className="cursor-pointer">Төлбөр төлөх</p>
+                <p className="cursor-pointer ml-4">Төлбөр төлөх</p>
               </div>
               : ''
             }

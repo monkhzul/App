@@ -1,5 +1,5 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import orderinfo from "../../images/svg/order 2/Header.svg";
 import user from "../../images/svg/order 2/Header-2.svg";
 import location from "../../images/svg/order 2/Header-1.svg";
@@ -31,6 +31,8 @@ export default function OrderInfo() {
   const arrays = sessionStorage.getItem("array");
   const orderArray = JSON.parse(arrays);
   const sum = sessionStorage.getItem("sum");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const QPay = () => {
@@ -97,7 +99,8 @@ export default function OrderInfo() {
           sessionStorage.setItem("random", orderNumber);
           sessionStorage.setItem("orderid", orderId);
           
-            window.location.href = '/payment';
+            // window.location.href = '/payment';
+            navigate('/payment')
         });
       })
 
@@ -309,12 +312,12 @@ export default function OrderInfo() {
                       </div>
 
                       <div className="choosePayment w-1/2">
-                        <Link className="nav-link" to="#">
+                        <div className="nav-link">
                           <ToastContainer />
-                          <button className="choosePaymentButton hover:font-semibold" onClick={getUserData} type="submit">
+                          <button className="choosePaymentButton hover:font-semibold text-white" onClick={getUserData} type="submit">
                             Баталгаажуулах
                           </button>
-                        </Link>
+                        </div>
                       </div>
                     </div>
 
