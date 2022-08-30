@@ -111,11 +111,15 @@ export default function OrderInfo() {
 
   // const options = Array(32).fill(0).map((e, i) => i + 1);
 
-  orderArray.forEach(x => {
-    pack.push(x.size)
-    incase.push(x.incase)
-    size.push(x.avdar)
-  });
+  if (orderArray === '' || orderArray === null) {
+      console.log("hooson")
+  } else {
+    orderArray.forEach(x => {
+      pack.push(x.size)
+      incase.push(x.incase)
+      size.push(x.avdar)
+    });
+  }
 
   const districts = [
     {name: "Баянгол дүүрэг"},
@@ -182,16 +186,17 @@ export default function OrderInfo() {
                 <div className="seeTotalInfo flex relative">
                   <div className='order1selectTotal flex justify-center items-center overflow-scroll'>
                     <div className="flex mx-2 w-full flex-column mt-3">
-                      {orderArray.map((data, i) =>
+                      {orderArray === '' || orderArray === null ? 'Empty' : orderArray.map((data, i) =>
                         <p className='totalInfo font-semibold'>
-                          {`${pack[i]} - ${size[i]} авдар (${incase[i] * size[i]}ш),`}
+                          {pack === '' ? 'Empty' : `${pack[i]} - ${size[i]} авдар (${incase[i] * size[i]}ш),`}
                         </p>
                       )}
                     </div>
                   </div>
 
                   <div className='order1selectTotal2'>
-                    <p className='total pt-3 text-red-700 text-3xl font-semibold'>{sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>
+                    <p className='total pt-3 text-red-700 text-3xl font-semibold'>{sum}₮</p>
+                    {/* .toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") */}
                   </div>
                   <div className='order2tablenames absolute flex flex-row text-xs 9xl:text-3xl'>
                     <div className='flex'>
