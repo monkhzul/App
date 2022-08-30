@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 var corsOptions = {
-  origin: "*"
+  'Access-Control-Allow-Origin': '*',
 };
 app.use(cors(corsOptions));
 app.use(express.json());

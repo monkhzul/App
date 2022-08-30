@@ -8,7 +8,7 @@ import AllOrder from '../orderHistory/AllOrder';
 import OrderConfirm from '../orderHistory/OrderConfirm';
 import OrderDelivered from '../orderHistory/OrderDelivered';
 import Social from '../Social';
-import { AppContext } from "../../App";
+import OrderDetails from '../orderHistory/OrderDetails';
 
 export default function OrderHistory() {
   // const { orderHistory, value } = useContext(AppContext);
@@ -40,7 +40,8 @@ export default function OrderHistory() {
   let element = useRoutes([
     {path: '/', element: <AllOrder/>},
     {path: 'orderConfirm', element: <OrderConfirm/>},
-    {path: 'orderWaiting', element: <OrderDelivered/>}
+    {path: 'orderWaiting', element: <OrderDelivered/>},
+    {path: 'orderDetails', element: <OrderDetails/>}
   ])
 
   return (

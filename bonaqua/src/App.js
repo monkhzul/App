@@ -12,7 +12,6 @@ import OrderHistory from './components/Order/OrderHistory';
 import Content from './components/Content';
 import Instruction from './components/ProductInformation/Instruction';
 import Nutrition from './components/ProductInformation/Nutrition';
-import AllOrder from './components/orderHistory/AllOrder';
 import OrderConfirm from './components/orderHistory/OrderConfirm';
 import OrderDelivered from './components/orderHistory/OrderDelivered';
 

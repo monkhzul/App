@@ -270,7 +270,7 @@ export default function Content() {
                 <form action="" id="mlform" className='flex relative flex-col md:flex-row'>
                   <select name="ml" id="mlselect" className='select' onChange={setValue}>
                     {data.map((res) =>
-                      <option id="incase" value={[res.Capacity, res.BPrice, res.InCase, res.Article]}>{res.Capacity}</option>
+                      res.BPrice === null ? <option id="incase" value={[res.Capacity, res.BPrice, res.InCase, res.Article]} disabled>{res.Capacity}</option> : <option id="incase" value={[res.Capacity, res.BPrice, res.InCase, res.Article]}>{res.Capacity}</option>
                     )}
                   </select>
                   

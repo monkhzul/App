@@ -80,9 +80,7 @@ export default function OrderInfo() {
       },
       body: JSON.stringify({
         date: today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate(),
-        description: [`ner: ${name}, duureg: ${district}, horoo: ${committee}, 
-                         bair/gudamj: ${apartment}, orts: ${entrance}, ortsnii kod: ${code},
-                         haalganii dugaar: ${doornumber}, nemelt: ${add}`].join(","),
+        description: [`ner: ${name}, duureg: ${district}, horoo: ${committee}, bair/gudamj: ${apartment}, orts: ${entrance}, ortsnii kod: ${code}, haalganii dugaar: ${doornumber}, nemelt: ${add}`].join(","),
         phone: number,
         array: orderArray,
         pricedisc: 0,
@@ -99,7 +97,7 @@ export default function OrderInfo() {
           sessionStorage.setItem("random", orderNumber);
           sessionStorage.setItem("orderid", orderId);
           
-            // window.location.href = '/payment';
+            // window.location.pathname = '/payment';
             navigate('/payment')
         });
       })
@@ -110,7 +108,6 @@ export default function OrderInfo() {
     // }
     // }
   }
-
 
   // const options = Array(32).fill(0).map((e, i) => i + 1);
 
@@ -314,9 +311,9 @@ export default function OrderInfo() {
                       <div className="choosePayment w-1/2">
                         <div className="nav-link">
                           <ToastContainer />
-                          <button className="choosePaymentButton hover:font-semibold text-white" onClick={getUserData} type="submit">
+                          <div className="choosePaymentButton hover:font-semibold text-white" onClick={getUserData} type="submit">
                             Баталгаажуулах
-                          </button>
+                          </div>
                         </div>
                       </div>
                     </div>

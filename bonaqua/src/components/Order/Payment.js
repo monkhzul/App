@@ -65,6 +65,7 @@ export default function Payment() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
         "Authorization": `Bearer ${token}`,
       },
       body: JSON.stringify({
@@ -114,6 +115,7 @@ export default function Payment() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
           "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify({
@@ -232,7 +234,7 @@ export default function Payment() {
                   <div className='order1selectTotal flex justify-center items-center overflow-scroll'>
                     <div className="flex mx-2 w-full flex-column mt-3">
                       {orderArray === '' || orderArray === null ? '' : orderArray.map((data, i) =>
-                        <p className='totalInfo font-semibold'>
+                        <p className='totalInfo font-semibold' key={i}>
                           {`${pack[i]} - ${size[i]} авдар (${incase[i] * size[i]}ш),`}
                         </p>
                       )}

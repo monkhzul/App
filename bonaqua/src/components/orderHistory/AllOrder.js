@@ -102,14 +102,14 @@ export default function AllOrder() {
       .then(res => {
         const data = res.json()
         var arr = [];
-        data.then((res) => {
-          for (let i = 0; i < res.length; i++) {
-            console.log(res[i][0][0].Capacity)
-            arr.push({
-              size: res[i][0][0].Capacity
-            })
-          }
-        })
+        // data.then((res) => {
+        //   for (let i = 0; i < res.length; i++) {
+        //     console.log(res[i][0][0].Capacity)
+        //     arr.push({
+        //       size: res[i][0][0].Capacity
+        //     })
+        //   }
+        // })
       })
     }
     Orderid()
@@ -155,6 +155,7 @@ export default function AllOrder() {
             <img src={bona} alt="" className="" />
           </div>
 
+        <Link to="/orderDetails" className="cursor-pointer">
           <div className="orderHistoryInfo flex flex-col sm:flex-row justify-between w-full mx-2 9xl:mx-8 my-2 items-center 9xl:text-3xl">
             <div className="flex flex-row w-full sm:w-1/2 justify-around">
               <div className="date">
@@ -193,6 +194,7 @@ export default function AllOrder() {
               : ''
             }
           </div>
+          </Link>
         </div>
       )
     })
