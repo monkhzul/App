@@ -262,6 +262,29 @@ exports.t_Orders_Status = async(req, res) => {
     };
 };
 
+exports.orderStatus = async(req, res) => {
+
+    const bonaqua = await db.sequelize.query(`SELECT b.orderno, b.phonenumber, t.DateCreate, t.State, isnull(sum(d.Amount),0) TotalAmount
+	FROM Anungoo_db.dbo.t_BtoCphoneno b
+		left join SMTTerms.dbo.t_Orders t
+		on b.orderno=t.DocumentNo collate SQL_Latin1_General_CP1251_CI_AS
+		left join SMTTerms.dbo.t_OrderDetails d
+		on t.DocumentId=d.DocumentId
+		group by b.orderno, b.phonenumber , t.DateCreate, t.State`, { type: QueryTypes.SELECT });
+
+    try {
+        if(bonaqua != 0) {
+            res.status(200).send(bonaqua);
+        } else {
+            res.status(404).json({ message: "Couldn't find bonaqua." });
+            return;
+        }
+    } catch(err) {
+        res.status(500).json({ message: err.message });
+        return;
+    };
+};
+
 async function TokenGet() {
 
     const result = await fetch('https://122.201.28.34:8080/api/MyCokeGetTokenQPay', {

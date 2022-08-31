@@ -181,7 +181,6 @@ export default function AllOrder() {
                       : data.status === 'Цуцлагдсан' ? <p className="font-semibold text-red-600">{data.status}</p>
                         : <p className="font-semibold text-orange-400">{data.status}</p>
                   }
-
                 </div>
               </div>
               <div className="flex flex-row w-full sm:w-1/2 justify-around">
