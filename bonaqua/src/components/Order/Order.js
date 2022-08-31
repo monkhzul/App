@@ -227,8 +227,8 @@ export default function Order() {
                 <img src={flower} alt="" className='mx-3 -mt-4 emptyFlower' />
                 <p className="text-lg text-gray-500 font-medium">Таны сагс хоосон байна!</p>
               </div>
-                : orderArray.map(data =>
-                  <div className="zahialsanHeseg my-1 9xl:my-40">
+                : orderArray.map((data, i) =>
+                  <div className="zahialsanHeseg my-1 9xl:my-40" key={i}>
 
                     <div className="order1 flex">
                       <div className="order1Img flex justify-center">
@@ -294,8 +294,8 @@ export default function Order() {
                   <p className='text-gray-500 flex ml-3 text-sm 9xl:text-2xl'>Хэмжээ</p>
                   <div className="flex justify-center items-center">
                     <div className="min-w-0 flex mx-2 my-3">
-                      {orderArray != null ? orderArray.map(data =>
-                        <p className='total text-xl font-semibold'>{data.size}</p>
+                      {orderArray != null ? orderArray.map((data, i) =>
+                        <p className='total text-xl font-semibold' key={i}>{data.size}</p>
                       ) : ''}
                     </div>
                   </div>
@@ -326,8 +326,8 @@ export default function Order() {
 
                 <form action="" id="mlform" className='flex relative flex-col md:flex-row'>
                   <select name="ml" id="mlselect" className='select' onChange={setValue}>
-                    {data.map((res) =>
-                      <option id="incase" value={[res.Capacity, res.BPrice, res.InCase, res.Article]}>{res.Capacity}</option>
+                    {data.map((res, i) =>
+                      <option id="incase" key={i} value={[res.Capacity, res.BPrice, res.InCase, res.Article]}>{res.Capacity}</option>
                     )}
                   </select>
 

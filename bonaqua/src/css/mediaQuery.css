@@ -49,6 +49,12 @@
     .zahialsanHeseg {
       width: 100%;
     }
+    .zahialsanHesegDetail {
+      width: 80%;
+    }
+    .order1Imgdt {
+      width: 20%;
+    }
     .white {
       width: 4rem;
       height: 4rem;
@@ -199,6 +205,12 @@
     .select {
       border-right: none;
     }
+    .zahialsanHesegDetail {
+      width: 48%;
+    }
+    .order1Imgdt {
+      width: 20%;
+    }
   }
 
   @media (min-width: 768px) and (max-width: 895px) {
@@ -236,6 +248,12 @@
     }
     .logo img {
       height: 7rem;
+    }
+    .orderName p {
+      line-height: 0.8rem;
+    }
+    .zahialsanHesegDetail {
+      width: 40%;
     }
   }
 
@@ -293,6 +311,9 @@
     }
     .logo img {
       height: 7rem;
+    }
+    .zahialsanHesegDetail {
+      width: 40%;
     }
   }
 

@@ -216,7 +216,7 @@ export default function Content() {
             <div class="main">
               <ul id='accordion'>
                 {data.map((res, i) => 
-                <div className='bonaqua' id={`heading${i}`}>
+                <div className='bonaqua' id={`heading${i}`} key={i}>
                   <li className="bonaquaType" id={`type${i}`} data-toggle="collapse" data-target={`#list${res.Capacity}`}
                    onClick={() => { 
                     setCapacity(res.Capacity)
@@ -269,8 +269,8 @@ export default function Content() {
 
                 <form action="" id="mlform" className='flex relative flex-col md:flex-row'>
                   <select name="ml" id="mlselect" className='select' onChange={setValue}>
-                    {data.map((res) =>
-                      res.BPrice === null ? <option id="incase" value={[res.Capacity, res.BPrice, res.InCase, res.Article]} disabled>{res.Capacity}</option> : <option id="incase" value={[res.Capacity, res.BPrice, res.InCase, res.Article]}>{res.Capacity}</option>
+                    {data.map((res, i) =>
+                      res.BPrice === null ? <option id="incase" key={i} value={[res.Capacity, res.BPrice, res.InCase, res.Article]} disabled>{res.Capacity}</option> : <option id="incase" key={i} value={[res.Capacity, res.BPrice, res.InCase, res.Article]}>{res.Capacity}</option>
                     )}
                   </select>
                   
@@ -319,7 +319,7 @@ export default function Content() {
             <div className='phoneBusket mb-3 flex flex-wrap flex-row justify-center xl:hidden'>
         
             {array.map(data =>
-            <div className='flex w-full sm:w-1/2'>
+            <div className='flex w-full sm:w-1/2' key={i}>
                   <div className="zahialsanHesegContent mt-3">
 
                     <div className="order1 flex">

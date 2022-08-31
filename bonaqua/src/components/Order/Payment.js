@@ -27,6 +27,7 @@ export default function Payment() {
   const arrays = sessionStorage.getItem("array");
   const orderArray = JSON.parse(arrays);
   const sum = sessionStorage.getItem("sum");
+  const sumo = sessionStorage.getItem("sumo");
 
   const userarrays = sessionStorage.getItem("userarray");
   const userArray = JSON.parse(userarrays);
@@ -251,7 +252,10 @@ export default function Payment() {
                     </div>
                   </div> */}
                   <div className='order1selectTotal2'>
+                    {sumo == '' || sumo == null ? 
                     <p className='total pt-3 text-red-700 text-3xl font-semibold'>{sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>
+                    : <p className='total pt-3 text-red-700 text-3xl font-semibold'>{sumo.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>
+                    }
                   </div>
                   <div className='order2tablenames absolute flex flex-row text-xs 9xl:text-3xl'>
                     <div className='flex'>

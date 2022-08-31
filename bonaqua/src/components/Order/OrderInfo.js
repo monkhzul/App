@@ -84,7 +84,6 @@ export default function OrderInfo() {
         phone: number,
         array: orderArray,
         pricedisc: 0,
-
       })
     })
       .then((res) => {
@@ -187,7 +186,7 @@ export default function OrderInfo() {
                   <div className='order1selectTotal flex justify-center items-center overflow-scroll'>
                     <div className="flex mx-2 w-full flex-column mt-3">
                       {orderArray === '' || orderArray === null ? 'Empty' : orderArray.map((data, i) =>
-                        <p className='totalInfo font-semibold'>
+                        <p className='totalInfo font-semibold' key={i}>
                           {pack === '' ? 'Empty' : `${pack[i]} - ${size[i]} авдар (${incase[i] * size[i]}ш),`}
                         </p>
                       )}
