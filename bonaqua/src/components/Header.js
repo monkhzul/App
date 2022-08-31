@@ -96,9 +96,12 @@ export default function Header() {
                 </p>
                 <ToastContainer/>
                 {
-                  log != null ? <Link className="nav-link" to="/orderHistory">
-                    <p className='yourBusket'>Захиалгын түүх</p>
-                  </Link>
+                  log != null ? <div className="nav-link" onClick={() => {
+                    navigate('/orderHistory')
+                    window.location.reload()
+                  }}>
+                    <p className='yourBusket'>Захиалгын түүх</p> 
+                  </div>
                     : <div className="nav-link" onClick={handleShow}>
                       <p className='yourBusket'>Захиалгын түүх</p>
                     </div>

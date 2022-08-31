@@ -103,13 +103,11 @@ exports.getOrderDetail = async(req, res) => {
             console.log(order[0].DocumentId)
             const doc = await db.sequelize.query(`SELECT [DocumentId] ,[Article] ,[Quantity] ,[Amount] ,[Price] ,[PriceWODiscount]
             FROM [SMTTerms].[dbo].[t_OrderDetails] where DocumentId = '${order[0].DocumentId}'`, { type: QueryTypes.SELECT })
-        
-                
                
                 var arr = [];
                 for(var i in doc) {
                     arr.push({
-                        article: doc[i].Article,
+                        article: doc[i].Article
                     })
                 }
 
@@ -127,6 +125,31 @@ exports.getOrderDetail = async(req, res) => {
                             array.push(article)
                         }
                 res.status(200).send(array);
+        } else {
+            res.status(404).json({ message: "No data to insert." });
+            return;
+        }
+    } catch(err) {
+        res.status(500).json({ message: err.message });
+        return;
+    }
+}
+
+exports.getOrderDetails = async(req, res) => {
+
+    const orderno = req.body.orderno;
+
+    const order = await db.sequelize.query(`select DocumentId from SMTTerms.dbo.t_Orders where DocumentNo = '${orderno}'`, { type: QueryTypes.SELECT });
+
+    try {
+        if(order != 0) {
+            const doc = await db.sequelize.query(`SELECT [DocumentId], t.[Quantity], t.[Amount], t.[Price] ,[PriceWODiscount], v.Capacity, p.InCase
+            FROM [SMTTerms].[dbo].[t_OrderDetails] t 
+			left join SMTTerms.dbo.vGoods_Elements v on t.Article=v.Article
+			left join SMTTerms.dbo.t_Products p on t.Article=p.Article
+			where DocumentId = '${order[0].DocumentId}'`, { type: QueryTypes.SELECT })
+               
+                res.status(200).send(doc);
         } else {
             res.status(404).json({ message: "No data to insert." });
             return;
@@ -194,6 +217,12 @@ exports.paymentOrder = async(req, res) => {
         res.status(500).json({ message: err.message });
         return;
     }
+}
+
+exports.confirmPhone = async(req, res) => {
+
+    const number = req.body.number;
+  
 }
 
 exports.orderHistory = async(req, res) => {

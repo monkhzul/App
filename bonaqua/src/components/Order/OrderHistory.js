@@ -41,7 +41,6 @@ export default function OrderHistory() {
     {path: '/', element: <AllOrder/>},
     {path: 'orderConfirm', element: <OrderConfirm/>},
     {path: 'orderWaiting', element: <OrderDelivered/>},
-    {path: 'orderDetails', element: <OrderDetails/>}
   ])
 
   return (

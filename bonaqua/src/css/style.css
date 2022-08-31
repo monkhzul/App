@@ -464,6 +464,11 @@ a {
         border: 1px solid var(--blue-color);
         border-radius: 0.5rem;
       }
+      .zahialsanHesegDetail {
+        width: 40%;
+        border: 1px solid var(--blue-color);
+        border-radius: 0.5rem;
+      }
       .zahialsanHesegContent {
         width: 90%;
         border: 1px solid var(--blue-color);
@@ -476,6 +481,14 @@ a {
         border-radius: 0.5rem;
       }
       .order1Img img {
+        width: 100%;
+      }
+      .order1Imgdt {
+        border-right: 1px solid var(--blue-color);
+        width: 50%;
+        border-radius: 0.5rem;
+      }
+      .order1Imgdt img {
         width: 100%;
       }
       .order1Button {

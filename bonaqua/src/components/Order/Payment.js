@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../../App";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import orderinfo from "../../images/svg/order 2/Header.svg";
 import sags from "../../images/svg/order 2/Group 550.svg";
 import qr from "../../images/qr.png";
@@ -32,8 +32,8 @@ export default function Payment() {
   const userArray = JSON.parse(userarrays);
   const random = sessionStorage.getItem("random");
   const orderid = sessionStorage.getItem("orderid");
-  // var para = new URLSearchParams(window.location.search);
-  // var random = para.get("random")
+  
+  const navigate = useNavigate();
 
   if (orderArray === null) {
     console.log("array hooson")
@@ -105,7 +105,6 @@ export default function Payment() {
         })
       });
     };
-  
 
   const token = sessionStorage.getItem("token")
 
@@ -198,7 +197,11 @@ export default function Payment() {
     //       payment = 0;
     //       sessionStorage.setItem("status", payment);
     //     }
-    //   }, 2000)
+
+    //     window.sessionStorage.clear();
+    //     navigate('/')
+
+    //   }, 5000)
     // }, [])
 
 

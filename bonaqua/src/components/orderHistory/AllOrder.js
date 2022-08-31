@@ -89,27 +89,33 @@ export default function AllOrder() {
     sessionStorage.setItem("sum", price);
 
     const Orderid = () => {
-      fetch('http://localhost:8008/api/bonaqua/getDetail', {
+      fetch('http://localhost:8008/api/bonaqua/getOrderDetail', {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Basic TUNTOmFoTlpGT00x"
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        orderno: random
+        orderno: orderno
       })
     })
       .then(res => {
         const data = res.json()
         var arr = [];
-        // data.then((res) => {
-        //   for (let i = 0; i < res.length; i++) {
-        //     console.log(res[i][0][0].Capacity)
-        //     arr.push({
-        //       size: res[i][0][0].Capacity
-        //     })
-        //   }
-        // })
+        data.then((res) => {
+         for(var i in res) {
+            arr.push({
+              size: res[i].Capacity,
+              sprice: res[i].Capacity,
+              price: res[i].Capacity * res[i].InCase * res[i].Quantity / res[i].InCase,
+              tincase: res[i].InCase * res[i].Quantity / res[i].InCase,
+              incase: res[i].InCase,
+              avdar: res[i].Quantity / res[i].InCase,
+              article: res[i].DocumentId
+            })
+         }
+         console.log(arr, orderno)
+         sessionStorage.setItem("array", JSON.stringify(arr));
+        })
       })
     }
     Orderid()
@@ -140,6 +146,11 @@ export default function AllOrder() {
       QPay()
   }
 
+  const orderDetail = (orderno) => {
+    sessionStorage.setItem("random", orderno)
+    navigate('/orderDetails')
+  }
+
   // console.log(ordernoNumber[0].date.slice(0,10), today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate())
 
   const sortedDesc = ordernoNumber.sort(
@@ -155,7 +166,10 @@ export default function AllOrder() {
             <img src={bona} alt="" className="" />
           </div>
 
-        <Link to="/orderDetails" className="cursor-pointer">
+        <div className="cursor-pointer" onClick={() => 
+                  {
+                    orderDetail(data.orderno);
+                  }}>
           <div className="orderHistoryInfo flex flex-col sm:flex-row justify-between w-full mx-2 9xl:mx-8 my-2 items-center 9xl:text-3xl">
             <div className="flex flex-row w-full sm:w-1/2 justify-around">
               <div className="date">
@@ -194,7 +208,7 @@ export default function AllOrder() {
               : ''
             }
           </div>
-          </Link>
+          </div>
         </div>
       )
     })

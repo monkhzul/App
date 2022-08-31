@@ -9,6 +9,7 @@ import { useRoutes, Router, Routes, Route } from 'react-router-dom';
 import OrderInfo from './components/Order/OrderInfo';
 import Payment from './components/Order/Payment';
 import OrderHistory from './components/Order/OrderHistory';
+import OrderDetails from './components/orderHistory/OrderDetails';
 import Content from './components/Content';
 import Instruction from './components/ProductInformation/Instruction';
 import Nutrition from './components/ProductInformation/Nutrition';
@@ -45,6 +46,7 @@ function App() {
     {path: 'order', element: <Order/>},
     {path: 'userinfo', element: <OrderInfo/>},
     {path: 'payment', element: <Payment/>},
+    {path: 'orderDetails', element: <OrderDetails/>},
     {
       path: 'orderHistory', element: <OrderHistory/>,
       children: [
