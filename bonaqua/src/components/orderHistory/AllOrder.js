@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function AllOrder() {
   const [data, setData] = useState([]);
-  var [status, setStatus] = useState(10);
+  const [data1, setData1] = useState([]);
   const [payment_status, setPayment_status] = useState(0);
   const [tOrder, settOrder] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
@@ -18,143 +18,44 @@ export default function AllOrder() {
   const userarrays = sessionStorage.getItem("userarray");
   const userArray = JSON.parse(userarrays);
   const random = sessionStorage.getItem("random");
-  const orderid = sessionStorage.getItem("orderid");
 
   const dugaarc = sessionStorage.getItem("dugaar");
-  var Pay_Status = sessionStorage.getItem("status");
 
   useEffect(() => {
-    var getData = async () => {
-      try {
-        var data = await fetch('http://localhost:8008/api/bonaqua/orderHistory');
-        var resData = await data.json();
-        setData(resData)
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    getData();
-  }, [])
-
-
-  useEffect(() => {
-    const status = () => {
-      fetch('http://localhost:8008/api/bonaqua/getStatus', {
-        method: "POST",
+    const orders = () => {
+      fetch('http://localhost:8008/api/bonaqua/getorderConfirm', {
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          orderno: random
-        })
+        }
       })
         .then((res) => {
           const data = res.json();
-          data.then(res => {
-            const state = res[0].State;
-            setStatus(state)
-          });
+          data.then((data) => {
+            setData(data)
+          })
         })
     }
-    status();
+    orders();
   }, [])
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     if (status == 10 || status == 0) {
-  //       status = 0;
-  //     }
-
-  //   }, 2000)
-  // }, [])
-
-  const ordernoNumber = [];
+  var ordernoNumber = [];
 
   for (let i = 0; i < data.length; i++) {
     if (data[i].phonenumber == dugaarc) {
-      ordernoNumber.push({
-        phonenumber: data[i].phonenumber,
-        orderno: data[i].orderno,
-        date: data[i].DDate,
-        totalPrice: data[i].TotalAmount,
-        status: status === 1 ? 'Баталгаажсан' : status === 10 ? 'Хүлээгдэж буй' : 'Цуцлагдсан'
-      });
+        ordernoNumber.push({
+          phonenumber: data[i].phonenumber,
+          orderno: data[i].orderno,
+          date: data[i].DateCreate,
+          totalPrice: data[i].TotalAmount,
+          status: data[i].State
+        });
     }
   }
-
-  function HistoryToPayment(orderno, price) {
-    sessionStorage.setItem("random", orderno);
-    // sessionStorage.setItem("sum", price);
-    sessionStorage.setItem("sumo", price);
-
-    const Orderid = () => {
-      fetch('http://localhost:8008/api/bonaqua/getOrderDetail', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          orderno: orderno
-        })
-      })
-        .then(res => {
-          const data = res.json()
-          var arr = [];
-          data.then((res) => {
-            for (var i in res) {
-              arr.push({
-                size: res[i].Capacity,
-                sprice: res[i].Capacity,
-                price: res[i].Capacity * res[i].InCase * res[i].Quantity / res[i].InCase,
-                tincase: res[i].InCase * res[i].Quantity / res[i].InCase,
-                incase: res[i].InCase,
-                avdar: res[i].Quantity / res[i].InCase,
-                article: res[i].DocumentId
-              })
-            }
-            console.log(arr, orderno)
-            sessionStorage.setItem("array", JSON.stringify(arr));
-          })
-        })
-    }
-    Orderid()
-
-    const QPay = () => {
-      fetch('https://api.qpay.mn/v1/auth/token', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Basic TUNTOmFoTlpGT00x"
-        },
-        body: JSON.stringify({
-          "client_id": "qpay_test",
-          "client_secret": "sdZv9k9m",
-          "grant_type": "client",
-          "refresh_token": ""
-        })
-      })
-        .then(res => {
-          const data = res.json()
-          data.then(res => {
-            const token = res.access_token;
-            sessionStorage.setItem("token", token);
-            navigate('/payment')
-          })
-        })
-    }
-    QPay()
-  }
-
-  const orderDetail = (orderno) => {
-    sessionStorage.setItem("random", orderno)
-    navigate('/orderDetails')
-  }
-
-  // console.log(ordernoNumber[0].date.slice(0,10), today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate())
 
   const sortedDesc = ordernoNumber.sort(
     (objA, objB) =>
-      new Date(objB.date) - new Date(objA.date)
+      new Date(objB.DateCreate) - new Date(objA.DateCreate)
   );
 
   const display = sortedDesc.slice(pagesVisited, pagesVisited + perPage)
@@ -165,9 +66,7 @@ export default function AllOrder() {
             <img src={bona} alt="" className="" />
           </div>
 
-          <div className="cursor-pointer w-[80%] flex 3xl:items-center hover:bg-[#edf9ff]" onClick={() => {
-            orderDetail(data.orderno);
-          }}>
+          <div className="cursor-pointer w-[80%] flex 3xl:items-center hover:bg-[#edf9ff]">
             <div className="orderHistoryInfo flex flex-col sm:flex-row justify-between w-full mx-2 9xl:mx-8 my-2 items-center 9xl:text-3xl">
               <div className="flex flex-row w-full sm:w-1/2 justify-around my-auto">
                 <div className="date">
@@ -196,16 +95,6 @@ export default function AllOrder() {
 
             </div>
           </div>
-          {data.status === 'Хүлээгдэж буй' ?
-            <div className="font-semibold text-sm flex justify-center items-center text-[#3dbee3] opacity-80 hover:opacity-100"
-              onClick={() => {
-                HistoryToPayment(data.orderno, data.totalPrice);
-              }
-              }>
-              <p className="cursor-pointer ml-4">Төлбөр төлөх</p>
-            </div>
-            : ''
-          }
         </div>
       )
     })
