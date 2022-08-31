@@ -39,8 +39,6 @@ export default function AllOrder() {
     orders();
   }, [])
 
-  console.log(data);
-
   const ordernoNumber = [];
 
   for (let i = 0; i < data.length; i++) {
