@@ -15,6 +15,7 @@ import Instruction from './components/ProductInformation/Instruction';
 import Nutrition from './components/ProductInformation/Nutrition';
 import OrderConfirm from './components/orderHistory/OrderConfirm';
 import OrderDelivered from './components/orderHistory/OrderDelivered';
+import Confirmation from './components/Confirmation';
 
 export const AppContext = createContext();
 
@@ -47,6 +48,7 @@ function App() {
     {path: 'userinfo', element: <OrderInfo/>},
     {path: 'payment', element: <Payment/>},
     {path: 'orderDetails', element: <OrderDetails/>},
+    {path: 'confirmation', element: <Confirmation/>},
     {
       path: 'orderHistory', element: <OrderHistory/>,
       children: [

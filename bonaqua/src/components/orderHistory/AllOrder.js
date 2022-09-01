@@ -30,13 +30,13 @@ export default function AllOrder() {
 
   for (let i = 0; i < data.length; i++) {
     if (data[i].phonenumber === dugaarc) {
-        ordernoNumber.push({
-          phonenumber: data[i].phonenumber,
-          orderno: data[i].orderno,
-          date: data[i].DateCreate,
-          totalPrice: data[i].TotalAmount,
-          status: data[i].State
-        });
+      ordernoNumber.push({
+        phonenumber: data[i].phonenumber,
+        orderno: data[i].orderno,
+        date: data[i].DateCreate,
+        totalPrice: data[i].TotalAmount,
+        status: data[i].State
+      });
     }
   }
 

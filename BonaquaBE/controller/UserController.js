@@ -222,6 +222,29 @@ exports.paymentOrder = async(req, res) => {
 exports.confirmPhone = async(req, res) => {
 
     const number = req.body.number;
+    
+    const random = Math.floor(100000 + Math.random() * 900000);
+
+    const response = await fetch('http://122.201.28.39:8080/api2/data/smsregister', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            'number' : number,
+            'text': `[Bonaqua zahialgiin web] Sain baina uu. Tanid neg udaagiin nevtrekh kod ilgeelee. Tanii nevtrekh kod: ${random} `
+        })
+      }).catch(e => console.log(e));
+
+    try {
+        if(response != 0) {
+            res.status(200).send(response);
+        } else {
+            res.status(404).json({ message: "Error!" });
+            return;
+        }
+    } catch(err) {
+        res.status(500).json({ message: err.message });
+        return;
+    };
   
 }
 
