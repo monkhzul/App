@@ -1,23 +1,13 @@
 import React, { useState, useEffect } from "react";
 import bona from '../../images/bona0.5.png';
 import ReactPaginate from "react-paginate";
-import { Link, useNavigate } from "react-router-dom";
 
 export default function AllOrder() {
   const [data, setData] = useState([]);
-  const [data1, setData1] = useState([]);
-  const [payment_status, setPayment_status] = useState(0);
-  const [tOrder, settOrder] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
-
-  const navigate = useNavigate();
 
   const perPage = 5;
   const pagesVisited = pageNumber * perPage;
-
-  const userarrays = sessionStorage.getItem("userarray");
-  const userArray = JSON.parse(userarrays);
-  const random = sessionStorage.getItem("random");
 
   const dugaarc = sessionStorage.getItem("dugaar");
 
@@ -42,8 +32,8 @@ export default function AllOrder() {
   const ordernoNumber = [];
 
   for (let i = 0; i < data.length; i++) {
-    if (data[i].phonenumber == dugaarc) {
-      if (data[i].State == 10) {   
+    if (data[i].phonenumber === dugaarc) {
+      if (data[i].State === 10) {   
         ordernoNumber.push({
           phonenumber: data[i].phonenumber,
           orderno: data[i].orderno,

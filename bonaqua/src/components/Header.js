@@ -4,16 +4,13 @@ import sagsicon from '../images/icons/busket.svg';
 import history from '../images/svg/home/Group 560.svg';
 import flower from '../images/svg/order 1/tsetseg jijig.svg';
 import { Modal, Button } from 'react-bootstrap';
-import { useState, useEffect, useContext } from 'react';
-import { AppContext } from '../App';
+import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Header() {
   const [phoneNumber, setPhone] = useState("");
   const [orderHistory, setHistory] = useState([]);
-  const arrays = sessionStorage.getItem("array");
-  // const orderArray = JSON.parse(arrays);
 
   var sum = sessionStorage.getItem("sum");
   var item = sessionStorage.getItem("item");
@@ -21,9 +18,6 @@ export default function Header() {
   const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
-
-  const userarrays = sessionStorage.getItem("userarray");
-  const userArray = JSON.parse(userarrays);
 
   useEffect(() => {
     var getData = async () => {

@@ -20,7 +20,6 @@ export default function OrderDetails() {
 
   const [data, setData] = useState([]);
   const orderno = sessionStorage.getItem("random")
-  console.log(orderno)
 
   useEffect(() => {
     const Orderid = () => {
@@ -61,7 +60,7 @@ export default function OrderDetails() {
 
   for (let i = 0; i < imageArray.length; i++) {
     for (let j = 0; j < data.length; j++) {
-      if (imageArray[i].size == data[j].size) {
+      if (imageArray[i].size === data[j].size) {
         arr.push({
           size: data[j].size,
           img: imageArray[i].img

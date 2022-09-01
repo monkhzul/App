@@ -1,9 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../../App";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import orderinfo from "../../images/svg/order 2/Header.svg";
 import sags from "../../images/svg/order 2/Group 550.svg";
-import qr from "../../images/qr.png";
 import instruction from '../../images/svg/order 3/Header-2.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,15 +13,13 @@ import QRCode from 'qrcode';
 
 export default function Payment() {
 
-  const { incase, pack, size, access_token, setAccess_Token,
-    qr_text, setQR_text } = useContext(AppContext)
+  const { incase, pack, size, setQR_text } = useContext(AppContext)
 
   const [render, setRender] = useState(false);
   const [qr_image, setQR_image] = useState("");
   const [payment_id, setPayment_id] = useState("");
   const [payment_status, setPayment_status] = useState("");
   const [QPay_status, setQPay_status] = useState("");
-  var [payment, setPayment] = useState("Хүлээгдэж буй");
 
   const arrays = sessionStorage.getItem("array");
   const orderArray = JSON.parse(arrays);
@@ -32,9 +29,6 @@ export default function Payment() {
   const userarrays = sessionStorage.getItem("userarray");
   const userArray = JSON.parse(userarrays);
   const random = sessionStorage.getItem("random");
-  const orderid = sessionStorage.getItem("orderid");
-  
-  const navigate = useNavigate();
 
   if (orderArray === null) {
     console.log("array hooson")
@@ -112,10 +106,12 @@ export default function Payment() {
   useEffect(() => {
     const QRcode = () => {
       fetch('https://api.qpay.mn/v1/bill/create', {
+        credentials: 'omit',
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
+          "Access-Control-Allow-Origin": "http://localhost:3000",
           "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify({
@@ -252,7 +248,7 @@ export default function Payment() {
                     </div>
                   </div> */}
                   <div className='order1selectTotal2'>
-                    {sumo == '' || sumo == null ? 
+                    {sumo === '' || sumo === null ? 
                     <p className='total pt-3 text-red-700 text-3xl font-semibold'>{sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>
                     : <p className='total pt-3 text-red-700 text-3xl font-semibold'>{sumo.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>
                     }

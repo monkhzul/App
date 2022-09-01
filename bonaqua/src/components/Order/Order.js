@@ -105,13 +105,13 @@ export default function Order() {
     result.innerHTML = `${totals.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮`;
 
     imgArr.map((img, i) => {
-      if (img.size == size) {
+      if (img.size === size) {
         setImage(img.img)
         console.log(img.size)
       }
     })
   }
-  if (orderArray == null) {
+  if (orderArray === null) {
     orderArray = [];
   }
 
@@ -139,7 +139,7 @@ export default function Order() {
         image: image
       })
         : orderArray.forEach(e => {
-          if (e.size == size) {
+          if (e.size === size) {
             e.price += (prices * incase) * bagts;
             e.tincase += (incase * bagts);
             e.avdar += bagts;
@@ -147,7 +147,7 @@ export default function Order() {
         })
       var c = 1;
       orderArray.forEach(x => {
-        if (x.size != size) {
+        if (x.size !== size) {
           c += 1;
         }
       });
@@ -223,7 +223,7 @@ export default function Order() {
             </div>
             {/* Захиалгын хэсэг */}
             <div className="zahialga flex flex-wrap justify-between">
-              {orderArray == '' ? <div className="w-full flex justify-center my-10">
+              {orderArray === '' ? <div className="w-full flex justify-center my-10">
                 <img src={flower} alt="" className='mx-3 -mt-4 emptyFlower' />
                 <p className="text-lg text-gray-500 font-medium">Таны сагс хоосон байна!</p>
               </div>
@@ -303,7 +303,7 @@ export default function Order() {
 
                 <div className='order1selectTotal1 flex flex-col'>
                   <p className='text-gray-500 flex ml-3 text-sm 9xl:text-3xl'>Нийт үнэ</p>
-                  {sum == 0 || sum == null ? <p className='total text-red-700 text-3xl font-semibold' id="resultO"></p>
+                  {sum === 0 || sum === null ? <p className='total text-red-700 text-3xl font-semibold' id="resultO"></p>
                     : <p className='total text-red-700 text-2xl md:text-3xl font-bold mt-[15%] sm:mt-0' id="resultO">{sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>}
                 </div>
 

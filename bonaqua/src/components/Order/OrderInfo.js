@@ -1,20 +1,17 @@
-import React, { useContext, useState, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import orderinfo from "../../images/svg/order 2/Header.svg";
 import user from "../../images/svg/order 2/Header-2.svg";
 import location from "../../images/svg/order 2/Header-1.svg";
 import sags from "../../images/svg/order 2/Group 550.svg";
 import { AppContext } from "../../App";
-import { Modal, Button } from 'react-bootstrap';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SlideImage from "../SlideImage";
 import Social from "../Social";
-import QRCode from 'qrcode';
 import Select from 'react-select';
 
 export default function OrderInfo() {
-  const [show, setShow] = useState(false);
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [district, setDistrict] = useState("");
@@ -25,8 +22,7 @@ export default function OrderInfo() {
   const [doornumber, setDoorNumber] = useState("");
   const [add, setAdd] = useState("");
   const [data, setData] = useState([]);
-  const [select, setSelect] = useState([]);
-  const { setRandom, random, pack, orderid, setOrderid, size, incase, setAccess_Token, access_token } = useContext(AppContext)
+  const { setRandom, random, pack, setOrderid, size, incase, setAccess_Token } = useContext(AppContext)
 
   const arrays = sessionStorage.getItem("array");
   const orderArray = JSON.parse(arrays);
@@ -238,7 +234,7 @@ export default function OrderInfo() {
                   </div>
                   <div class="group">
                     <label>Захиалгын дугаар</label>
-                    {random == '' ? <input type="text" id="ordernumber" disabled="disabled" className="cursor-not-allowed" placeholder="Автоматаар үүснэ" />
+                    {random === '' ? <input type="text" id="ordernumber" disabled="disabled" className="cursor-not-allowed" placeholder="Автоматаар үүснэ" />
                       : <input type="text" id="ordernumber" disabled="disabled" className="randomOrderNumber cursor-not-allowed" placeholder="" />}
                   </div>
                 </form>

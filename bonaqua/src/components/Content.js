@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link, NavLink } from "react-router-dom";
-import { useRoutes, Routes, Route } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 import Instruction from './ProductInformation/Instruction';
 import Nutrition from './ProductInformation/Nutrition';
 import Product from './ProductInformation/Product';
@@ -21,17 +21,15 @@ import { AppContext } from '../App';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Social from './Social';
-import $, { ready } from 'jquery';
 import CreatableSelect from 'react-select/creatable';
 
 export default function Content() {
-  var { array, setTotal, total, setItem, item, setValues } = useContext(AppContext);
+  var { array, setTotal, total, setItem, item } = useContext(AppContext);
   const [data, setData] = useState([]);
   const [render, setRender] = useState(false);
   const [capacity, setCapacity] = useState("");
   const [image, setImage] = useState(bonaqua15);
   const [select, setSelect] = useState(1);
-  // const [article, setArticle] = useState("");
   const [text, setText] = useState("");
 
   const imageArray = [
@@ -92,7 +90,6 @@ export default function Content() {
     const size = document.getElementById('mlselect').value.split(',')[0];
     const price = document.getElementById('mlselect').value.split(',')[1];
     const incase = document.getElementById('mlselect').value.split(',')[2];
-    // const number = document.getElementById('avdar').value;
     const title = document.getElementById('title');
     const caseinunit = document.getElementById('caseinunit');
     const result = document.getElementById("result");
@@ -105,7 +102,7 @@ export default function Content() {
     caseinunit.innerHTML = `1 авдар доторх ширхэгийн тоо - ${incase}ш`;
 
     imageArray.map(img => {
-      if (img.size == size) {
+      if (img.size === size) {
         setImage(img.img)
         setCapacity(size)
       }
@@ -122,7 +119,7 @@ export default function Content() {
     // const bagts = parseInt(document.getElementById('avdar').value);
     const bagts = select;
     
-    var index = array.findIndex(x => x.size == size);
+    var index = array.findIndex(x => x.size === size);
 
     const totalPrice = prices * incase * bagts;
 
@@ -138,7 +135,7 @@ export default function Content() {
         image: image
       })
         : array.forEach(e => {
-          if (e.size == size) {
+          if (e.size === size) {
             e.price += (prices * incase) * bagts;
             e.tincase += (incase * bagts);
             e.avdar += bagts;
@@ -147,7 +144,7 @@ export default function Content() {
 
       var c = 1;
       array.forEach(x => {
-        if (x.size != size) {
+        if (x.size !== size) {
           c += 1;
         }
       });
@@ -170,8 +167,6 @@ export default function Content() {
 
     setRender(!render)
   }
-
-  const number = Array(10).fill(0).map((e, i) => i + 1);
 
   let sum = sessionStorage.getItem("sum");
     // Захиалга устгах
@@ -221,7 +216,7 @@ export default function Content() {
                    onClick={() => { 
                     setCapacity(res.Capacity)
                     imageArray.map(img => {
-                      if (img.size == res.Capacity) {
+                      if (img.size === res.Capacity) {
                         setImage(img.img)
                         setText(res.Capacity)
                       }
@@ -245,7 +240,7 @@ export default function Content() {
             <div className='toirog absolute'>
               <div className='white flex justify-center items-center'>
                 <div className='circle relative flex justify-center items-center'>
-                  <p className='text-white text-sm font-semibold 9xl:text-4xl flex items-center' id='capaInCircle'>{capacity == '' ? fsize[0] : capacity}</p>
+                  <p className='text-white text-sm font-semibold 9xl:text-4xl flex items-center' id='capaInCircle'>{capacity === '' ? fsize[0] : capacity}</p>
                 </div>
               </div>
             </div>
@@ -315,7 +310,7 @@ export default function Content() {
                 </form>
               </div>
             </div>
-             {array == '' ? '' : <Link to="/order"> <h4 className='flex justify-center text-gray-400 xl:hidden mt-3 hover:text-black'> <img src={sagsicon} alt="" className='w-[8%] sm:w-[6%] md:w-[5%]'/>  <img src={rightArrow} alt="" className='ml-5 w-[6%] sm:w-[5%] md:w-[3%] hover:w-[3.2%]'/> </h4> </Link>}
+             {array === '' ? '' : <Link to="/order"> <h4 className='flex justify-center text-gray-400 xl:hidden mt-3 hover:text-black'> <img src={sagsicon} alt="" className='w-[8%] sm:w-[6%] md:w-[5%]'/>  <img src={rightArrow} alt="" className='ml-5 w-[6%] sm:w-[5%] md:w-[3%] hover:w-[3.2%]'/> </h4> </Link>}
             <div className='phoneBusket mb-3 flex flex-wrap flex-row justify-center xl:hidden'>
         
             {array.map(data =>
