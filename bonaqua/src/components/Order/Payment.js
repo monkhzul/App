@@ -106,12 +106,10 @@ export default function Payment() {
   useEffect(() => {
     const QRcode = () => {
       fetch('https://api.qpay.mn/v1/bill/create', {
-        credentials: 'omit',
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-          "Access-Control-Allow-Origin": "http://localhost:3000",
+          "Access-Control-Allow-Origin": "*",
           "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify({

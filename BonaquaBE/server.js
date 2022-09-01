@@ -3,8 +3,14 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  origin: '*',
+          "Accept": "application/json",
+          "Connection": "Keep-Alive",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+          "Access-Control-Request-Headers": "origin, x-requested-with",
+          "Origin": "*",
 }
+
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

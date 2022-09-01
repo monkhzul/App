@@ -6,9 +6,6 @@ export default function AllOrder() {
   const [data, setData] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
 
-  const perPage = 5;
-  const pagesVisited = pageNumber * perPage;
-
   const dugaarc = sessionStorage.getItem("dugaar");
 
   useEffect(() => {
@@ -45,8 +42,11 @@ export default function AllOrder() {
 
   const sortedDesc = ordernoNumber.sort(
     (objA, objB) =>
-      new Date(objB.DateCreate) - new Date(objA.DateCreate)
+      new Date(objB.date) - new Date(objA.date)
   );
+
+  const perPage = 5;
+  const pagesVisited = pageNumber * perPage;
 
   const display = sortedDesc.slice(pagesVisited, pagesVisited + perPage)
     .map((data, i) => {
@@ -66,9 +66,9 @@ export default function AllOrder() {
                 <div className="state">
                   <p className="text-gray-500 leading-3">Төлөв</p>
                   {
-                    data.status === 'Баталгаажсан' ? <p className="font-semibold text-green-400">{data.status}</p>
-                      : data.status === 'Цуцлагдсан' ? <p className="font-semibold text-red-600">{data.status}</p>
-                        : <p className="font-semibold text-orange-400">{data.status}</p>
+                    data.status === 1 ? <p className="font-semibold text-green-400">Баталгаажсан</p>
+                      : data.status === 0 ? <p className="font-semibold text-red-600">Цуцлагдсан</p>
+                        : <p className="font-semibold text-orange-400">Хүлээгдэж буй</p>
                   }
                 </div>
               </div>
@@ -82,7 +82,6 @@ export default function AllOrder() {
                   <p className="font-semibold">{data.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
