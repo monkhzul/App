@@ -32,13 +32,13 @@ export default function Payment() {
 
   if (orderArray === null) {
     console.log("array hooson")
-  } 
+  }
   else {
-      orderArray.forEach(x => {
-        pack.push(x.size)
-        incase.push(x.incase)
-        size.push(x.avdar)
-      })
+    orderArray.forEach(x => {
+      pack.push(x.size)
+      incase.push(x.incase)
+      size.push(x.avdar)
+    })
   }
 
   const key = "bsuTPNVvbM#sAI2#";
@@ -81,25 +81,25 @@ export default function Payment() {
       });
   }
 
-    const Inquiry = () => {
-      fetch('https://ecommerce.golomtbank.com/api/inquiry', {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNRVJDSEFOVF9NQ1NfQ09DQV9DT0xBIiwiaWF0IjoxNjMyNzkxOTM4fQ.Tji9cxZsRZPcNJ1xtxx7O3lq2TDn9VZhbx9n6YZ7yOs`,
-        },
-        body: JSON.stringify({
-          checksum: sha2561,
-          transactionId: random
-        })
+  const Inquiry = () => {
+    fetch('https://ecommerce.golomtbank.com/api/inquiry', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNRVJDSEFOVF9NQ1NfQ09DQV9DT0xBIiwiaWF0IjoxNjMyNzkxOTM4fQ.Tji9cxZsRZPcNJ1xtxx7O3lq2TDn9VZhbx9n6YZ7yOs`,
+      },
+      body: JSON.stringify({
+        checksum: sha2561,
+        transactionId: random
       })
+    })
       .then(res => {
         const data = res.json()
         data.then(data => {
           setPayment_status(data)
         })
       });
-    };
+  };
 
   const token = sessionStorage.getItem("token")
 
@@ -158,46 +158,46 @@ export default function Payment() {
     QRcode()
   }, [])
 
-    const CheckQpay = async () => {
-      await fetch(`https://api.qpay.mn/v1/bill/check`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-          },
-          body: JSON.stringify({
-            "merchant_id": "TEST_MERCHANT",
-            "bill_no": random
-          })
+  const CheckQpay = async () => {
+    await fetch(`https://api.qpay.mn/v1/bill/check`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        "merchant_id": "TEST_MERCHANT",
+        "bill_no": random
+      })
+    })
+      .then(res => {
+        const data = res.json()
+        data.then(res => {
+          const paymentStatus = res.payment_info.payment_status;
+          setQPay_status(paymentStatus)
+          // console.log(res.payment_info.payment_status)
         })
-          .then(res => {
-            const data = res.json()
-            data.then(res => {
-              const paymentStatus = res.payment_info.payment_status;
-              setQPay_status(paymentStatus)
-              // console.log(res.payment_info.payment_status)
-            })
-          })
-    }
-    
-    // useEffect(() => {
-    //   setTimeout(() => {
-    //     Inquiry();
-    //     CheckQpay();
+      })
+  }
 
-    //     if (QPay_status == 'PAID' && payment_status.status == 'PAID' ) {
-    //       payment = 1;
-    //       sessionStorage.setItem("status", payment);
-    //     } else {
-    //       payment = 0;
-    //       sessionStorage.setItem("status", payment);
-    //     }
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     Inquiry();
+  //     CheckQpay();
 
-    //     window.sessionStorage.clear();
-    //     navigate('/')
+  //     if (QPay_status == 'PAID' && payment_status.status == 'PAID' ) {
+  //       payment = 1;
+  //       sessionStorage.setItem("status", payment);
+  //     } else {
+  //       payment = 0;
+  //       sessionStorage.setItem("status", payment);
+  //     }
 
-    //   }, 5000)
-    // }, [])
+  //     window.sessionStorage.clear();
+  //     navigate('/')
+
+  //   }, 5000)
+  // }, [])
 
 
   function CancelOrder() {
@@ -246,9 +246,9 @@ export default function Payment() {
                     </div>
                   </div> */}
                   <div className='order1selectTotal2'>
-                    {sumo === '' || sumo === null ? 
-                    <p className='total pt-3 text-red-700 text-3xl font-semibold'>{sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>
-                    : <p className='total pt-3 text-red-700 text-3xl font-semibold'>{sumo.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>
+                    {sumo === '' || sumo === null ?
+                      <p className='total pt-3 text-red-700 text-3xl font-semibold'>{sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>
+                      : <p className='total pt-3 text-red-700 text-3xl font-semibold'>{sumo.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>
                     }
                   </div>
                   <div className='order2tablenames absolute flex flex-row text-xs 9xl:text-3xl'>

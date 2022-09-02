@@ -58,7 +58,7 @@ export default function AllOrder() {
             <img src={bona} alt="" className="" />
           </div>
 
-          <div className="cursor-pointer w-[80%] flex 3xl:items-center hover:bg-[#edf9ff]">
+          <div className="cursor-pointer w-[100%] flex 3xl:items-center hover:bg-[#edf9ff]">
             <div className="orderHistoryInfo flex flex-col sm:flex-row justify-between w-full mx-2 9xl:mx-8 my-2 items-center 9xl:text-3xl">
               <div className="flex flex-row w-full sm:w-1/2 justify-around my-auto">
                 <div className="date">
@@ -83,6 +83,12 @@ export default function AllOrder() {
 
             </div>
           </div>
+
+          <div>
+            {data.status == 10 ? 
+            <div className="h-full flex justify-center items-center mx-auto cursor-pointer text-gray-600 hover:text-[#3dbee3]"> <p className="mx-auto flex justify-center text-sm items-center text-center">Төлбөх төлөх</p> </div> : ''}
+          </div>
+
         </div>
       )
     })

@@ -1,5 +1,7 @@
 const db = require("../models");
 const { QueryTypes } = require('sequelize');
+const axios = require('axios');
+const bcrypt = require('bcrypt');
 
 exports.getPricelist = async(req, res) => {
     const customer = 666005079;
@@ -225,18 +227,14 @@ exports.confirmPhone = async(req, res) => {
     
     const random = Math.floor(100000 + Math.random() * 900000);
 
-    const response = await fetch('http://122.201.28.39:8080/api2/data/smsregister', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            'number' : number,
-            'text': `[Bonaqua zahialgiin web] Sain baina uu. Tanid neg udaagiin nevtrekh kod ilgeelee. Tanii nevtrekh kod: ${random} `
-        })
-      }).catch(e => console.log(e));
-
+    const response = axios.post("http://122.201.28.39:8080/api2/data/smsregister", {
+        number: number,
+        text: `[Bonaqua zahialga] Sain baina uu. Tanid neg udaagiin nevtrekh kod ilgeelee. Tanii nevtrekh kod: ${random}`
+    })
+  
     try {
         if(response != 0) {
-            res.status(200).send(response);
+            res.status(200).send({random: random});
         } else {
             res.status(404).json({ message: "Error!" });
             return;
@@ -245,7 +243,6 @@ exports.confirmPhone = async(req, res) => {
         res.status(500).json({ message: err.message });
         return;
     };
-  
 }
 
 exports.orderHistory = async(req, res) => {

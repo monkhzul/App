@@ -13,6 +13,7 @@
     "encode-utf8": "^2.0.0",
     "gsap": "^3.10.4",
     "jquery": "^3.6.0",
+    "otp-input-react": "^0.3.0",
     "path": "^0.12.7",
     "qrcode": "^1.5.1",
     "qrcode-reader": "^1.0.4",

@@ -1,99 +1,74 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import OTPInput, { ResendOTP } from "otp-input-react"
+import { toast } from 'react-toastify';
 
 export default function Confirmation() {
-    let in1 = document.getElementById('otc-1'),
-        ins = document.querySelectorAll('input[type="number"]'),
-        splitNumber = function (e) {
-            let data = e.data || e.target.value; // Chrome doesn't get the e.data, it's always empty, fallback to value then.
-            if (!data) return; // Shouldn't happen, just in case.
-            if (data.length === 1) return; // Here is a normal behavior, not a paste action.
 
-            popuNext(e.target, data);
-            //for (i = 0; i < data.length; i++ ) { ins[i].value = data[i]; }
-        },
-        popuNext = function (el, data) {
-            el.value = data[0]; // Apply first item to first input
-            data = data.substring(1); // remove the first char.
-            if (el.nextElementSibling && data.length) {
-                // Do the same with the next element and next data
-                popuNext(el.nextElementSibling, data);
+    const [OTP, setOTP] = useState("");
+    const [random, setRandom] = useState("");
+    const dugaarc = sessionStorage.getItem("dugaar");
+    const navigate = useNavigate();
+
+    const getCode = () => {
+        fetch('http://localhost:8008/api/bonaqua/confirmPhone', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                number: dugaarc
+            })
+        })
+            .then((res) => {
+                const data = res.json();
+                data.then(res => setRandom(res.random))
+            })
+    }
+
+    const Confirmation = () => {
+
+        console.log(OTP, random);
+
+        if (OTP != '') {     
+            if (OTP == random) {
+                navigate('/orderHistory')
+                sessionStorage.setItem("login", dugaarc)
             }
-        };
-
-    ins.forEach(function (input) {
-        /**
-         * Control on keyup to catch what the user intent to do.
-         * I could have check for numeric key only here, but I didn't.
-         */
-        input.addEventListener('keyup', function (e) {
-            // Break if Shift, Tab, CMD, Option, Control.
-            if (e.keyCode === 16 || e.keyCode == 9 || e.keyCode == 224 || e.keyCode == 18 || e.keyCode == 17) {
-                return;
+            else {
+                toast("Амжилтгүй! Баталгаажуулах код буруу байна.")
             }
-
-            // On Backspace or left arrow, go to the previous field.
-            if ((e.keyCode === 8 || e.keyCode === 37) && this.previousElementSibling && this.previousElementSibling.tagName === "INPUT") {
-                this.previousElementSibling.select();
-            } else if (e.keyCode !== 8 && this.nextElementSibling) {
-                this.nextElementSibling.select();
-            }
-
-            // If the target is populated to quickly, value length can be > 1
-            if (e.target.value.length > 1) {
-                splitNumber(e);
-            }
-        });
-
-        input.addEventListener('focus', function (e) {
-            // If the focus element is the first one, do nothing
-            if (this === in1) return;
-
-            // If value of input 1 is empty, focus it.
-            if (in1.value == '') {
-                in1.focus();
-            }
-
-            // If value of a previous input is empty, focus it.
-            // To remove if you don't wanna force user respecting the fields order.
-            if (this.previousElementSibling.value == '') {
-                this.previousElementSibling.focus();
-            }
-        });
-    });
-
-    /**
-     * Handle copy/paste of a big number.
-     * It catches the value pasted on the first field and spread it into the inputs.
-     */
-    in1?.addEventListener('input', splitNumber);
-
+        } else {
+            toast("Баталгаажуулах кодоо оруулна уу!")
+        }
+    }
 
     return (
-        // <form action="#" className='otc' name='one-time-code'>
-        //     <fieldset>
-        //         <legend>Validation Code</legend>
-        //         <label htmlFor='otc-1'>Number 1</label>
-        //         <label htmlFor='otc-2'>Number 2</label>
-        //         <label htmlFor='otc-3'>Number 3</label>
-        //         <label htmlFor='otc-4'>Number 4</label>
-        //         <label htmlFor='otc-5'>Number 5</label>
-        //         <label htmlFor='otc-6'>Number 6</label>
-
-        //         <div>
-        //             <input type="number" name="" id="otc-1" pattern='[0-9]*' defaultValue="" inputtype="numeric" autoComplete="one-time-code" required />
-        //             <input type="number" name="" id="otc-2" pattern='[0-9]*' defaultValue="0" min={0} max={9} maxLength={1} inputtype="numeric" autoComplete="one-time-code" required />
-        //             <input type="number" name="" id="otc-3" pattern='[0-9]*' defaultValue="0" min={0} max={9} maxLength={1} inputtype="numeric" autoComplete="one-time-code" required />
-        //             <input type="number" name="" id="otc-4" pattern='[0-9]*' defaultValue="0" min={0} max={9} maxLength={1} inputtype="numeric" autoComplete="one-time-code" required />
-        //             <input type="number" name="" id="otc-5" pattern='[0-9]*' defaultValue="0" min={0} max={9} maxLength={1} inputtype="numeric" autoComplete="one-time-code" required />
-        //             <input type="number" name="" id="otc-6" pattern='[0-9]*' defaultValue="0" min={0} max={9} maxLength={1} inputtype="numeric" autoComplete="one-time-code" required />
-        //         </div>
-        //     </fieldset>
-        // </form>
-
-       <div className='container'>
-            <div className='row justify-content-md-center'>
-
+        <div className='h-full'>
+            <div className='h-full flex flex-col justify-center my-auto'>
+                <h5 className='mx-auto mb-5 cursor-pointer bg-slate-400 p-2 rounded-md text-gray-50 hover:bg-[#3dbee3]' onClick={getCode}>Баталгаажуулах код авах</h5>
+                {/* <h5 className='mx-auto mb-5 cursor-pointer'>Баталгаажуулах код</h5> */}
+                <p className='text-gray-500 mx-auto text-sm'>Таны утас руу илгээсэн баталгаажуулах кодыг оруулна уу!</p>
+                <OTPInput
+                    className="flex justify-center"
+                    value={OTP}
+                    onChange={setOTP}
+                    autoFocus
+                    OTPLength={6}
+                    otpType="number"
+                    disabled={false}
+                    inputStyles={{
+                        width: "3rem",
+                        height: "3rem",
+                        margin: "auto 1rem",
+                        fontSize: "2rem",
+                        borderRadius: 4,
+                        border: "1px solid #3dbee3"
+                    }}
+                />
+                <div className='mx-auto font-semibold mt-5 hover:bg-[#3dbee3] cursor-pointer bg-slate-400 p-2 rounded-md text-gray-50' onClick={Confirmation}>Нэвтрэх</div>
+                {/* <ResendOTP className="text-gray-600" handelResendClick={() => console.log("Resend clicked")} /> */}
             </div>
-       </div>
+        </div>
     )
 }

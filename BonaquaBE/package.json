@@ -21,11 +21,14 @@
   "author": "munkhzul",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "express-validator": "^6.14.1",
     "http-proxy-middleware": "^2.0.6",
     "ip": "^1.1.8",
+    "node-fetch": "^3.2.10",
     "sequelize": "^6.19.0",
     "tedious": "^14.5.0"
   }

@@ -1,11 +1,10 @@
-import React, { createContext, useState, useEffect, useRef } from 'react';
+import React, { createContext, useState } from 'react';
 import './css/style.css';
 import './css/mediaQuery.css';
 import Header from './components/Header';
 import Order from './components/Order/Order';
 import Footer from './components/Footer';
-// import { BrowserRouter as Routes, Switch, Route, Router } from 'react-router-dom';
-import { useRoutes, Router, Routes, Route } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
 import OrderInfo from './components/Order/OrderInfo';
 import Payment from './components/Order/Payment';
 import OrderHistory from './components/Order/OrderHistory';
@@ -40,23 +39,22 @@ function App() {
 
   let element = useRoutes([
     {
-     path: '/', element: <Content/>,
-     children: [{ path: "instruction", element: <Instruction /> }, 
-                { path: "nutrition", element: <Nutrition/>}]
+      path: '/', element: <Content />,
+      children: [{ path: "instruction", element: <Instruction /> },
+      { path: "nutrition", element: <Nutrition /> }]
     },
-    {path: 'order', element: <Order/>},
-    {path: 'userinfo', element: <OrderInfo/>},
-    {path: 'payment', element: <Payment/>},
-    {path: 'orderDetails', element: <OrderDetails/>},
-    {path: 'confirmation', element: <Confirmation/>},
+    { path: 'order', element: <Order /> },
+    { path: 'userinfo', element: <OrderInfo /> },
+    { path: 'payment', element: <Payment /> },
+    { path: 'orderDetails', element: <OrderDetails /> },
+    { path: 'confirmation', element: <Confirmation /> },
     {
-      path: 'orderHistory', element: <OrderHistory/>,
+      path: 'orderHistory', element: <OrderHistory />,
       children: [
-                 {path: 'orderConfirm', element: <OrderConfirm/>},
-                 {path: 'orderWaiting', element: <OrderDelivered/>}]
+        { path: 'orderConfirm', element: <OrderConfirm /> },
+        { path: 'orderWaiting', element: <OrderDelivered /> }]
     },
   ])
-
 
   return (
     <AppContext.Provider
@@ -81,14 +79,7 @@ function App() {
       <div className="contain">
         <Header />
         <div className='routes'>
-          {/* <Routes>
-              <Route exact path="/" element={<Content/>} />
-              <Route path="order" element={<Order/>} />
-              <Route path="userinfo" component={<OrderInfo/>} />
-              <Route path="payment" component={<Payment/>} />
-              <Route path="orderHistory" component={<OrderHistory/>} />
-          </Routes> */}
-        {element}
+          {element}
         </div>
         <Footer />
       </div>
