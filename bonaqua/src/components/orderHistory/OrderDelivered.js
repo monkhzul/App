@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import bona from '../../images/bona0.5.png';
 import ReactPaginate from "react-paginate";
+import { Link } from "react-router-dom";
 
 export default function AllOrder() {
   const [data, setData] = useState([]);
@@ -84,10 +85,10 @@ export default function AllOrder() {
             </div>
           </div>
 
-          <div>
+          <Link to="/payment">
             {data.status == 10 ? 
             <div className="h-full flex justify-center items-center mx-auto cursor-pointer text-gray-600 hover:text-[#3dbee3]"> <p className="mx-auto flex justify-center text-sm items-center text-center">Төлбөх төлөх</p> </div> : ''}
-          </div>
+          </Link>
 
         </div>
       )

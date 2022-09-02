@@ -36,24 +36,22 @@ function App() {
   const [qr_text, setQR_text] = useState("");
   const [qr_image, setQR_image] = useState("")
 
-
   let element = useRoutes([
     {
       path: '/', element: <Content />,
       children: [{ path: "instruction", element: <Instruction /> },
-      { path: "nutrition", element: <Nutrition /> }]
+                 { path: "nutrition", element: <Nutrition /> }]
     },
     { path: 'order', element: <Order /> },
     { path: 'userinfo', element: <OrderInfo /> },
     { path: 'payment', element: <Payment /> },
-    { path: 'orderDetails', element: <OrderDetails /> },
-    { path: 'confirmation', element: <Confirmation /> },
     {
       path: 'orderHistory', element: <OrderHistory />,
-      children: [
-        { path: 'orderConfirm', element: <OrderConfirm /> },
-        { path: 'orderWaiting', element: <OrderDelivered /> }]
+      children: [{ path: 'orderConfirm', element: <OrderConfirm /> },
+                 { path: 'orderWaiting', element: <OrderDelivered /> }]
     },
+    { path: 'orderDetails', element: <OrderDetails /> },
+    { path: 'confirmation', element: <Confirmation /> },
   ])
 
   return (

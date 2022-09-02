@@ -16,27 +16,6 @@ export default function OrderHistory() {
 
   const dugaarc = sessionStorage.getItem("dugaar");
 
-  // useEffect(() => {
-  //   var getData = async () => {
-  //     try {
-  //       var data = await fetch('http://localhost:8008/api/bonaqua/orderHistory');
-  //       var resData = await data.json();
-  //       setHistory(resData)
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   }
-  //   getData();
-  // }, [])
-
-  // var tuuh = [];
-  // var dugaar = []
-
-  // orderHistory.forEach(x => { 
-  //   tuuh.push(x.orderno)
-  //   dugaar.push(x.phonenumber)
-  // })
-
   let element = useRoutes([
     {path: '/', element: <AllOrder/>},
     {path: 'orderConfirm', element: <OrderConfirm/>},

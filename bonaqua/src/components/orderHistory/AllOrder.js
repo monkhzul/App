@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import bona from '../../images/bona0.5.png';
 import ReactPaginate from "react-paginate";
 
 export default function AllOrder() {
   const [data, setData] = useState([]);
+  const [data1, setData1] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
 
   const dugaarc = sessionStorage.getItem("dugaar");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const orders = () => {
@@ -25,6 +28,7 @@ export default function AllOrder() {
     }
     orders();
   }, [])
+
 
   var ordernoNumber = [];
 
@@ -53,6 +57,55 @@ export default function AllOrder() {
     setPageNumber(selected)
   }
 
+  function orderDetail(orderno) {
+    sessionStorage.setItem("random", orderno);
+    
+
+    navigate('/orderDetails');
+  }
+
+  function payment(orderno, sum) {
+    sessionStorage.setItem("random", orderno);
+    sessionStorage.setItem("sumo", sum);
+
+      const Orderid = () => {
+        fetch('http://localhost:8008/api/bonaqua/getOrderDetail', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            orderno: orderno
+          })
+        })
+          .then(res => {
+            const data = res.json()
+            var arr = [];
+            
+            data.then((res) => {
+              for (var i in res) {
+                arr.push({
+                  size: res[i].Capacity,
+                  sprice: res[i].Capacity,
+                  price: res[i].Capacity * res[i].InCase * res[i].Quantity / res[i].InCase,
+                  tincase: res[i].InCase * res[i].Quantity / res[i].InCase,
+                  incase: res[i].InCase,
+                  avdar: res[i].Quantity / res[i].InCase,
+                  amount: res[i].Amount
+                })
+              }
+              setData1(arr)
+            })
+          })
+      }
+      Orderid()
+
+      console.log(data1)
+
+      sessionStorage.setItem("array", JSON.stringify(data1));
+      navigate('/payment')
+  }
+
   const display = sortedDesc.slice(pagesVisited, pagesVisited + perPage)
     .map((data, i) => {
       return (
@@ -61,7 +114,7 @@ export default function AllOrder() {
             <img src={bona} alt="" className="" />
           </div>
 
-          <div className="cursor-pointer w-full flex 3xl:items-center hover:bg-[#edf9ff]">
+          <div className="cursor-pointer w-full flex 3xl:items-center hover:bg-[#edf9ff]" onClick={() => orderDetail(data.orderno)}>
             <div className="orderHistoryInfo flex flex-col sm:flex-row justify-between w-full mx-2 9xl:mx-8 my-2 items-center 9xl:text-3xl">
               <div className="flex flex-row w-full sm:w-1/2 justify-around my-auto">
                 <div className="date">
@@ -89,7 +142,10 @@ export default function AllOrder() {
               </div>
             </div>
           </div>
-          <div>
+
+          <div onClick={() => 
+            {payment(data.orderno, data.totalPrice)}
+          }>
             {data.status == 10 ? 
             <div className="h-full flex justify-center items-center mx-auto cursor-pointer text-gray-600 hover:text-[#3dbee3]"> <p className="mx-auto flex justify-center text-sm items-center text-center">Төлбөх төлөх</p> </div> : ''}
           </div>
