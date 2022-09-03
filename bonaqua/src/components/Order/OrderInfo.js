@@ -5,7 +5,7 @@ import user from "../../images/svg/order 2/Header-2.svg";
 import location from "../../images/svg/order 2/Header-1.svg";
 import sags from "../../images/svg/order 2/Group 550.svg";
 import { AppContext } from "../../App";
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SlideImage from "../SlideImage";
 import Social from "../Social";
@@ -57,8 +57,12 @@ export default function OrderInfo() {
     QPay()
   }, [])
 
+  console.log(orderArray)
+
   function getUserData() {
 
+    if (orderArray != null) {
+      
     // if (name == '' || number == '' || district == '' || committee == '' || apartment == '' || doornumber == '' || addinginfo == '') {
     //   toast("Шаардлагатай талбаруудыг бөглөнө үү!");
     //   window.location.pathname
@@ -91,8 +95,8 @@ export default function OrderInfo() {
           setOrderid(orderId);
           sessionStorage.setItem("random", orderNumber);
           sessionStorage.setItem("orderid", orderId);
+          sessionStorage.setItem("ordertopay", 0);
           
-            // window.location.pathname = '/payment';
             navigate('/payment')
         });
       })
@@ -102,6 +106,10 @@ export default function OrderInfo() {
     //   toast("Та нэр эсвэл утасны дугаараа шалгана уу!");
     // }
     // }
+    }
+    else {
+      toast("Амжилтгүй! Үнийн дүн 0-ээс их байх хэрэгтэй!")
+    }
   }
 
   // const options = Array(32).fill(0).map((e, i) => i + 1);
@@ -303,10 +311,10 @@ export default function OrderInfo() {
                         </a>
                       </div>
 
+                      <ToastContainer />
                       <div className="choosePayment w-1/2">
-                        <div className="nav-link">
-                          <ToastContainer />
-                          <div className="choosePaymentButton hover:font-semibold text-white" onClick={getUserData} type="submit">
+                        <div className="">
+                          <div className="choosePaymentButton hover:font-semibold text-white curso" onClick={getUserData}>
                             Баталгаажуулах
                           </div>
                         </div>

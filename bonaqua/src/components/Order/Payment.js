@@ -26,7 +26,8 @@ export default function Payment() {
   const sum = sessionStorage.getItem("sum");
   const sumo = sessionStorage.getItem("sumo");
 
-  console.log(orderArray);
+  const arrayto = sessionStorage.getItem("arrayto");
+  const orderToPayArray = JSON.parse(arrayto);
 
   const userarrays = sessionStorage.getItem("userarray");
   const userArray = JSON.parse(userarrays);
@@ -42,6 +43,23 @@ export default function Payment() {
       size.push(x.avdar)
     })
   }
+
+  var packs = [];
+  var sizes = [];
+  var incases = [];
+
+  if (orderToPayArray === null) {
+    console.log("array hooson")
+  }
+  else {
+    orderToPayArray.forEach(x => {
+      packs.push(x.size)
+      incases.push(x.incase)
+      sizes.push(x.avdar)
+    })
+  }
+
+  const check = sessionStorage.getItem("ordertopay");
 
   const key = "bsuTPNVvbM#sAI2#";
   var checksum = random + sum + "POST" + "http://localhost:3000/orderHistory";
@@ -60,6 +78,7 @@ export default function Payment() {
     const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNRVJDSEFOVF9NQ1NfQ09DQV9DT0xBIiwiaWF0IjoxNjMyNzkxOTM4fQ.Tji9cxZsRZPcNJ1xtxx7O3lq2TDn9VZhbx9n6YZ7yOs";
     fetch('https://ecommerce.golomtbank.com/api/invoice', {
       method: "POST",
+      mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
@@ -212,6 +231,7 @@ export default function Payment() {
     setRender(!render)
   }
 
+  console.log(check)
   return (
     <div className="mx-auto flex flex-col justify-between">
       <div className="flex flex-col xl:flex-row">
@@ -233,10 +253,14 @@ export default function Payment() {
                 <div className="seeTotalInfo flex relative">
                   <div className='order1selectTotal flex justify-center items-center overflow-scroll'>
                     <div className="flex mx-2 w-full flex-column mt-3">
-                      {orderArray === '' || orderArray === null ? '' : orderArray.map((data, i) =>
+                      {check == 1 ? orderToPayArray.map((data, i) =>
+                        <p className='totalInfo font-semibold' key={i}>
+                          {`${packs[i]} - ${sizes[i]} авдар (${incases[i] * sizes[i]}ш),`}
+                        </p>) 
+                        : orderArray.map((data, i) =>
                         <p className='totalInfo font-semibold' key={i}>
                           {`${pack[i]} - ${size[i]} авдар (${incase[i] * size[i]}ш),`}
-                        </p>
+                        </p> 
                       )}
                     </div>
                   </div>
@@ -248,7 +272,7 @@ export default function Payment() {
                     </div>
                   </div> */}
                   <div className='order1selectTotal2'>
-                    {sumo === '' || sumo === null ?
+                    {check == 0 ?
                       <p className='total pt-3 text-red-700 text-3xl font-semibold'>{sum}₮</p>
                       // .toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                       : <p className='total pt-3 text-red-700 text-3xl font-semibold'>{sumo.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>

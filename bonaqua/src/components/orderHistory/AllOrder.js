@@ -29,7 +29,6 @@ export default function AllOrder() {
     orders();
   }, [])
 
-
   var ordernoNumber = [];
 
   for (let i = 0; i < data.length; i++) {
@@ -59,14 +58,13 @@ export default function AllOrder() {
 
   function orderDetail(orderno) {
     sessionStorage.setItem("random", orderno);
-    
-
     navigate('/orderDetails');
   }
 
   function payment(orderno, sum) {
     sessionStorage.setItem("random", orderno);
     sessionStorage.setItem("sumo", sum);
+    sessionStorage.setItem("login", dugaarc)
 
       const Orderid = () => {
         fetch('http://localhost:8008/api/bonaqua/getOrderDetail', {
@@ -86,24 +84,30 @@ export default function AllOrder() {
               for (var i in res) {
                 arr.push({
                   size: res[i].Capacity,
-                  sprice: res[i].Capacity,
-                  price: res[i].Capacity * res[i].InCase * res[i].Quantity / res[i].InCase,
-                  tincase: res[i].InCase * res[i].Quantity / res[i].InCase,
+                  sprice: res[i].Price,
+                  price: res[i].Amount,
+                  tincase: res[i].InCase * res[i].Quantity,
                   incase: res[i].InCase,
                   avdar: res[i].Quantity / res[i].InCase,
                   amount: res[i].Amount
                 })
               }
-              setData1(arr)
+              sessionStorage.setItem("arrayto", JSON.stringify(arr));
+              sessionStorage.setItem("ordertopay", 1);
+              navigate('/payment')
             })
           })
       }
       Orderid()
 
-      console.log(data1)
+    //  const send = () => {
+    //   console.log(data1)
+    //    sessionStorage.setItem("array", JSON.stringify(data1));
+    //    navigate('/payment')
+    //  }
 
-      sessionStorage.setItem("array", JSON.stringify(data1));
-      navigate('/payment')
+    //  send();
+
   }
 
   const display = sortedDesc.slice(pagesVisited, pagesVisited + perPage)

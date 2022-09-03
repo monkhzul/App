@@ -74,7 +74,7 @@ export default function Header() {
               <div className='dun'>
                 <Link className="nav-link" to='/order' id='submit'>
                   <p className='busket' id='resultH'>
-                    {sum == null ? '0₮' : `${sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮`}
+                    {sum == null || sum === '' || sum == 0 ? <> 0₮ </> : `${sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮`}
                   </p>
                   <p className='yourBusket'>Таны сагсанд</p>
                 </Link>

@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import sags from "../../images/svg/order 1/sagsnii medelel.svg";
 import add from '../../images/svg/order 1/nemelt zahialga.svg';
-import bona from '../../images/bona0.5.png';
 import flower from '../../images/svg/order 1/tsetseg jijig.svg';
 import bonaqua05 from '../../images/546A4010.png';
 import bonaqua330 from '../../images/546A4006.png';
@@ -12,7 +11,6 @@ import bonaqua800 from '../../images/546A4025.png';
 import addButton from '../../images/svg/order 1/add.svg';
 import removeButton from '../../images/svg/order 1/hasah.svg';
 import deleteButton from '../../images/svg/order 1/x.svg';
-import bigflower from '../../images/svg/home/tsetseg tom.svg';
 import { AppContext } from "../../App";
 import { Modal, Button } from 'react-bootstrap';
 import SlideImage from "../SlideImage";
@@ -193,7 +191,9 @@ export default function Order() {
       sum -= element.price;
       sessionStorage.setItem("sum", sum);
       setTotal(sum)
-      item -= 1;
+      if (item > 0) {
+        item -= 1;
+      }
       sessionStorage.setItem("item", item);
     }
     setRender(!render)
@@ -207,6 +207,8 @@ export default function Order() {
     fincase.push(x.InCase)
   })
   var ftotal = fprice[0] * fincase[0];
+
+  console.log(orderArray)
 
   return (
     <div className="mx-auto flex flex-col justify-between">
@@ -223,7 +225,7 @@ export default function Order() {
             </div>
             {/* Захиалгын хэсэг */}
             <div className="zahialga flex flex-wrap justify-between">
-              {orderArray === '' ? <div className="w-full flex justify-center my-10">
+              {orderArray === '' || orderArray == 0 ? <div className="w-full flex justify-center my-10">
                 <img src={flower} alt="" className='mx-3 -mt-4 emptyFlower' />
                 <p className="text-lg text-gray-500 font-medium">Таны сагс хоосон байна!</p>
               </div>
@@ -245,7 +247,7 @@ export default function Order() {
                         </div>
 
                         <div className="order1Price flex justify-between items-center">
-                          <h3 className="text-2xl 9xl:text-5xl">{data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮ </h3>
+                          <h3 className="text-2xl 9xl:text-5xl">{data.price == null ? '0' : data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮ </h3>
                           <div className="order1Button flex justify-between">
                             <button className="" onClick={() => {
                               if (data.avdar > 1 && sum > 0) {
@@ -303,7 +305,7 @@ export default function Order() {
 
                 <div className='order1selectTotal1 flex flex-col'>
                   <p className='text-gray-500 flex ml-3 text-sm 9xl:text-3xl'>Нийт үнэ</p>
-                  {sum === 0 || sum === null ? <p className='total text-red-700 text-3xl font-semibold' id="resultO"></p>
+                  {sum === 0 || sum == null ? <p className='total text-red-700 text-3xl font-semibold' id="resultO"></p>
                     : <p className='total text-red-700 text-2xl md:text-3xl font-bold mt-[15%] sm:mt-0' id="resultO">{sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>}
                 </div>
 
