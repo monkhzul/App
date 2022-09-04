@@ -338,22 +338,76 @@ async function TokenUpdate(token, date) {
     })
 };
 
-exports.Payment = async(req, res) => {
-    fetch('https://api.qpay.mn/v1/auth/token', {
-        method: "POST",
+
+exports.PaymentSocial = async(req, res) => {
+
+    const random = req.body.random;
+    const sum = req.body.sum;
+    const sha256 = req.body.sha256;
+
+    const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNRVJDSEFOVF9NQ1NfQ09DQV9DT0xBIiwiaWF0IjoxNjMyNzkxOTM4fQ.Tji9cxZsRZPcNJ1xtxx7O3lq2TDn9VZhbx9n6YZ7yOs";
+
+    await axios.post('https://ecommerce.golomtbank.com/api/invoice', { 
+        amount: sum,
+        callback: "http://localhost:3000/orderHistory",
+        checksum: sha256,
+        genToken: "Y",
+        returnType: "POST",
+        transactionId: random
+     }, {
         headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Basic TUNTOmFoTlpGT00x"
-        },
-        body: JSON.stringify({
-          "client_id": "qpay_test",
-          "client_secret": "sdZv9k9m",
-          "grant_type": "client",
-          "refresh_token": ""
-        })
+          'Content-Type': 'application/json',
+          "Authorization": `Bearer ${token}`,
+        }
       })
-        .then(res => {
-          const data = res.json()
-          res.status(data)
-        })
+      .then( ( response ) => {
+        res.status(200).send(response.data);
+      } )
+}
+
+exports.PaymentQpay = async(req, res) => {
+
+    const token = req.body.token;
+    const random = req.body.random;
+    const sum = req.body.sum;
+
+        axios.post('https://api.qpay.mn/v1/bill/create', { 
+            template_id: "TEST_INVOICE",
+            merchant_id: "TEST_MERCHANT",
+            branch_id: "1",
+            pos_id: "1",
+            receiver: {
+              id: "CUST_001",
+              register_no: "ddf",
+              name: "Central",
+              email: "info@info.mn",
+              phone_number: "99888899",
+              note: "zulaa"
+            },
+            transactions: [{
+              description: "qpay",
+              amount: sum,
+              accounts: [{
+                bank_code: "050000",
+                name: "zulaa",
+                number: "5084107767",
+                currency: "MNT"
+              }]
+            }],
+            bill_no: random,
+            date: new Date(),
+            description: "bonaqua qpay",
+            amount: sum,
+            btuk_code: "",
+            vat_flag: "0"
+          }, {
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Authorization": `Bearer ${token}`
+            }
+          })
+          .then( ( response ) => {
+            res.status(200).send(response.data);
+          } )
 }

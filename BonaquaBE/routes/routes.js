@@ -9,7 +9,8 @@ module.exports = app => {
     router.post("/addOrderDetail", bonaqua.addOrderDetail);
     router.post("/updateOrder", bonaqua.updateOrder);
     router.get("/orderHistory", bonaqua.orderHistory);
-    router.get("/payment", bonaqua.Payment);
+    router.post("/paymentSocial", bonaqua.PaymentSocial);
+    router.post("/paymentQpay", bonaqua.PaymentQpay);
     router.post("/getDetail", bonaqua.getOrderDetail);
     router.post("/getOrderDetail", bonaqua.getOrderDetails);
     router.get("/getorderConfirm", bonaqua.orderStatus);

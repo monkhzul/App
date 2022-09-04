@@ -84,6 +84,7 @@ export default function OrderInfo() {
         phone: number,
         array: orderArray,
         pricedisc: 0,
+        amount: sum
       })
     })
       .then((res) => {
@@ -314,7 +315,7 @@ export default function OrderInfo() {
                       <ToastContainer />
                       <div className="choosePayment w-1/2">
                         <div className="">
-                          <div className="choosePaymentButton hover:font-semibold text-white curso" onClick={getUserData}>
+                          <div className="choosePaymentButton hover:font-semibold text-white cursor-pointer" onClick={getUserData}>
                             Баталгаажуулах
                           </div>
                         </div>

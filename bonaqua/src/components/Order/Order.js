@@ -208,8 +208,6 @@ export default function Order() {
   })
   var ftotal = fprice[0] * fincase[0];
 
-  console.log(orderArray)
-
   return (
     <div className="mx-auto flex flex-col justify-between">
       <div className="flex flex-col xl:flex-row">
