@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../../App";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import orderinfo from "../../images/svg/order 2/Header.svg";
 import sags from "../../images/svg/order 2/Group 550.svg";
 import instruction from '../../images/svg/order 3/Header-2.svg';
@@ -34,6 +34,8 @@ export default function Payment() {
   const userArray = JSON.parse(userarrays);
   const random = sessionStorage.getItem("random");
 
+  const navigate = useNavigate();
+
   if (orderArray === null) {
     console.log("array hooson")
   }
@@ -60,20 +62,6 @@ export default function Payment() {
     })
   }
 
-  // document.addEventListener('visibilitychange', function () {
-  //   var t;
-  //   if (document.hidden) {
-  //       // start inactivity timeout
-        
-  //       function logout(){
-  //           window.location.href = '/';
-  //           sessionStorage.clear();
-  //       }
-  //       t = setTimeout(logout, 5000);
-  //       } else {
-  //           clearTimeout(t);
-  //       }
-  //   });
 
   const check = sessionStorage.getItem("ordertopay");
 
@@ -190,24 +178,26 @@ export default function Payment() {
       })
   }
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     Inquiry();
-  //     CheckQpay();
+  useEffect(() => {
+    setTimeout(() => {
+      Inquiry();
+      CheckQpay();
 
-  //     if (QPay_status == 'PAID' && payment_status.status == 'PAID' ) {
-  //       payment = 1;
-  //       sessionStorage.setItem("status", payment);
-  //     } else {
-  //       payment = 0;
-  //       sessionStorage.setItem("status", payment);
-  //     }
+      var payment;
 
-  //     window.sessionStorage.clear();
-  //     navigate('/')
+      if (QPay_status == 'PAID' && payment_status.status == 'PAID' ) {
+        payment = 1;
+        sessionStorage.setItem("status", payment);
+      } else {
+        payment = 0;
+        sessionStorage.setItem("status", payment);
+      }
 
-  //   }, 5000)
-  // }, [])
+      window.sessionStorage.clear();
+      navigate('/orderHistory')
+
+    }, 5000)
+  }, [])
 
 
   function CancelOrder() {

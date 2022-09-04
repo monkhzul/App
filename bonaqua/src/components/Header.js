@@ -44,7 +44,7 @@ export default function Header() {
   const Continue = () => {
     if (dugaar.includes(phoneNumber)) {
         sessionStorage.setItem("dugaar", phoneNumber);
-        navigate('/confirmation')
+        navigate('/orderHistory')
         // sessionStorage.setItem("login", login)
     }
     else {

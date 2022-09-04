@@ -54,19 +54,22 @@ function App() {
     { path: 'confirmation', element: <Confirmation /> },
   ])
 
-  // document.addEventListener('visibilitychange', function () {
-  //   var t;
-  //   if (document.hidden) {
-  //       // start inactivity timeout
-        
-  //       function logout(){
-  //           window.location.href = '/';
-  //       }
-  //       t = setTimeout(logout, 5000);
-  //       } else {
-  //           clearTimeout(t);
-  //       }
-  //   });
+  // var duration = 10;
+  // setInterval(updateTimer, 1000);
+
+  // function updateTimer() {
+  //   duration--;
+  //   if (duration < 1) {
+  //     window.location.pathname = '/';
+  //     sessionStorage.clear();
+  //   }
+  // }
+
+  // window.addEventListener("mousemove", resetTimer);
+
+  // function resetTimer() {
+  //   duration = 10;
+  // }
 
   return (
     <AppContext.Provider

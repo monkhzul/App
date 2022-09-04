@@ -90,3 +90,19 @@ const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNRVJDSEFOVF9NQ1NfQ09DQV9DT0xBIiwi
           })
       }
       QRcode()
+
+
+
+      // document.addEventListener('visibilitychange', function () {
+  //   var t;
+  //   if (document.hidden) {
+  //       // start inactivity timeout
+        
+  //       function logout(){
+  //           window.location.href = '/';
+  //       }
+  //       t = setTimeout(logout, 5000);
+  //       } else {
+  //           clearTimeout(t);
+  //       }
+  //   });

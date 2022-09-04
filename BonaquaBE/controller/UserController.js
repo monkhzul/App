@@ -185,9 +185,9 @@ exports.getQuantity = async(req, res) => {
 
 exports.updateOrder = async(req, res) => {
 
-    const orderid = req.body.orderid;
+    const orderno = req.body.orderno;
 
-    const order = await db.sequelize.query(`exec Anungoo_db.dbo.SP_BtoC_CREATE_ORDER 'updateorder','', '', '', '', '',${orderid},''`, { type: QueryTypes.SELECT });
+    const order = await db.sequelize.query(`exec Anungoo_db.dbo.SP_BtoC_CREATE_ORDER 'updateorder','', '', '', '', '',${orderno},''`, { type: QueryTypes.SELECT });
 
     try {
         if(order != 0) {
