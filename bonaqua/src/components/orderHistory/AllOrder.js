@@ -5,7 +5,7 @@ import ReactPaginate from "react-paginate";
 
 export default function AllOrder() {
   const [data, setData] = useState([]);
-  const [data1, setData1] = useState([]);
+  const [token, setToken] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
 
   const dugaarc = sessionStorage.getItem("dugaar");
@@ -61,6 +61,29 @@ export default function AllOrder() {
     navigate('/orderDetails');
   }
 
+  useEffect(() => {
+    fetch('https://api.qpay.mn/v1/auth/token', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Basic TUNTOmFoTlpGT00x"
+      },
+      body: JSON.stringify({
+        "client_id": "qpay_test",
+        "client_secret": "sdZv9k9m",
+        "grant_type": "client",
+        "refresh_token": ""
+      })
+    })
+      .then(res => {
+        const data = res.json()
+        data.then(res => {
+          const token = res.access_token;
+          setToken(token);
+        })
+      })
+  }, [])
+
   function payment(orderno, sum) {
     sessionStorage.setItem("random", orderno);
     sessionStorage.setItem("sumo", sum);
@@ -94,6 +117,8 @@ export default function AllOrder() {
               }
               sessionStorage.setItem("arrayto", JSON.stringify(arr));
               sessionStorage.setItem("ordertopay", 1);
+              sessionStorage.setItem("tokento", token);
+              console.log(token)
               navigate('/payment')
             })
           })

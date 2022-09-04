@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import bona from '../../images/bona0.5.png';
 import ReactPaginate from "react-paginate";
-import { Link } from "react-router-dom";
 
 export default function AllOrder() {
   const [data, setData] = useState([]);
+  const [data1, setData1] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
 
-  const perPage = 5;
-  const pagesVisited = pageNumber * perPage;
-
   const dugaarc = sessionStorage.getItem("dugaar");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const orders = () => {
@@ -30,7 +29,7 @@ export default function AllOrder() {
     orders();
   }, [])
 
-  const ordernoNumber = [];
+  var ordernoNumber = [];
 
   for (let i = 0; i < data.length; i++) {
     if (data[i].phonenumber === dugaarc) {
@@ -51,6 +50,68 @@ export default function AllOrder() {
       new Date(objB.date) - new Date(objA.date)
   );
 
+  const perPage = 5;
+  const pagesVisited = pageNumber * perPage;
+  const pageCount = Math.ceil(ordernoNumber.length / perPage);
+
+  const changePage = ({ selected }) => {
+    setPageNumber(selected)
+  }
+
+  function orderDetail(orderno) {
+    sessionStorage.setItem("random", orderno);
+    navigate('/orderDetails');
+  }
+
+  function payment(orderno, sum) {
+    sessionStorage.setItem("random", orderno);
+    sessionStorage.setItem("sumo", sum);
+    sessionStorage.setItem("login", dugaarc)
+
+      const Orderid = () => {
+        fetch('http://localhost:8008/api/bonaqua/getOrderDetail', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            orderno: orderno
+          })
+        })
+          .then(res => {
+            const data = res.json()
+            var arr = [];
+            
+            data.then((res) => {
+              for (var i in res) {
+                arr.push({
+                  size: res[i].Capacity,
+                  sprice: res[i].Price,
+                  price: res[i].Amount,
+                  tincase: res[i].InCase * res[i].Quantity,
+                  incase: res[i].InCase,
+                  avdar: res[i].Quantity / res[i].InCase,
+                  amount: res[i].Amount
+                })
+              }
+              sessionStorage.setItem("arrayto", JSON.stringify(arr));
+              sessionStorage.setItem("ordertopay", 1);
+              navigate('/payment')
+            })
+          })
+      }
+      Orderid()
+
+    //  const send = () => {
+    //   console.log(data1)
+    //    sessionStorage.setItem("array", JSON.stringify(data1));
+    //    navigate('/payment')
+    //  }
+
+    //  send();
+
+  }
+
   const display = sortedDesc.slice(pagesVisited, pagesVisited + perPage)
     .map((data, i) => {
       return (
@@ -59,7 +120,7 @@ export default function AllOrder() {
             <img src={bona} alt="" className="" />
           </div>
 
-          <div className="cursor-pointer w-[100%] flex 3xl:items-center hover:bg-[#edf9ff]">
+          <div className="cursor-pointer w-full flex 3xl:items-center hover:bg-[#edf9ff]" onClick={() => orderDetail(data.orderno)}>
             <div className="orderHistoryInfo flex flex-col sm:flex-row justify-between w-full mx-2 9xl:mx-8 my-2 items-center 9xl:text-3xl">
               <div className="flex flex-row w-full sm:w-1/2 justify-around my-auto">
                 <div className="date">
@@ -68,7 +129,11 @@ export default function AllOrder() {
                 </div>
                 <div className="state">
                   <p className="text-gray-500 leading-3">Төлөв</p>
-                  { <p className="font-semibold text-orange-400">Хүлээгдэж буй</p> }
+                  {
+                    data.status === 1 ? <p className="font-semibold text-green-400">Баталгаажсан</p>
+                      : data.status === 0 ? <p className="font-semibold text-red-600">Цуцлагдсан</p>
+                        : <p className="font-semibold text-orange-400">Хүлээгдэж буй</p>
+                  }
                 </div>
               </div>
               <div className="flex flex-row w-full sm:w-1/2 justify-around">
@@ -81,24 +146,18 @@ export default function AllOrder() {
                   <p className="font-semibold">{data.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>
                 </div>
               </div>
-
             </div>
           </div>
 
-          <Link to="/payment">
+          <div onClick={() => 
+            {payment(data.orderno, data.totalPrice)}
+          }>
             {data.status == 10 ? 
             <div className="h-full flex justify-center items-center mx-auto cursor-pointer text-gray-600 hover:text-[#3dbee3]"> <p className="mx-auto flex justify-center text-sm items-center text-center">Төлбөх төлөх</p> </div> : ''}
-          </Link>
-
+          </div>
         </div>
       )
     })
-
-  const pageCount = Math.ceil(ordernoNumber.length / perPage);
-
-  const changePage = ({ selected }) => {
-    setPageNumber(selected)
-  }
 
   return (
     <div className="page">

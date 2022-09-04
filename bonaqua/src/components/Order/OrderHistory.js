@@ -3,7 +3,7 @@ import { useRoutes } from 'react-router-dom';
 import bonaqua from '../../images/546A4010.png';
 import bigflower from '../../images/svg/home/tsetseg tom.svg';
 import lineflower from '../../images/svg/order 2/Group 550.svg';
-import {Router, Route, NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import AllOrder from '../orderHistory/AllOrder';
 import OrderConfirm from '../orderHistory/OrderConfirm';
 import OrderDelivered from '../orderHistory/OrderDelivered';

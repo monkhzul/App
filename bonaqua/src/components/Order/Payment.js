@@ -60,20 +60,36 @@ export default function Payment() {
     })
   }
 
+  // document.addEventListener('visibilitychange', function () {
+  //   var t;
+  //   if (document.hidden) {
+  //       // start inactivity timeout
+        
+  //       function logout(){
+  //           window.location.href = '/';
+  //           sessionStorage.clear();
+  //       }
+  //       t = setTimeout(logout, 5000);
+  //       } else {
+  //           clearTimeout(t);
+  //       }
+  //   });
+
   const check = sessionStorage.getItem("ordertopay");
 
   const key = "bsuTPNVvbM#sAI2#";
-  var checksum = random + sum + "POST" + "http://localhost:3000/orderHistory";
+  var checksum = random + (check == 0 ? sum : sumo) + "POST" + "http://localhost:3000/orderHistory";
   var checksum1 = checksum.toString();
   const hash = crypto.HmacSHA256(`${checksum1}`, key);
   let sha256 = hash.toString(crypto.enc.Hex);
 
 
-  var checksum1 = random + random;
-  var checksum2 = checksum1.toString();
+  var checksuming = random + random;
+  var checksum2 = checksuming.toString();
   const hash1 = crypto.HmacSHA256(`${checksum2}`, key);
   let sha2561 = hash1.toString(crypto.enc.Hex);
 
+  console.log(random)
 
   function SocialPay() {
     fetch('http://localhost:8008/api/bonaqua/paymentSocial', {
@@ -125,6 +141,7 @@ export default function Payment() {
   };
 
   const token = sessionStorage.getItem("token")
+  const token2 = sessionStorage.getItem("tokento")
 
   useEffect(() => {
     fetch('http://localhost:8008/api/bonaqua/paymentQpay', {
@@ -133,7 +150,7 @@ export default function Payment() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        token: token,
+        token: check == 0 ? token : token2,
         random: random,
         sum: check == 0 ? sum : sumo
       })

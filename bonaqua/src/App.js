@@ -54,6 +54,20 @@ function App() {
     { path: 'confirmation', element: <Confirmation /> },
   ])
 
+  // document.addEventListener('visibilitychange', function () {
+  //   var t;
+  //   if (document.hidden) {
+  //       // start inactivity timeout
+        
+  //       function logout(){
+  //           window.location.href = '/';
+  //       }
+  //       t = setTimeout(logout, 5000);
+  //       } else {
+  //           clearTimeout(t);
+  //       }
+  //   });
+
   return (
     <AppContext.Provider
       value={{
