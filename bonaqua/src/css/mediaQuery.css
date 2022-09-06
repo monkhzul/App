@@ -11,6 +11,7 @@
 
   @media (max-width: 639px) {
     .ProductAndOrder {
+      width: 100%;
       display: flex;
       flex-direction: column;
       height: auto;
@@ -158,6 +159,7 @@
       justify-content: space-around;
     }
     .ProductAndOrder {
+      width: 100%;
       height: auto;
       display: flex;
       flex-direction: column;
@@ -214,6 +216,9 @@
   }
 
   @media (min-width: 768px) and (max-width: 895px) {
+    .ProductAndOrder {
+      width: 100%;
+    }
     .bona {
       width: 50%;
     }
@@ -258,6 +263,9 @@
   }
 
   @media (min-width: 896px) and (max-width: 1284px) {
+    .ProductAndOrder {
+      width: 90%;
+    }
     p.yourBusket {
       font-size: 1rem;
     }

@@ -63,9 +63,8 @@ export default function OrderInfo() {
 
     if (orderArray != null) {
       
-    if (name == '' || number == '' || district == '' || committee == '' || apartment == '' || doornumber == '' || addinginfo == '') {
+    if (name == '' || number == '' || district == '' || committee == '' || apartment == '' || doornumber == '' || add == '') {
       toast("Шаардлагатай талбаруудыг бөглөнө үү!");
-      window.location.pathname
     }
     else {
       var phoneno = /^[7-9]\d{7}$/;

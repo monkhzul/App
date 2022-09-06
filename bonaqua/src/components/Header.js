@@ -57,10 +57,15 @@ export default function Header() {
 
   const handleShow = () => setShow(true);
 
+  const movehistory = () => {
+    navigate('/orderHistory')
+    window.location.reload()
+  }
+
   return (
-    <div className=''>
+    <>
       <div className='header flex'>
-        <div className='logo w-1/2 flex items-end ml-6'>
+        <div className='logo w-1/2 flex ml-6'>
           <a className='nav-link' href='/' onClick={() => sessionStorage.clear()}>
             <img src={logo} alt="" className='' />
           </a>
@@ -91,8 +96,7 @@ export default function Header() {
                 <ToastContainer/>
                 {
                   log != null ? <div className="nav-link" onClick={() => {
-                    navigate('/orderHistory')
-                    window.location.reload()
+                    movehistory()
                   }}>
                     <p className='yourBusket'>Захиалгын түүх</p> 
                   </div>
@@ -130,6 +134,6 @@ export default function Header() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </>
   )
 }

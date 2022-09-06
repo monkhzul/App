@@ -20,7 +20,6 @@ html {
   justify-content: space-between;
 }
 .header {
-  height: 16vh;
 }
 .popup {
   content: "";
@@ -296,7 +295,7 @@ a {
         padding-top: 1rem;
       }
       .ProductAndOrder {
-        /* width: 60%; */
+        width: 60%; 
         height: 50%;
         border: 1px solid var(--blue-color);
         border-radius: 10px;
@@ -1049,17 +1048,6 @@ a {
       width: 1px !important;
       white-space: nowrap !important;
     }
-    
-    body, html {
-      height: 100%;
-    }
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-
 
     .bgWhite{
       background:white;
