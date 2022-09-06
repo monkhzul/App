@@ -178,26 +178,26 @@ export default function Payment() {
       })
   }
 
-  useEffect(() => {
-    setTimeout(() => {
-      Inquiry();
-      CheckQpay();
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     Inquiry();
+  //     CheckQpay();
 
-      var payment;
+  //     var payment;
 
-      if (QPay_status == 'PAID' && payment_status.status == 'PAID' ) {
-        payment = 1;
-        sessionStorage.setItem("status", payment);
-      } else {
-        payment = 0;
-        sessionStorage.setItem("status", payment);
-      }
+  //     if (QPay_status == 'PAID' && payment_status.status == 'PAID' ) {
+  //       payment = 1;
+  //       sessionStorage.setItem("status", payment);
+  //     } else {
+  //       payment = 0;
+  //       sessionStorage.setItem("status", payment);
+  //     }
 
-      window.sessionStorage.clear();
-      navigate('/orderHistory')
+  //     window.sessionStorage.clear();
+  //     navigate('/orderHistory')
 
-    }, 5000)
-  }, [])
+  //   }, 5000)
+  // }, [])
 
 
   function CancelOrder() {
