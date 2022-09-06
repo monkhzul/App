@@ -13,7 +13,7 @@ export default function AllOrder() {
 
   useEffect(() => {
     const orders = () => {
-      fetch('http://localhost:8008/api/bonaqua/getorderConfirm', {
+      fetch('http://192.168.244.6:8089/api/bonaqua/getorderConfirm', {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

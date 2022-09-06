@@ -80,7 +80,7 @@ export default function Payment() {
   console.log(random)
 
   function SocialPay() {
-    fetch('http://localhost:8008/api/bonaqua/paymentSocial', {
+    fetch('http://192.168.244.6:8089/api/bonaqua/paymentSocial', {
       method: "POST", 
       headers: {
         'Content-Type': 'application/json'
@@ -132,7 +132,7 @@ export default function Payment() {
   const token2 = sessionStorage.getItem("tokento")
 
   useEffect(() => {
-    fetch('http://localhost:8008/api/bonaqua/paymentQpay', {
+    fetch('http://192.168.244.6:8089/api/bonaqua/paymentQpay', {
       method: "POST", 
       headers: {
         'Content-Type': 'application/json'

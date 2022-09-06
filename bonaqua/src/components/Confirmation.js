@@ -11,7 +11,7 @@ export default function Confirmation() {
     const navigate = useNavigate();
 
     const getCode = () => {
-        fetch('http://localhost:8008/api/bonaqua/confirmPhone', {
+        fetch('http://192.168.244.6:8089/api/bonaqua/confirmPhone', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

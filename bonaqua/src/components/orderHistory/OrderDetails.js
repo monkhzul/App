@@ -23,7 +23,7 @@ export default function OrderDetails() {
 
   useEffect(() => {
     const Orderid = () => {
-      fetch('http://localhost:8008/api/bonaqua/getOrderDetail', {
+      fetch('http://192.168.244.6:8089/api/bonaqua/getOrderDetail', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
