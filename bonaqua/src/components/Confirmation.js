@@ -46,7 +46,7 @@ export default function Confirmation() {
     }
 
     return (
-        <div className='h-full'>
+        <div className='h-full confirmationBody'>
             <div className='h-full flex flex-col justify-center my-auto'>
                 <h6 className='mx-auto'>Баталгаажуулах кодоор нэвтэрнэ үү!</h6>
                 <h5 className='mx-auto mb-5 cursor-pointer bg-slate-400 p-2 rounded-md text-gray-50 hover:bg-[#3dbee3]' onClick={getCode}>Баталгаажуулах код авах</h5>

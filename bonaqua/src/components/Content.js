@@ -296,7 +296,7 @@ export default function Content() {
                       <p className=''>Авдар</p>
                     </div>
                     <div className='tablename3'>
-                      <p className=''>Нийт үнэ</p>
+                      <p className='mt-10'>Нийт үнэ</p>
                     </div>
                   </div>
 

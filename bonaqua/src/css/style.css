@@ -1071,3 +1071,7 @@ a {
       height:50px;
       text-align:center;
     }
+
+    .confirmationBody {
+      height: 70vh;
+    }

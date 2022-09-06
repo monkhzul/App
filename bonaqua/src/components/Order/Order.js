@@ -359,7 +359,7 @@ export default function Order() {
 
                     </div>
                     <div className='tablename3'>
-                      <p className=''>Нийт үнэ</p>
+                      <p className='mt-7'>Нийт үнэ</p>
                     </div>
                   </div>
 
