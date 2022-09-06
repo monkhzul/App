@@ -17,13 +17,15 @@ export default function Confirmation() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                number: dugaarc
+                number: 86068196
             })
         })
             .then((res) => {
                 const data = res.json();
                 data.then(res => setRandom(res.random))
             })
+            
+            toast("Таны утас руу баталгаажуулах код илгээлээ.")
     }
 
     const Confirmation = () => {

@@ -22,22 +22,22 @@ export default function OrderHistory() {
     { path: "orderWaiting", element: <OrderDelivered /> },
   ]);
 
-  var duration = 180;
-  setInterval(updateTimer, 1000);
+  // var duration = 180;
+  // setInterval(updateTimer, 1000);
 
-  function updateTimer() {
-    duration--;
-    if (duration < 1) {
-      window.location.pathname = "/";
-      sessionStorage.clear();
-    }
-  }
+  // function updateTimer() {
+  //   duration--;
+  //   if (duration < 1) {
+  //     window.location.pathname = "/";
+  //     sessionStorage.clear();
+  //   }
+  // }
 
-  window.addEventListener("mousemove", resetTimer);
+  // window.addEventListener("mousemove", resetTimer);
 
-  function resetTimer() {
-    duration = 180;
-  }
+  // function resetTimer() {
+  //   duration = 180;
+  // }
 
   return (
     <div className="mx-auto flex flex-col justify-between">

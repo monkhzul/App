@@ -10,6 +10,7 @@ import SlideImage from "../SlideImage";
 import Social from "../Social";
 import crypto from "crypto-js";
 import QRCode from 'qrcode';
+import PulseLoader from 'react-spinners/PulseLoader'
 
 export default function Payment() {
 
@@ -21,6 +22,15 @@ export default function Payment() {
   const [payment_status, setPayment_status] = useState("");
   const [QPay_status, setQPay_status] = useState("");
   const [invoice, setInvoice] = useState("");
+
+  const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 3000)
+    }, [])
 
   const arrays = sessionStorage.getItem("array");
   const orderArray = JSON.parse(arrays);
@@ -194,7 +204,6 @@ export default function Payment() {
   //     }
 
   //     window.sessionStorage.clear();
-  //     navigate('/orderHistory')
 
   //   }, 5000)
   // }, [])
@@ -301,10 +310,19 @@ export default function Payment() {
                       </div>
 
                       <div className="flex flex-col justify-center items-center w-1/2 ">
+                        {loading ? 
+                        <PulseLoader 
+                          size={10}
+                          color={"#3dbee3"}
+                          loading={loading}
+                          className={"w-full flex justify-center"}
+                        /> : 
                         <div id="qrcode">
                           <img src={qr_image} alt="" />
                         </div>
+                        }
                       </div>
+                        
 
                     </div>
 
