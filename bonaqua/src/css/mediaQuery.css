@@ -7,6 +7,7 @@
       height: 0.5rem;
       margin: 0.5rem;
     }
+
   }
 
   @media (max-width: 639px) {
@@ -70,6 +71,7 @@
     .link {
       display: flex;
       flex-direction: column;
+      width: 100%;
     }
     .ProductC {
       margin-left: 0;
@@ -212,6 +214,9 @@
     }
     .order1Imgdt {
       width: 20%;
+    }
+    .link {
+      width: 100%;
     }
   }
 
@@ -473,13 +478,13 @@
       color: #666363;
     }
     p.total {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
     }
     .productInfo img {
       margin: 3rem 0;
     }
     .link {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
     }
     .ProductC h4 {
       font-size: 1.6rem;

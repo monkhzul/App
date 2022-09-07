@@ -911,6 +911,9 @@ a {
     .page {
       width: 100%;
     }
+    ul.paginationBttns {
+      padding-left: 0;
+    }
     .paginationBttns {
       width: 100%;
       list-style: none;

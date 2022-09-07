@@ -90,7 +90,7 @@ export default function Payment() {
   console.log(random)
 
   function SocialPay() {
-    fetch('http://192.168.244.6:8089/api/bonaqua/paymentSocial', {
+    fetch('http://localhost:8008/api/bonaqua/paymentSocial', {
       method: "POST", 
       headers: {
         'Content-Type': 'application/json'
@@ -119,21 +119,20 @@ export default function Payment() {
   }
 
   const Inquiry = () => {
-    fetch('https://ecommerce.golomtbank.com/api/inquiry', {
+    fetch('http://localhost:8008/api/bonaqua/paymentQpayInquiry', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNRVJDSEFOVF9NQ1NfQ09DQV9DT0xBIiwiaWF0IjoxNjMyNzkxOTM4fQ.Tji9cxZsRZPcNJ1xtxx7O3lq2TDn9VZhbx9n6YZ7yOs`,
       },
       body: JSON.stringify({
-        checksum: sha2561,
-        transactionId: random
+        sha2561: sha2561,
+        random: random
       })
     })
       .then(res => {
         const data = res.json()
         data.then(data => {
-          setPayment_status(data)
+          setPayment_status(data.status)
         })
       });
   };
@@ -142,7 +141,7 @@ export default function Payment() {
   const token2 = sessionStorage.getItem("tokento")
 
   useEffect(() => {
-    fetch('http://192.168.244.6:8089/api/bonaqua/paymentQpay', {
+    fetch('http://localhost:8008/api/bonaqua/paymentQpay', {
       method: "POST", 
       headers: {
         'Content-Type': 'application/json'
@@ -167,15 +166,14 @@ export default function Payment() {
   }, [])
 
   const CheckQpay = async () => {
-    await fetch(`https://api.qpay.mn/v1/bill/check`, {
+    await fetch(`http://localhost:8008/api/bonaqua/paymentQpayCheck`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify({
-        "merchant_id": "TEST_MERCHANT",
-        "bill_no": random
+        token: check == 0 ? token : token2,
+        random: random
       })
     })
       .then(res => {
@@ -183,30 +181,34 @@ export default function Payment() {
         data.then(res => {
           const paymentStatus = res.payment_info.payment_status;
           setQPay_status(paymentStatus)
-          // console.log(res.payment_info.payment_status)
         })
       })
   }
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     Inquiry();
-  //     CheckQpay();
+  useEffect(() => {
+    setTimeout(() => {
+      Inquiry();
+      CheckQpay();
+      console.log(QPay_status, payment_status)
 
-  //     var payment;
+      if (QPay_status == 'NOT_PAID' && payment_status == 'PENDING' ) {
+        fetch('http://localhost:8008/api/bonaqua/updateOrder', {
+          method: "POST",
+          headers: {
+            'Content-Type': "application/json"
+          },
+          body: JSON.stringify({
+            orderno: random
+          })
+        })
+        .then((res) => {
+          const data = res.json();
+          console.log(data)
+        })
+      } 
 
-  //     if (QPay_status == 'PAID' && payment_status.status == 'PAID' ) {
-  //       payment = 1;
-  //       sessionStorage.setItem("status", payment);
-  //     } else {
-  //       payment = 0;
-  //       sessionStorage.setItem("status", payment);
-  //     }
-
-  //     window.sessionStorage.clear();
-
-  //   }, 5000)
-  // }, [])
+    }, 5000)
+  }, [])
 
 
   function CancelOrder() {

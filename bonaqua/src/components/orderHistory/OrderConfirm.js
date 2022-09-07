@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import bona from '../../images/bona0.5.png';
 import ReactPaginate from "react-paginate";
 
 export default function AllOrder() {
   const [data, setData] = useState([]);
+  const [data1, setData1] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
 
-  const perPage = 5;
-  const pagesVisited = pageNumber * perPage;
-
   const dugaarc = sessionStorage.getItem("dugaar");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const orders = () => {
-      fetch('http://192.168.244.6:8089/api/bonaqua/getorderConfirm', {
+      fetch('http://localhost:8008/api/bonaqua/getorderConfirm', {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -29,11 +29,11 @@ export default function AllOrder() {
     orders();
   }, [])
 
-  const ordernoNumber = [];
+  var ordernoNumber = [];
 
   for (let i = 0; i < data.length; i++) {
     if (data[i].phonenumber === dugaarc) {
-      if (data[i].State === 1) {   
+      if (data[i].State === 10) {   
         ordernoNumber.push({
           phonenumber: data[i].phonenumber,
           orderno: data[i].orderno,
@@ -50,6 +50,19 @@ export default function AllOrder() {
       new Date(objB.date) - new Date(objA.date)
   );
 
+  const perPage = 5;
+  const pagesVisited = pageNumber * perPage;
+  const pageCount = Math.ceil(ordernoNumber.length / perPage);
+
+  const changePage = ({ selected }) => {
+    setPageNumber(selected)
+  }
+
+  function orderDetail(orderno) {
+    sessionStorage.setItem("random", orderno);
+    navigate('/orderDetails');
+  }
+
   const display = sortedDesc.slice(pagesVisited, pagesVisited + perPage)
     .map((data, i) => {
       return (
@@ -58,7 +71,7 @@ export default function AllOrder() {
             <img src={bona} alt="" className="" />
           </div>
 
-          <div className="cursor-pointer w-[80%] flex 3xl:items-center hover:bg-[#edf9ff]">
+          <div className="cursor-pointer w-full flex 3xl:items-center hover:bg-[#edf9ff]" onClick={() => orderDetail(data.orderno)}>
             <div className="orderHistoryInfo flex flex-col sm:flex-row justify-between w-full mx-2 9xl:mx-8 my-2 items-center 9xl:text-3xl">
               <div className="flex flex-row w-full sm:w-1/2 justify-around my-auto">
                 <div className="date">
@@ -67,7 +80,7 @@ export default function AllOrder() {
                 </div>
                 <div className="state">
                   <p className="text-gray-500 leading-3">Төлөв</p>
-                  { <p className="font-semibold text-green-400">Баталгаажсан</p> }
+                  <p className="font-semibold text-green-400">Баталгаажсан</p>
                 </div>
               </div>
               <div className="flex flex-row w-full sm:w-1/2 justify-around">
@@ -80,18 +93,11 @@ export default function AllOrder() {
                   <p className="font-semibold">{data.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
       )
     })
-
-  const pageCount = Math.ceil(ordernoNumber.length / perPage);
-
-  const changePage = ({ selected }) => {
-    setPageNumber(selected)
-  }
 
   return (
     <div className="page">

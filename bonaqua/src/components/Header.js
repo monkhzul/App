@@ -22,7 +22,7 @@ export default function Header() {
   useEffect(() => {
     var getData = async () => {
       try {
-        var data = await fetch('http://192.168.244.6:8089/api/bonaqua/orderHistory');
+        var data = await fetch('http://localhost:8008/api/bonaqua/orderHistory');
         var resData = await data.json();
         setHistory(resData)
       } catch (err) {
@@ -44,8 +44,8 @@ export default function Header() {
   const Continue = () => {
     if (dugaar.includes(phoneNumber)) {
         sessionStorage.setItem("dugaar", phoneNumber);
-        navigate('/confirmation')
-        // sessionStorage.setItem("login", login)
+        navigate('/orderHistory')
+        sessionStorage.setItem("login", login)
     }
     else {
       toast(`${phoneNumber} дугаартай захиалгын түүх олдсонгүй!`);

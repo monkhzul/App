@@ -371,7 +371,7 @@ exports.PaymentQpay = async(req, res) => {
     const random = req.body.random;
     const sum = req.body.sum;
 
-        axios.post('https://api.qpay.mn/v1/bill/create', { 
+       await axios.post('https://api.qpay.mn/v1/bill/create', { 
             template_id: "TEST_INVOICE",
             merchant_id: "TEST_MERCHANT",
             branch_id: "1",
@@ -410,4 +410,42 @@ exports.PaymentQpay = async(req, res) => {
           .then( ( response ) => {
             res.status(200).send(response.data);
           } )
+}
+
+exports.PaymentQpayCheck = async(req, res) => {
+
+    const token = req.body.token;
+    const random = req.body.random;
+
+        await axios.post('https://api.qpay.mn/v1/bill/check', { 
+            merchant_id: "TEST_MERCHANT",
+            bill_no: random
+          }, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+          })
+          .then( ( response ) => {
+            res.status(200).send(response.data);
+          } )
+}
+
+exports.PaymentQpayInquiry = async(req, res) => {
+
+    const sha2561 = req.body.sha2561;
+    const random = req.body.random;
+
+    await axios.post('https://ecommerce.golomtbank.com/api/inquiry', { 
+        checksum: sha2561,
+        transactionId: random
+      }, {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNRVJDSEFOVF9NQ1NfQ09DQV9DT0xBIiwiaWF0IjoxNjMyNzkxOTM4fQ.Tji9cxZsRZPcNJ1xtxx7O3lq2TDn9VZhbx9n6YZ7yOs`,
+        }
+      })
+      .then( ( response ) => {
+        res.status(200).send(response.data);
+      } )
 }

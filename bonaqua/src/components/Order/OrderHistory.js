@@ -67,7 +67,7 @@ export default function OrderHistory() {
 
           <div className="orderHistoryLink">
             <div className="link flex justify-between py-3 w-full">
-              <div className="flex w-[80%] justify-around">
+              <div className="flex w-full md:w-[80%] justify-between mb-3 md:mb-0 2xl:mr-10">
                 <div className="">
                   <NavLink
                     className={({ isActive }) =>
