@@ -57,11 +57,6 @@ export default function Header() {
 
   const handleShow = () => setShow(true);
 
-  const movehistory = () => {
-    navigate('/orderHistory')
-    window.location.reload()
-  }
-
   return (
     <>
       <div className='header flex'>
@@ -95,11 +90,9 @@ export default function Header() {
                 </p>
                 <ToastContainer/>
                 {
-                  log != null ? <div className="nav-link" onClick={() => {
-                    movehistory()
-                  }}>
+                  log != null ? <Link to='/orderHistory' className="nav-link">
                     <p className='yourBusket'>Захиалгын түүх</p> 
-                  </div>
+                  </Link>
                     : <div className="nav-link" onClick={handleShow}>
                       <p className='yourBusket'>Захиалгын түүх</p>
                     </div>
