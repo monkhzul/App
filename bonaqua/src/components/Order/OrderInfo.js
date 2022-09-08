@@ -170,7 +170,7 @@ export default function OrderInfo() {
   return (
     <div className="mx-auto flex flex-col justify-between">
       <div className="flex flex-col xl:flex-row">
-        <div className="w-full xl:w-1/2 flex items-center justify-center relative choosing orderInfo">
+        <div className="w-full xl:w-1/2 flex items-center justify-center relative orderInfo mr-[5%] mt-[5%] 6xl:mt-8">
           <SlideImage />
         </div>
 
@@ -188,7 +188,7 @@ export default function OrderInfo() {
                   <div className='order1selectTotal flex justify-center items-center overflow-scroll'>
                     <div className="flex mx-2 w-full flex-column mt-3">
                       {orderArray === '' || orderArray === null ? 'Empty' : orderArray.map((data, i) =>
-                        <p className='totalInfo font-semibold' key={i}>
+                        <p className='totalInfo font-semibold 7xl:text-2xl' key={i}>
                           {pack === '' ? 'Empty' : `${pack[i]} - ${size[i]} авдар (${incase[i] * size[i]}ш),`}
                         </p>
                       )}

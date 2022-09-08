@@ -237,7 +237,7 @@ export default function Payment() {
 
   return (
     <div className="mx-auto flex flex-col justify-between">
-      <div className="flex flex-col xl:flex-row">
+      <div className="flex flex-col xl:flex-row 2xl:mt-[4%]">
         <div className="w-full xl:w-1/2 flex items-center relative choosing orderInfo">
           <SlideImage />
         </div>
@@ -276,8 +276,7 @@ export default function Payment() {
                   </div> */}
                   <div className='order1selectTotal2'>
                     {check == 0 ?
-                      <p className='total pt-3 text-red-700 text-3xl font-semibold'>{sum}₮</p>
-                      // .toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                      <p className='total pt-3 text-red-700 text-3xl font-semibold'>{sum != null ? sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : sum}₮</p>
                       : <p className='total pt-3 text-red-700 text-3xl font-semibold'>{sumo.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}₮</p>
                     }
                   </div>

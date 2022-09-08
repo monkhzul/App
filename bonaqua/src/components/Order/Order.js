@@ -210,7 +210,7 @@ export default function Order() {
 
   return (
     <div className="mx-auto flex flex-col justify-between">
-      <div className="flex flex-col xl:flex-row">
+      <div className="flex flex-col xl:flex-row 2xl:mt-[4%]">
         <div className="w-full xl:w-1/2 flex relative choosing">
           <SlideImage />
         </div>
@@ -232,7 +232,7 @@ export default function Order() {
 
                     <div className="order1 flex">
                       <div className="order1Img flex justify-center">
-                        <img src={data.image} alt="" className="" />
+                        <img src={`http://192.168.244.6:8089/images/${data.size}.png`} alt="" className="" />
                       </div>
 
                       <div className="order1Info p-2">

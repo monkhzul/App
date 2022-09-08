@@ -461,6 +461,7 @@
   .link {
     width: 100%;
   }
+
   }
 
   @media (min-width: 2049px) and (max-width: 3119px) {
@@ -526,6 +527,9 @@
     height: 95vh;
     width: 90%;
   }
+  .choosing {
+    margin-top: 5%;
+  }
   }
 
   @media (min-width: 3200px) {
@@ -545,7 +549,7 @@
     }
     .select {
       font-size: 1.5rem;
-      padding: 2rem !important;
+      background-image: none;
     }
     .productInfo img {
       margin: 3rem 0;
@@ -688,6 +692,12 @@
   .contain  {
     height: 95vh;
     width: 90%;
+  }
+  form input {
+    height: 80px;
+  }
+  .slide {
+    height: 80%;
   }
   }
 
