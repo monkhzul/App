@@ -87,8 +87,6 @@ export default function Payment() {
   const hash1 = crypto.HmacSHA256(`${checksum2}`, key);
   let sha2561 = hash1.toString(crypto.enc.Hex);
 
-  console.log(random)
-
   function SocialPay() {
     fetch('http://localhost:8008/api/bonaqua/paymentSocial', {
       method: "POST", 
@@ -189,27 +187,27 @@ export default function Payment() {
     setTimeout(() => {
       Inquiry();
       CheckQpay();
+
       console.log(QPay_status, payment_status)
 
-      if (QPay_status == 'NOT_PAID' && payment_status == 'PENDING' ) {
-        fetch('http://localhost:8008/api/bonaqua/updateOrder', {
-          method: "POST",
-          headers: {
-            'Content-Type': "application/json"
-          },
-          body: JSON.stringify({
-            orderno: random
-          })
-        })
-        .then((res) => {
-          const data = res.json();
-          console.log(data)
-        })
-      } 
+      // if (QPay_status == 'NOT_PAID' && payment_status == 'PENDING' ) {
+      //   fetch('http://localhost:8008/api/bonaqua/updateOrder', {
+      //     method: "POST",
+      //     headers: {
+      //       'Content-Type': "application/json"
+      //     },
+      //     body: JSON.stringify({
+      //       orderno: random
+      //     })
+      //   })
+      //   .then((res) => {
+      //     const data = res.json();
+      //     console.log(data)
+      //   })
+      // } 
 
     }, 5000)
   }, [])
-
 
   function CancelOrder() {
     toast("Захиалга цуцлагдлаа!")

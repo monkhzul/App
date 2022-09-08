@@ -54,23 +54,6 @@ export default function OrderDetails() {
     Orderid()
   }, [])
 
-  console.log(data)
-
-  // var arr = []
-
-  // for (let i = 0; i < imageArray.length; i++) {
-  //   for (let j = 0; j < data.length; j++) {
-  //     if (imageArray[i].size === data[j].size) {
-  //       arr.push({
-  //         size: data[j].size,
-  //         img: imageArray[i].img
-  //       })
-  //     }
-  //   }
-  // }
-
-  // console.log(arr)
-
   return (
     <div className='flex flex-col justify-center items-center'>
       <h3 className='mx-auto mb-3'>Захиалгын дэлгэрэнгүй</h3>
