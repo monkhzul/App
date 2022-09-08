@@ -10,6 +10,7 @@ import SlideImage from "../SlideImage";
 import Social from "../Social";
 import crypto from "crypto-js";
 import QRCode from 'qrcode';
+import { Modal, Button } from 'react-bootstrap';
 import PulseLoader from 'react-spinners/PulseLoader'
 
 export default function Payment() {
@@ -47,7 +48,7 @@ export default function Payment() {
   const navigate = useNavigate();
 
   if (orderArray === null) {
-    console.log("array hooson")
+    
   }
   else {
     orderArray.forEach(x => {
@@ -62,7 +63,7 @@ export default function Payment() {
   var incases = [];
 
   if (orderToPayArray === null) {
-    console.log("array hooson")
+    
   }
   else {
     orderToPayArray.forEach(x => {
@@ -76,7 +77,7 @@ export default function Payment() {
   const check = sessionStorage.getItem("ordertopay");
 
   const key = "bsuTPNVvbM#sAI2#";
-  var checksum = random + (check == 0 ? sum : sumo) + "POST" + "http://localhost:3000/orderHistory";
+  var checksum = random + (check == 0 ? sum : sumo) + "POST" + "http://localhost:3000/payment";
   var checksum1 = checksum.toString();
   const hash = crypto.HmacSHA256(`${checksum1}`, key);
   let sha256 = hash.toString(crypto.enc.Hex);
@@ -186,9 +187,8 @@ export default function Payment() {
   useEffect(() => {
     setTimeout(() => {
       Inquiry();
-      CheckQpay();
 
-      console.log(QPay_status, payment_status)
+      console.log(payment_status)
 
       // if (QPay_status == 'NOT_PAID' && payment_status == 'PENDING' ) {
       //   fetch('http://localhost:8008/api/bonaqua/updateOrder', {
@@ -209,14 +209,30 @@ export default function Payment() {
     }, 5000)
   }, [])
 
-  function CancelOrder() {
+  function QPayCheckButton() {
+    CheckQpay();
+    console.log(QPay_status)
+
+    if (QPay_status === 'NOT_PAID') {
+      alert("Төлбөр төлөгдөөгүй байна.")
+    }
+    
+  }
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+
+  function Continue() {
     toast("Захиалга цуцлагдлаа!")
     setTimeout(() => {
       sessionStorage.clear();
-      window.location.pathname = '/';
-      // history.push('/')
+      // window.location.pathname = '/';
+      navigate('/')
     }, 1000)
     setRender(!render)
+  }
+
+  function CancelOrder() {
+    setShow(true)
   }
 
   return (
@@ -310,19 +326,21 @@ export default function Payment() {
                       </div>
 
                       <div className="flex flex-col justify-center items-center w-1/2 ">
-                        {loading ? 
+                        {/* {loading ? 
                         <PulseLoader 
                           size={10}
                           color={"#3dbee3"}
                           loading={loading}
                           className={"w-full flex justify-center"}
-                        /> : 
+                        /> :  */}
                         <div id="qrcode">
-                          <img src={qr_image} alt="" />
+                          {/* <img src={qr_image} alt="" /> */}
+                          <div className="flex justify-center">
+                          <div onClick={QPayCheckButton} className="bg-[#3dbee3] text-white px-4 py-1 rounded-md hover:font-semibold">Төлбөр шалгах</div>
+                          </div>
                         </div>
-                        }
-                      </div>
-                        
+                        {/* // } */}
+                      </div> 
 
                     </div>
 
@@ -343,10 +361,10 @@ export default function Payment() {
                           <button className="removeOrderButton text-white 9xl:text-5xl" onClick={CancelOrder}>
                             Захиалга цуцлах
                           </button>
-                          <span className="tooltiptext">Төлбөр төлөгдсөн тохиолдолд захиалга цуцлах боломжгүйг анхаарна уу!</span>
                         </Link>
                       </div>
                     </div>
+                        <span className="tooltiptext font-semibold flex justify-end text-xs">Төлбөр төлөгдсөн тохиолдолд захиалга цуцлах боломжгүйг анхаарна уу!</span>
                   </div>
                 </div>
 
@@ -357,6 +375,30 @@ export default function Payment() {
         </div>
         <Social />
       </div>
+
+      <Modal show={show} onHide={() => setShow(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title className="d-flex w-100 flex justify-center items-center" >
+            {/* <img src={flower} alt="" className='mx-3' /> */}
+            <h2 className="my-2">Захиалга</h2>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form className="was-validated d-flex flex-column" id="">
+            <div className="row p-4">
+              <p className='text-gray-900 font-semibold text-lg'>Та захиалгаа цуцлахдаа итгэлтэй байна уу?</p>
+            </div>
+            <a type="submit" className="w-50 mx-auto continueButton flex justify-center text-white rounded py-1" onClick={Continue} >
+              Тийм
+            </a>
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShow(false)}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

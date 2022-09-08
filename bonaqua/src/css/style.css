@@ -261,13 +261,13 @@ a {
       height: 100%;
     }
       /*Remove order comment */
-    .tooltiptext {
+   /* .tooltiptext {
       position: absolute;
       background-color: var(--blue-color);
       color: white;
       padding: 1rem;
       border-radius: 1rem;
-      /* left: 70%; */
+      left: 70%; //
       top: -280% !important;
       right: 10%;
       z-index: 1;
@@ -287,7 +287,7 @@ a {
     }
     .removeOrder .nav-link:hover .tooltiptext {
       opacity: 1;
-    }
+    } */
 
       /* Header */
       .logo img {

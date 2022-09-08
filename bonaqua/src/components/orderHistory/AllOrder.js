@@ -118,7 +118,6 @@ export default function AllOrder() {
               sessionStorage.setItem("arrayto", JSON.stringify(arr));
               sessionStorage.setItem("ordertopay", 1);
               sessionStorage.setItem("tokento", token);
-              console.log(token)
               navigate('/payment')
             })
           })

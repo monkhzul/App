@@ -349,7 +349,7 @@ exports.PaymentSocial = async(req, res) => {
 
     await axios.post('https://ecommerce.golomtbank.com/api/invoice', { 
         amount: sum,
-        callback: "http://localhost:3000/orderHistory",
+        callback: "http://localhost:3000/payment",
         checksum: sha256,
         genToken: "Y",
         returnType: "POST",

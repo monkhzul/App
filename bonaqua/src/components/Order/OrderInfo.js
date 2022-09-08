@@ -57,11 +57,9 @@ export default function OrderInfo() {
     QPay()
   }, [])
 
-  console.log(orderArray)
-
   function getUserData() {
 
-    if (orderArray != null) {
+    if (orderArray != null && sum != null) {
       
     if (name == '' || number == '' || district == '' || committee == '' || apartment == '' || doornumber == '' || add == '') {
       toast("Шаардлагатай талбаруудыг бөглөнө үү!");
@@ -108,7 +106,7 @@ export default function OrderInfo() {
     }
     }
     else {
-      toast("Амжилтгүй! Үнийн дүн 0-ээс их байх хэрэгтэй!")
+      toast("Амжилтгүй! Үнийн дүн 0-ээс их байх хэрэгтэй! Захиалга хийнэ үү!")
     }
   }
 
