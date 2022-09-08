@@ -48,7 +48,7 @@ export default function SlideImage() {
                 ))}
             </div>
 
-            <div className="slideshowDots">
+            <div className="slideshowDots mt-[4%]">
                 {pictures.map((_, idx) => (
                     <div
                         key={idx}

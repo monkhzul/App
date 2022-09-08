@@ -264,6 +264,7 @@ export default function OrderInfo() {
                           id='district'
                           onChange={handleDistrict}
                           options={dist}
+                          placeholder="Дүүрэг..."
                         />
                       </div>
                       <div className="groupS w-1/2">
@@ -273,6 +274,7 @@ export default function OrderInfo() {
                           id='committee'
                           onChange={handleChange}
                           options={options}
+                          placeholder="Хороо..."
                         />
                       </div>
                     </div>

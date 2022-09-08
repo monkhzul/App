@@ -238,7 +238,7 @@ export default function Payment() {
   return (
     <div className="mx-auto flex flex-col justify-between">
       <div className="flex flex-col xl:flex-row 2xl:mt-[4%]">
-        <div className="w-full xl:w-1/2 flex items-center relative choosing orderInfo">
+        <div className="w-full xl:w-1/2 flex items-center relative choosing orderInfo mt-5">
           <SlideImage />
         </div>
 
