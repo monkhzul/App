@@ -44,8 +44,8 @@ export default function Header() {
   const Continue = () => {
     if (dugaar.includes(phoneNumber)) {
         sessionStorage.setItem("dugaar", phoneNumber);
-        navigate('/orderHistory')
-        sessionStorage.setItem("login", login)
+        navigate('/confirmation')
+        // sessionStorage.setItem("login", login)
     }
     else {
       toast(`${phoneNumber} дугаартай захиалгын түүх олдсонгүй!`);

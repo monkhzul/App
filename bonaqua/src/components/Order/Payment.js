@@ -325,20 +325,20 @@ export default function Payment() {
                       </div>
 
                       <div className="flex flex-col justify-center items-center w-1/2 ">
-                        {/* {loading ? 
+                        {loading ? 
                         <PulseLoader 
                           size={10}
                           color={"#3dbee3"}
                           loading={loading}
                           className={"w-full flex justify-center"}
-                        /> :  */}
+                        /> : 
                         <div id="qrcode">
-                          {/* <img src={qr_image} alt="" /> */}
+                          <img src={qr_image} alt="" />
                           <div className="flex justify-center">
                           <div onClick={QPayCheckButton} className="bg-[#3dbee3] text-white px-4 py-1 rounded-md hover:font-semibold">Төлбөр шалгах</div>
                           </div>
                         </div>
-                        {/* // } */}
+                        }
                       </div> 
 
                     </div>
@@ -378,7 +378,6 @@ export default function Payment() {
       <Modal show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
           <Modal.Title className="d-flex w-100 flex justify-center items-center" >
-            {/* <img src={flower} alt="" className='mx-3' /> */}
             <h2 className="my-2">Захиалга</h2>
           </Modal.Title>
         </Modal.Header>
