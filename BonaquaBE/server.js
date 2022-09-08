@@ -18,6 +18,9 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome!" });
 });
 
+app.use(express.static('images')); 
+app.use('/images', express.static('images'));
+
 const db = require('./models');
 
 db.sequelize.authenticate().then(() => {

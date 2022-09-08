@@ -56,20 +56,20 @@ export default function OrderDetails() {
 
   console.log(data)
 
-  var arr = []
+  // var arr = []
 
-  for (let i = 0; i < imageArray.length; i++) {
-    for (let j = 0; j < data.length; j++) {
-      if (imageArray[i].size === data[j].size) {
-        arr.push({
-          size: data[j].size,
-          img: imageArray[i].img
-        })
-      }
-    }
-  }
+  // for (let i = 0; i < imageArray.length; i++) {
+  //   for (let j = 0; j < data.length; j++) {
+  //     if (imageArray[i].size === data[j].size) {
+  //       arr.push({
+  //         size: data[j].size,
+  //         img: imageArray[i].img
+  //       })
+  //     }
+  //   }
+  // }
 
-  console.log(arr)
+  // console.log(arr)
 
   return (
     <div className='flex flex-col justify-center items-center'>
@@ -82,10 +82,8 @@ export default function OrderDetails() {
             <div className="order1 flex">
               <div className="order1Imgdt flex justify-center">
                 {
-                  <img src={arr[i].img} alt="" className="" />
+                  <img src={`http://localhost:8008/images/${data.size}.png`} alt="" className="" />
                 }
-
-                {console.log(arr[i].size)}
               </div>
 
               <div className="order1Info p-2">
