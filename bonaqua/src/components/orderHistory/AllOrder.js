@@ -85,7 +85,7 @@ export default function AllOrder() {
   }, [])
 
   function payment(orderno, sum) {
-    sessionStorage.setItem("random", orderno);
+    sessionStorage.setItem("randompay", orderno);
     sessionStorage.setItem("sumo", sum);
     sessionStorage.setItem("login", dugaarc)
 

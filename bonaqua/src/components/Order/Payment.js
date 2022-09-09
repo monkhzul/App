@@ -40,6 +40,7 @@ export default function Payment() {
   const userarrays = sessionStorage.getItem("userarray");
   const userArray = JSON.parse(userarrays);
   const random = sessionStorage.getItem("random");
+  const randompay = sessionStorage.getItem("randompay");
 
   const navigate = useNavigate();
 
@@ -89,7 +90,8 @@ export default function Payment() {
   function SocialPay() {
 
     if (reinvoice === null || reinvoice === '') {
-      fetch('http://localhost:8008/api/bonaqua/paymentSocial', {
+      if (check == 0) {
+        fetch('http://localhost:8008/api/bonaqua/paymentSocial', {
         method: "POST", 
         headers: {
           'Content-Type': 'application/json'
@@ -113,9 +115,12 @@ export default function Payment() {
       })
     }
     else {
+        toast("Төлбөр төлөх хугацаа дууссан байна")
+      }
+    }
+    else {
       window.location.href = `https://ecommerce.golomtbank.com/socialpay/mn/${reinvoice}`;
     }
-
   }
 
   const token = sessionStorage.getItem("token")
@@ -129,7 +134,7 @@ export default function Payment() {
       },
       body: JSON.stringify({
         token: check == 0 ? token : token2,
-        random: random,
+        random: check == 0 ? random : randompay,
         sum: check == 0 ? sum : sumo
       })
     })
@@ -232,7 +237,7 @@ export default function Payment() {
                       <img src={sags} alt="" className="flowerImg" />
                     </div>
                     <div className="row px-4">
-                      <p className='text-gray-500 text-2xl'>Таны захиалгын дугаар: <span className="ordernumber font-semibold text-2xl" id="random"> {random} </span> </p>
+                      <p className='text-gray-500 text-2xl'>Таны захиалгын дугаар: <span className="ordernumber font-semibold text-2xl" id="random"> {check == 1 ? randompay : random} </span> </p>
                       <p className="text-gray-500 text-base"> Та гүйлгээний утга дээрээ захиалгын дугаараа бичихийг анхаарна уу!</p>
                     </div>
                     <div className="flex w-full justify-around">
@@ -243,7 +248,7 @@ export default function Payment() {
                     <div className="flex justify-around instructionPayment">
 
                       <div className="paymentInstruction flex flex-col items-center justify-center w-1/2 px-2">
-                        <div className="py-2 px-4 socialpay text-white font-semibold text-base"
+                        <div className="py-2 px-4 socialpay text-white font-semibold text-base cursor-pointer"
                           onClick={SocialPay}>
                           Social Pay - ээр төлөх
                         </div>

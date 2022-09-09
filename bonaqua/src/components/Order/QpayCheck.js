@@ -8,6 +8,7 @@ export default function QpayCheck() {
     const check = sessionStorage.getItem("ordertopay");
     const token = sessionStorage.getItem("token")
     const token2 = sessionStorage.getItem("tokento")
+    const randompay = sessionStorage.getItem("randompay");
 
     const CheckQpay = async () => {
         await fetch(`http://localhost:8008/api/bonaqua/paymentQpayCheck`, {
@@ -17,7 +18,7 @@ export default function QpayCheck() {
           },
           body: JSON.stringify({
             token: check == 0 ? token : token2,
-            random: random
+            random: check == 0 ? random : randompay
           })
         })
           .then(res => {

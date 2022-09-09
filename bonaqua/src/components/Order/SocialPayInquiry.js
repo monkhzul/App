@@ -5,7 +5,9 @@ export default function SocialPayInquiry() {
     const [payment_status, setPayment_status] = useState("");
 
     const random = sessionStorage.getItem("random");
+    const randompay = sessionStorage.getItem("randompay");
     const sha2561 = sessionStorage.getItem("sha2561");
+    const check = sessionStorage.getItem("ordertopay");
 
     const Inquiry = () => {
         fetch('http://localhost:8008/api/bonaqua/paymentQpayInquiry', {
