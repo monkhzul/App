@@ -61,14 +61,14 @@ export default function OrderInfo() {
 
     if (orderArray != null && sum != null) {
       
-    if (name == '' || number == '' || district == '' || committee == '' || apartment == '' || doornumber == '' || add == '') {
-      toast("Шаардлагатай талбаруудыг бөглөнө үү!");
-    }
-    else {
-      var phoneno = /^[7-9]\d{7}$/;
-      var regName = /^[a-zA-Z ]{2,30}$/;
+    // if (name == '' || number == '' || district == '' || committee == '' || apartment == '' || doornumber == '' || add == '') {
+    //   toast("Шаардлагатай талбаруудыг бөглөнө үү!");
+    // }
+    // else {
+    //   var phoneno = /^[7-9]\d{7}$/;
+    //   var regName = /^[a-zA-Z ]{2,30}$/;
     var today = new Date();
-      if (number.match(phoneno) && name.match(regName)) {
+    //   if (number.match(phoneno) && name.match(regName)) {
 
     fetch('http://localhost:8008/api/bonaqua/addOrder', {
       method: "POST",
@@ -99,11 +99,11 @@ export default function OrderInfo() {
         });
       })
 
-    }
-    else {
-      toast("Та нэр эсвэл утасны дугаараа шалгана уу!");
-    }
-    }
+    // }
+    // else {
+    //   toast("Та нэр эсвэл утасны дугаараа шалгана уу!");
+    // }
+    // }
     }
     else {
       toast("Амжилтгүй! Үнийн дүн 0-ээс их байх хэрэгтэй! Захиалга хийнэ үү!")

@@ -30,7 +30,7 @@ export default function QpayCheck() {
           })
       }
 
-    useEffect(() => {
+    // useEffect(() => {
         CheckQpay()
 
         console.log(QPay_status)
@@ -51,7 +51,7 @@ export default function QpayCheck() {
             })
         } 
 
-    }, [])
+    // }, [])
 
   return (
     <div className='h-full flex justify-center items-center flex-col'>

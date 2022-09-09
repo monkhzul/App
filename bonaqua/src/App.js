@@ -40,7 +40,7 @@ function App() {
 
   let element = useRoutes([
     {
-      path: '/', element: <Content />,
+      path: '*', element: <Content />,
       children: [{ path: "instruction", element: <Instruction /> },
                  { path: "nutrition", element: <Nutrition /> }]
     },
@@ -50,7 +50,7 @@ function App() {
     { path: 'socialpay', element: <SocialPayInquiry /> },
     { path: 'qpay', element: <QpayCheck /> },
     {
-      path: 'orderHistory', element: <OrderHistory />,
+      path: 'orderHistory/*', element: <OrderHistory />,
       children: [{ path: 'orderConfirm', element: <OrderConfirm /> },
                  { path: 'orderWaiting', element: <OrderDelivered /> }]
     },

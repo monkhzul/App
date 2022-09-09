@@ -197,7 +197,7 @@ export default function Content() {
     }
 
     let element = useRoutes([
-      {path: '/', element: <Product/>},
+      {path: '*', element: <Product/>},
       {path: '/instruction', element: <Instruction/>},
       {path: '/nutrition', element: <Nutrition/>}
     ])

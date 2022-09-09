@@ -22,12 +22,12 @@ export default function Payment() {
 
   const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        setLoading(true)
-        setTimeout(() => {
-            setLoading(false)
-        }, 3000)
-    }, [])
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 3000)
+  }, [])
 
   const arrays = sessionStorage.getItem("array");
   const orderArray = JSON.parse(arrays);
@@ -45,7 +45,7 @@ export default function Payment() {
   const navigate = useNavigate();
 
   if (orderArray === null) {
-    
+
   }
   else {
     orderArray.forEach(x => {
@@ -60,7 +60,7 @@ export default function Payment() {
   var incases = [];
 
   if (orderToPayArray === null) {
-    
+
   }
   else {
     orderToPayArray.forEach(x => {
@@ -92,34 +92,40 @@ export default function Payment() {
     if (reinvoice === null || reinvoice === '') {
       if (check == 0) {
         fetch('http://localhost:8008/api/bonaqua/paymentSocial', {
-        method: "POST", 
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          random: random,
-          sum: check == 0 ? sum : sumo,
-          sha256: sha256
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            random: random,
+            sum: check == 0 ? sum : sumo,
+            sha256: sha256
+          })
         })
-      })
-      .then((res) => {
-        const data = res.json();
-        data.then(res => {
-          console.log(res.invoice)
-          sessionStorage.setItem("invoice", res.invoice)
-          setInvoice(res.invoice)
-  
-          window.location.href = `https://ecommerce.golomtbank.com/socialpay/mn/${res.invoice}`;
-         
-        })
-      })
-    }
-    else {
+          .then((res) => {
+            const data = res.json();
+            data.then(res => {
+              console.log(res.invoice)
+              sessionStorage.setItem("invoice", res.invoice)
+              setInvoice(res.invoice)
+
+              window.location.href = `https://ecommerce.golomtbank.com/socialpay/mn/${res.invoice}`;
+
+            })
+          })
+      }
+      else {
         toast("Төлбөр төлөх хугацаа дууссан байна")
       }
     }
     else {
-      window.location.href = `https://ecommerce.golomtbank.com/socialpay/mn/${reinvoice}`;
+
+      if (random === randompay) {
+        window.location.href = `https://ecommerce.golomtbank.com/socialpay/mn/${reinvoice}`;
+      }
+      else {
+        toast("Төлбөр төлөх хугацаа дууссан байна")
+      }
     }
   }
 
@@ -128,7 +134,7 @@ export default function Payment() {
 
   useEffect(() => {
     fetch('http://localhost:8008/api/bonaqua/paymentQpay', {
-      method: "POST", 
+      method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
@@ -138,20 +144,24 @@ export default function Payment() {
         sum: check == 0 ? sum : sumo
       })
     })
-    .then(res => {
-      const data = res.json();
-      data.then(res => {
-        setQR_text(res.qPay_QRcode);
+      .then(res => {
+        const data = res.json();
+        data.then(res => {
+          setQR_text(res.qPay_QRcode);
 
-        QRCode.toDataURL(res.qPay_QRcode).then((data) => {
-          setQR_image(data);
+          QRCode.toDataURL(res.qPay_QRcode).then((data) => {
+            setQR_image(data);
+          })
         })
       })
-    })
   }, [])
 
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
+
+  setTimeout(() => {
+
+  }, 5000)
 
   function Continue() {
     toast("Захиалга цуцлагдлаа!")
@@ -189,12 +199,12 @@ export default function Payment() {
                       {check == 1 ? orderToPayArray.map((data, i) =>
                         <p className='totalInfo font-semibold' key={i}>
                           {`${packs[i]} - ${sizes[i]} авдар (${incases[i] * sizes[i]}ш),`}
-                        </p>) 
+                        </p>)
                         : orderArray.map((data, i) =>
-                        <p className='totalInfo font-semibold' key={i}>
-                          {`${pack[i]} - ${size[i]} авдар (${incase[i] * size[i]}ш),`}
-                        </p> 
-                      )}
+                          <p className='totalInfo font-semibold' key={i}>
+                            {`${pack[i]} - ${size[i]} авдар (${incase[i] * size[i]}ш),`}
+                          </p>
+                        )}
                     </div>
                   </div>
                   {/* <div className='order1selectTotal1 flex justify-center items-center overflow-scroll'>
@@ -255,21 +265,21 @@ export default function Payment() {
                       </div>
 
                       <div className="flex flex-col justify-center items-center w-1/2 ">
-                        {loading ? 
-                        <PulseLoader 
-                          size={10}
-                          color={"#3dbee3"}
-                          loading={loading}
-                          className={"w-full flex justify-center"}
-                        /> : 
-                        <div id="qrcode">
-                          <img src={qr_image} alt="" />
-                          <div className="flex justify-center">
-                          <Link className="bg-[#3dbee3] text-white px-4 py-1 rounded-md hover:font-semibold" to="/qpay">Төлбөр шалгах</Link>
+                        {loading ?
+                          <PulseLoader
+                            size={10}
+                            color={"#3dbee3"}
+                            loading={loading}
+                            className={"w-full flex justify-center"}
+                          /> :
+                          <div id="qrcode">
+                            <img src={qr_image} alt="" />
+                            <div className="flex justify-center">
+                              <Link className="bg-[#3dbee3] text-white px-4 py-1 rounded-md hover:font-semibold" to="/qpay">Төлбөр шалгах</Link>
+                            </div>
                           </div>
-                        </div>
                         }
-                      </div> 
+                      </div>
 
                     </div>
 
@@ -293,7 +303,7 @@ export default function Payment() {
                         </Link>
                       </div>
                     </div>
-                        <span className="tooltiptext font-semibold flex justify-end text-xs">Төлбөр төлөгдсөн тохиолдолд захиалга цуцлах боломжгүйг анхаарна уу!</span>
+                    <span className="tooltiptext font-semibold flex justify-end text-xs">Төлбөр төлөгдсөн тохиолдолд захиалга цуцлах боломжгүйг анхаарна уу!</span>
                   </div>
                 </div>
 

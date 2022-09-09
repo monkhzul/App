@@ -29,7 +29,7 @@ export default function OrderHistory() {
   function updateTimer() {
     duration--;
     if (duration < 1) {
-      toast("Та идэвхгүй 3 минут болсон байна.")
+      toast(`Та идэвхгүй ${duration/60} минут болсон байна.`)
       setTimeout(() => {
         window.location.pathname = "/";
         sessionStorage.clear();
