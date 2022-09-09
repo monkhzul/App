@@ -9,6 +9,7 @@ import OrderConfirm from "../orderHistory/OrderConfirm";
 import OrderDelivered from "../orderHistory/OrderDelivered";
 import Social from "../Social";
 import OrderDetails from "../orderHistory/OrderDetails";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function OrderHistory() {
   // const { orderHistory, value } = useContext(AppContext);
@@ -22,22 +23,25 @@ export default function OrderHistory() {
     { path: "orderWaiting", element: <OrderDelivered /> },
   ]);
 
-  // var duration = 180;
-  // setInterval(updateTimer, 1000);
+  var duration = 180;
+  setInterval(updateTimer, 1000);
+  
+  function updateTimer() {
+    duration--;
+    if (duration < 1) {
+      toast("Та идэвхгүй 3 минут болсон байна.")
+      setTimeout(() => {
+        window.location.pathname = "/";
+        sessionStorage.clear();
+      }, 500)
+    }
+  }
 
-  // function updateTimer() {
-  //   duration--;
-  //   if (duration < 1) {
-  //     window.location.pathname = "/";
-  //     sessionStorage.clear();
-  //   }
-  // }
+  window.addEventListener("mousemove", resetTimer);
 
-  // window.addEventListener("mousemove", resetTimer);
-
-  // function resetTimer() {
-  //   duration = 180;
-  // }
+  function resetTimer() {
+    duration = 180;
+  }
 
   return (
     <div className="mx-auto flex flex-col justify-between">
@@ -64,6 +68,7 @@ export default function OrderHistory() {
         </div>
         <div className="info w-full xl:w-1/2 mr-14 mt-3">
           <h1 className="">Захиалгын түүх</h1>
+          <ToastContainer />
 
           <div className="orderHistoryLink">
             <div className="link flex justify-between py-3 w-full">
