@@ -42,6 +42,8 @@ export default function Payment() {
   const random = sessionStorage.getItem("random");
   const randompay = sessionStorage.getItem("randompay");
 
+  console.log(randompay, random);
+
   const navigate = useNavigate();
 
   if (orderArray === null) {
@@ -120,7 +122,7 @@ export default function Payment() {
     }
     else {
 
-      if (random === randompay) {
+      if (random === randompay || randompay == null) {
         window.location.href = `https://ecommerce.golomtbank.com/socialpay/mn/${reinvoice}`;
       }
       else {

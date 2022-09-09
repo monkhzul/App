@@ -30,8 +30,6 @@ export default function Confirmation() {
 
     const Confirmation = () => {
 
-        console.log(OTP, random);
-
         if (OTP != '') {     
             if (OTP == random) {
                 navigate('/orderHistory')
