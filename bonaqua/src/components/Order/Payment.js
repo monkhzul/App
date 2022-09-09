@@ -17,11 +17,7 @@ export default function Payment() {
 
   const { incase, pack, size, setQR_text } = useContext(AppContext)
 
-  const [render, setRender] = useState(false);
   const [qr_image, setQR_image] = useState("");
-  const [payment_id, setPayment_id] = useState("");
-  const [payment_status, setPayment_status] = useState("");
-  const [QPay_status, setQPay_status] = useState("");
   const [invoice, setInvoice] = useState("");
 
   const [loading, setLoading] = useState(false);
@@ -73,11 +69,10 @@ export default function Payment() {
     })
   }
 
-
   const check = sessionStorage.getItem("ordertopay");
 
   const key = "bsuTPNVvbM#sAI2#";
-  var checksum = random + (check == 0 ? sum : sumo) + "POST" + "http://localhost:3000/payment";
+  var checksum = random + (check == 0 ? sum : sumo) + "POST" + "http://localhost:3000/socialpay";
   var checksum1 = checksum.toString();
   const hash = crypto.HmacSHA256(`${checksum1}`, key);
   let sha256 = hash.toString(crypto.enc.Hex);
@@ -87,54 +82,41 @@ export default function Payment() {
   var checksum2 = checksuming.toString();
   const hash1 = crypto.HmacSHA256(`${checksum2}`, key);
   let sha2561 = hash1.toString(crypto.enc.Hex);
+  sessionStorage.setItem("sha2561", sha2561)
+
+  const reinvoice = sessionStorage.getItem("invoice");
 
   function SocialPay() {
-    fetch('http://localhost:8008/api/bonaqua/paymentSocial', {
-      method: "POST", 
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        random: random,
-        sum: check == 0 ? sum : sumo,
-        sha256: sha256
-      })
-    })
-    .then((res) => {
-      const data = res.json();
-      data.then(res => {
-        console.log(res.invoice)
-        sessionStorage.setItem("invoice", res.invoice)
-        setInvoice(res.invoice)
-        const invoice2 = res.invoice;
 
-        if (res.invoice != null) {
-          window.location.href = `https://ecommerce.golomtbank.com/socialpay/mn/${res.invoice}`;
-        } else {
-          window.location.href = `https://ecommerce.golomtbank.com/socialpay/mn/${invoice2}`;
-        }
-      })
-    })
-  }
-
-  const Inquiry = () => {
-    fetch('http://localhost:8008/api/bonaqua/paymentQpayInquiry', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        sha2561: sha2561,
-        random: random
-      })
-    })
-      .then(res => {
-        const data = res.json()
-        data.then(data => {
-          setPayment_status(data.status)
+    if (reinvoice === null || reinvoice === '') {
+      fetch('http://localhost:8008/api/bonaqua/paymentSocial', {
+        method: "POST", 
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          random: random,
+          sum: check == 0 ? sum : sumo,
+          sha256: sha256
         })
-      });
-  };
+      })
+      .then((res) => {
+        const data = res.json();
+        data.then(res => {
+          console.log(res.invoice)
+          sessionStorage.setItem("invoice", res.invoice)
+          setInvoice(res.invoice)
+  
+          window.location.href = `https://ecommerce.golomtbank.com/socialpay/mn/${res.invoice}`;
+         
+        })
+      })
+    }
+    else {
+      window.location.href = `https://ecommerce.golomtbank.com/socialpay/mn/${reinvoice}`;
+    }
+
+  }
 
   const token = sessionStorage.getItem("token")
   const token2 = sessionStorage.getItem("tokento")
@@ -155,7 +137,6 @@ export default function Payment() {
       const data = res.json();
       data.then(res => {
         setQR_text(res.qPay_QRcode);
-        setPayment_id(res.payment_id);
 
         QRCode.toDataURL(res.qPay_QRcode).then((data) => {
           setQR_image(data);
@@ -164,60 +145,6 @@ export default function Payment() {
     })
   }, [])
 
-  const CheckQpay = async () => {
-    await fetch(`http://localhost:8008/api/bonaqua/paymentQpayCheck`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        token: check == 0 ? token : token2,
-        random: random
-      })
-    })
-      .then(res => {
-        const data = res.json()
-        data.then(res => {
-          const paymentStatus = res.payment_info.payment_status;
-          setQPay_status(paymentStatus)
-        })
-      })
-  }
-
-  useEffect(() => {
-    setTimeout(() => {
-      Inquiry();
-
-      console.log(payment_status)
-
-      // if (QPay_status == 'NOT_PAID' && payment_status == 'PENDING' ) {
-      //   fetch('http://localhost:8008/api/bonaqua/updateOrder', {
-      //     method: "POST",
-      //     headers: {
-      //       'Content-Type': "application/json"
-      //     },
-      //     body: JSON.stringify({
-      //       orderno: random
-      //     })
-      //   })
-      //   .then((res) => {
-      //     const data = res.json();
-      //     console.log(data)
-      //   })
-      // } 
-
-    }, 5000)
-  }, [])
-
-  function QPayCheckButton() {
-    CheckQpay();
-    console.log(QPay_status)
-
-    if (QPay_status === 'NOT_PAID') {
-      alert("Төлбөр төлөгдөөгүй байна.")
-    }
-    
-  }
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
 
@@ -225,10 +152,8 @@ export default function Payment() {
     toast("Захиалга цуцлагдлаа!")
     setTimeout(() => {
       sessionStorage.clear();
-      // window.location.pathname = '/';
       navigate('/')
     }, 1000)
-    setRender(!render)
   }
 
   function CancelOrder() {
@@ -318,10 +243,10 @@ export default function Payment() {
                     <div className="flex justify-around instructionPayment">
 
                       <div className="paymentInstruction flex flex-col items-center justify-center w-1/2 px-2">
-                        <Link to="#" className="py-2 px-4 socialpay text-white font-semibold text-base"
+                        <div className="py-2 px-4 socialpay text-white font-semibold text-base"
                           onClick={SocialPay}>
                           Social Pay - ээр төлөх
-                        </Link>
+                        </div>
                       </div>
 
                       <div className="flex flex-col justify-center items-center w-1/2 ">
@@ -335,7 +260,7 @@ export default function Payment() {
                         <div id="qrcode">
                           <img src={qr_image} alt="" />
                           <div className="flex justify-center">
-                          <div onClick={QPayCheckButton} className="bg-[#3dbee3] text-white px-4 py-1 rounded-md hover:font-semibold">Төлбөр шалгах</div>
+                          <Link className="bg-[#3dbee3] text-white px-4 py-1 rounded-md hover:font-semibold" to="/qpay">Төлбөр шалгах</Link>
                           </div>
                         </div>
                         }

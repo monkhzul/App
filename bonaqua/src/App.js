@@ -15,6 +15,8 @@ import Nutrition from './components/ProductInformation/Nutrition';
 import OrderConfirm from './components/orderHistory/OrderConfirm';
 import OrderDelivered from './components/orderHistory/OrderDelivered';
 import Confirmation from './components/Confirmation';
+import SocialPayInquiry from './components/Order/SocialPayInquiry';
+import QpayCheck from './components/Order/QpayCheck';
 
 export const AppContext = createContext();
 
@@ -45,6 +47,8 @@ function App() {
     { path: 'order', element: <Order /> },
     { path: 'userinfo', element: <OrderInfo /> },
     { path: 'payment', element: <Payment /> },
+    { path: 'socialpay', element: <SocialPayInquiry /> },
+    { path: 'qpay', element: <QpayCheck /> },
     {
       path: 'orderHistory', element: <OrderHistory />,
       children: [{ path: 'orderConfirm', element: <OrderConfirm /> },

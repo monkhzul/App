@@ -141,7 +141,6 @@ export default function OrderInfo() {
 
   const handleDistrict = (selectedOption) => {
     setDistrict(selectedOption.value)
-    console.log(selectedOption.value)
   }
 
   const options = [];

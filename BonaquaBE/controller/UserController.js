@@ -49,9 +49,6 @@ exports.addOrder = async(req, res) => {
     const date = req.body.date;
     const description = req.body.description;
     const phone = req.body.phone;
-    // const productid = req.body.productid;
-    // const quantity = req.body.quantity;
-    // const price = req.body.price;
     const pricedisc = req.body.pricedisc;
     const array = req.body.array;
 
@@ -349,7 +346,7 @@ exports.PaymentSocial = async(req, res) => {
 
     await axios.post('https://ecommerce.golomtbank.com/api/invoice', { 
         amount: sum,
-        callback: "http://localhost:3000/payment",
+        callback: "http://localhost:3000/socialpay",
         checksum: sha256,
         genToken: "Y",
         returnType: "POST",

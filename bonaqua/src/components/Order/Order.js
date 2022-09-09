@@ -105,7 +105,6 @@ export default function Order() {
     imgArr.map((img, i) => {
       if (img.size === size) {
         setImage(img.img)
-        console.log(img.size)
       }
     })
   }

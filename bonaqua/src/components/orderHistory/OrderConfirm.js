@@ -33,7 +33,7 @@ export default function AllOrder() {
 
   for (let i = 0; i < data.length; i++) {
     if (data[i].phonenumber === dugaarc) {
-      if (data[i].State === 10) {   
+      if (data[i].State === 0) {   
         ordernoNumber.push({
           phonenumber: data[i].phonenumber,
           orderno: data[i].orderno,

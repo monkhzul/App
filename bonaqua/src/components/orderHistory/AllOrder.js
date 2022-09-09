@@ -152,8 +152,8 @@ export default function AllOrder() {
                 <div className="state">
                   <p className="text-gray-500 leading-3">Төлөв</p>
                   {
-                    data.status === 1 ? <p className="font-semibold text-green-400">Баталгаажсан</p>
-                      : data.status === 0 ? <p className="font-semibold text-red-600">Цуцлагдсан</p>
+                    data.status === 0 ? <p className="font-semibold text-green-400">Баталгаажсан</p>
+                      : data.status === 1 ? <p className="font-semibold text-red-600">Цуцлагдсан</p>
                         : <p className="font-semibold text-orange-400">Хүлээгдэж буй</p>
                   }
                 </div>
