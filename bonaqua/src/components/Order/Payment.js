@@ -42,8 +42,6 @@ export default function Payment() {
   const random = sessionStorage.getItem("random");
   const randompay = sessionStorage.getItem("randompay");
 
-  console.log(randompay, random);
-
   const navigate = useNavigate();
 
   if (orderArray === null) {
@@ -75,7 +73,7 @@ export default function Payment() {
   const check = sessionStorage.getItem("ordertopay");
 
   const key = "bsuTPNVvbM#sAI2#";
-  var checksum = random + (check == 0 ? sum : sumo) + "POST" + "http://localhost:3000/socialpay";
+  var checksum = random + (check == 0 ? sum : sumo) + "POST" + "http://192.168.244.6:8088/socialpay";
   var checksum1 = checksum.toString();
   const hash = crypto.HmacSHA256(`${checksum1}`, key);
   let sha256 = hash.toString(crypto.enc.Hex);
@@ -93,7 +91,7 @@ export default function Payment() {
 
     if (reinvoice === null || reinvoice === '') {
       if (check == 0) {
-        fetch('http://localhost:8008/api/bonaqua/paymentSocial', {
+        fetch('http://192.168.244.6:8089/api/bonaqua/paymentSocial', {
           method: "POST",
           headers: {
             'Content-Type': 'application/json'
@@ -135,7 +133,7 @@ export default function Payment() {
   const token2 = sessionStorage.getItem("tokento")
 
   useEffect(() => {
-    fetch('http://localhost:8008/api/bonaqua/paymentQpay', {
+    fetch('http://192.168.244.6:8089/api/bonaqua/paymentQpay', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'

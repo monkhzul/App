@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../images/svg/home/logo.svg';
-import sagsicon from '../images/icons/busket.svg';
+import sagsicon from '../images/svg/home/Header.svg';
 import history from '../images/svg/home/Group 560.svg';
 import flower from '../images/svg/order 1/tsetseg jijig.svg';
 import { Modal, Button } from 'react-bootstrap';
@@ -22,7 +22,7 @@ export default function Header() {
   useEffect(() => {
     var getData = async () => {
       try {
-        var data = await fetch('http://localhost:8008/api/bonaqua/orderHistory');
+        var data = await fetch('http://192.168.244.6:8089/api/bonaqua/orderHistory');
         var resData = await data.json();
         setHistory(resData)
       } catch (err) {

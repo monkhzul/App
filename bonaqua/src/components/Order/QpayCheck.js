@@ -11,7 +11,7 @@ export default function QpayCheck() {
     const randompay = sessionStorage.getItem("randompay");
 
     const CheckQpay = async () => {
-        await fetch(`http://localhost:8008/api/bonaqua/paymentQpayCheck`, {
+        await fetch(`http://192.168.244.6:8089/api/bonaqua/paymentQpayCheck`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -36,7 +36,7 @@ export default function QpayCheck() {
         console.log(QPay_status)
 
         if ( QPay_status === 'PAID' ) {
-            fetch('http://localhost:8008/api/bonaqua/updateOrder', {
+            fetch('http://192.168.244.6:8089/api/bonaqua/updateOrder', {
                 method: "POST",
                 headers: {
                     'Content-Type': "application/json"

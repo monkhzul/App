@@ -47,7 +47,7 @@ export default function Content() {
   useEffect(() => {
     var getData = async () => {
       try {
-        var data = await fetch('http://localhost:8008/api/bonaqua');
+        var data = await fetch('http://192.168.244.6:8089/api/bonaqua');
         var resData = await data.json();
         setData(resData)
       } catch (err) {

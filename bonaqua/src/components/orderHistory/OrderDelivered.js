@@ -13,7 +13,7 @@ export default function AllOrder() {
 
   useEffect(() => {
     const orders = () => {
-      fetch('http://localhost:8008/api/bonaqua/getorderConfirm', {
+      fetch('http://192.168.244.6:8089/api/bonaqua/getorderConfirm', {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -69,7 +69,7 @@ export default function AllOrder() {
     sessionStorage.setItem("login", dugaarc)
 
       const Orderid = () => {
-        fetch('http://localhost:8008/api/bonaqua/getOrderDetail', {
+        fetch('http://192.168.244.6:8089/api/bonaqua/getOrderDetail', {
           method: "POST",
           headers: {
             "Content-Type": "application/json"

@@ -10,7 +10,7 @@ export default function SocialPayInquiry() {
     const check = sessionStorage.getItem("ordertopay");
 
     const Inquiry = () => {
-        fetch('http://localhost:8008/api/bonaqua/paymentQpayInquiry', {
+        fetch('http://192.168.244.6:8089/api/bonaqua/paymentQpayInquiry', {
           method: 'POST',
           headers: {
             "Content-Type": "application/json",
@@ -23,7 +23,7 @@ export default function SocialPayInquiry() {
           .then(res => {
             const data = res.json()
             data.then(data => {
-              setPayment_status(data)
+              setPayment_status(data.errorDesc)
             })
           });
     };
@@ -33,15 +33,28 @@ export default function SocialPayInquiry() {
 
         console.log(payment_status)
 
-        if (payment_status) {
-            
-        }
+        if ( payment_status === 'Амжилттай' ) {
+          fetch('http://192.168.244.6:8089/api/bonaqua/updateOrder', {
+              method: "POST",
+              headers: {
+                  'Content-Type': "application/json"
+          },
+              body: JSON.stringify({
+                  orderno: random
+          })
+          })
+          .then((res) => {
+              const data = res.json();
+              console.log(data)
+          })
+        } 
+
     }, [])
 
   return (
     <div className='h-full flex justify-center items-center flex-col'>
         <h4>Төлбөрийн мэдээлэл: 
-            <span className='text-[#3dbee3]'> {payment_status === 'Амжилттай' ? 'Tөлөгдсөн' : 'Төлөлт хийгдээгүй' } </span> 
+            <span className='text-[#3dbee3]'> { payment_status } </span> 
         </h4>
 
     <Link to='/payment' className='bg-[#3dbee3] text-white px-4 py-1 rounded-md mt-[10%]'>Буцах</Link>

@@ -23,7 +23,7 @@ export default function OrderDetails() {
 
   useEffect(() => {
     const Orderid = () => {
-      fetch('http://localhost:8008/api/bonaqua/getOrderDetail', {
+      fetch('http://192.168.244.6:8089/api/bonaqua/getOrderDetail', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -65,7 +65,7 @@ export default function OrderDetails() {
             <div className="order1 flex">
               <div className="order1Imgdt flex justify-center">
                 {
-                  <img src={`http://localhost:8008/images/${data.size}.png`} alt="" className="" />
+                  <img src={`http://192.168.244.6:8089/images/${data.size}.png`} alt="" className="" />
                 }
               </div>
 
