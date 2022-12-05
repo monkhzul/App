@@ -11,6 +11,7 @@ module.exports = app => {
     router.get("/orderHistory", bonaqua.orderHistory);
     //Payment
     router.post("/paymentSocial", bonaqua.PaymentSocial);
+    router.post("/paymentSocial2", bonaqua.PaymentSocial2);
     router.post("/paymentQpay", bonaqua.PaymentQpay);
     router.post("/paymentQpayCheck", bonaqua.PaymentQpayCheck);
     router.post("/paymentQpayInquiry", bonaqua.PaymentQpayInquiry);

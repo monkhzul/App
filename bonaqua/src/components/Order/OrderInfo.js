@@ -33,26 +33,26 @@ export default function OrderInfo() {
   useEffect(() => {
     const QPay = () => {
       fetch('https://api.qpay.mn/v1/auth/token', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Basic TUNTOmFoTlpGT00x"
-      },
-      body: JSON.stringify({
-        "client_id": "qpay_test",
-        "client_secret": "sdZv9k9m",
-        "grant_type": "client",
-        "refresh_token": ""
-      })
-    })
-      .then(res => {
-        const data = res.json()
-        data.then(res => {
-          const token = res.access_token;
-          setAccess_Token(token);
-          sessionStorage.setItem("token", token);
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Basic TUNTOmFoTlpGT00x"
+        },
+        body: JSON.stringify({
+          "client_id": "qpay_test",
+          "client_secret": "sdZv9k9m",
+          "grant_type": "client",
+          "refresh_token": ""
         })
       })
+        .then(res => {
+          const data = res.json()
+          data.then(res => {
+            const token = res.access_token;
+            setAccess_Token(token);
+            sessionStorage.setItem("token", token);
+          })
+        })
     }
     QPay()
   }, [])
@@ -60,50 +60,50 @@ export default function OrderInfo() {
   function getUserData() {
 
     if (orderArray != null && sum != null) {
-      
-    // if (name == '' || number == '' || district == '' || committee == '' || apartment == '' || doornumber == '' || add == '') {
-    //   toast("Шаардлагатай талбаруудыг бөглөнө үү!");
-    // }
-    // else {
-    //   var phoneno = /^[7-9]\d{7}$/;
-    //   var regName = /^[a-zA-Z ]{2,30}$/;
-    var today = new Date();
-    //   if (number.match(phoneno) && name.match(regName)) {
 
-    fetch('http://192.168.244.6:8089/api/bonaqua/addOrder', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        date: today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate(),
-        description: [`ner: ${name}, duureg: ${district}, horoo: ${committee}, bair/gudamj: ${apartment}, orts: ${entrance}, ortsnii kod: ${code}, haalganii dugaar: ${doornumber}, nemelt: ${add}`].join(","),
-        phone: number,
-        array: orderArray,
-        pricedisc: 0,
-        amount: sum
-      })
-    })
-      .then((res) => {
-        const data = res.json();
-        data.then(ordernumber => {
-          const orderNumber = ordernumber[0].OrderNumber;
-          const orderId = ordernumber[0].OrderID;
-          setRandom(orderNumber);
-          setOrderid(orderId);
-          sessionStorage.setItem("random", orderNumber);
-          sessionStorage.setItem("orderid", orderId);
-          sessionStorage.setItem("ordertopay", 0);
-          
-            navigate('/payment')
-        });
-      })
+      if (name === '' || number === '' || district === '' || committee === '' || apartment === '' || doornumber === '' || add === '') {
+        toast("Шаардлагатай талбаруудыг бөглөнө үү!");
+      }
+      else {
+        var phoneno = /^[7-9]\d{7}$/;
+        var regName = /^[a-zA-Z ]{2,30}$/;
+        var today = new Date();
+        if (number.match(phoneno) && name.match(regName)) {
 
-    // }
-    // else {
-    //   toast("Та нэр эсвэл утасны дугаараа шалгана уу!");
-    // }
-    // }
+          fetch('http://192.168.244.6:8089/api/bonaqua/addOrder', {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              date: today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate(),
+              description: [`ner: ${name}, duureg: ${district}, horoo: ${committee}, bair/gudamj: ${apartment}, orts: ${entrance}, ortsnii kod: ${code}, haalganii dugaar: ${doornumber}, nemelt: ${add}`].join(","),
+              phone: number,
+              array: orderArray,
+              pricedisc: 0,
+              amount: sum
+            })
+          })
+            .then((res) => {
+              const data = res.json();
+              data.then(ordernumber => {
+                const orderNumber = ordernumber[0].OrderNumber;
+                const orderId = ordernumber[0].OrderID;
+                setRandom(orderNumber);
+                setOrderid(orderId);
+                sessionStorage.setItem("random", orderNumber);
+                sessionStorage.setItem("orderid", orderId);
+                sessionStorage.setItem("ordertopay", 0);
+
+                navigate('/payment')
+              });
+            })
+
+        }
+        else {
+          toast("Та нэр эсвэл утасны дугаараа шалгана уу!");
+        }
+      }
     }
     else {
       toast("Амжилтгүй! Үнийн дүн 0-ээс их байх хэрэгтэй! Захиалга хийнэ үү!")
@@ -113,7 +113,7 @@ export default function OrderInfo() {
   // const options = Array(32).fill(0).map((e, i) => i + 1);
 
   if (orderArray === '' || orderArray === null) {
-      console.log("hooson")
+    console.log("hooson")
   } else {
     orderArray.forEach(x => {
       pack.push(x.size)
@@ -123,12 +123,12 @@ export default function OrderInfo() {
   }
 
   const districts = [
-    {name: "Баянгол дүүрэг"},
-    {name: "Баянзүрх дүүрэг"},
-    {name: "Хан-Уул дүүрэг"},
-    {name: "Чингэлтэй дүүрэг"},
-    {name: "Сонгино-Хайрхан дүүрэг"},
-    {name: "Сүхбаатар дүүрэг"},
+    { name: "Баянгол дүүрэг" },
+    { name: "Баянзүрх дүүрэг" },
+    { name: "Хан-Уул дүүрэг" },
+    { name: "Чингэлтэй дүүрэг" },
+    { name: "Сонгино-Хайрхан дүүрэг" },
+    { name: "Сүхбаатар дүүрэг" },
     // {name: "Налайх дүүрэг"},
     // {name: "Багахангай дүүрэг"},
     // {name: "Багануур дүүрэг"},
@@ -136,7 +136,7 @@ export default function OrderInfo() {
   const dist = [];
 
   for (let i = 0; i < districts.length; i++) {
-    dist.push({ value: districts[i].name, label: districts[i].name }) 
+    dist.push({ value: districts[i].name, label: districts[i].name })
   }
 
   const handleDistrict = (selectedOption) => {
@@ -146,7 +146,7 @@ export default function OrderInfo() {
   const options = [];
 
   for (let i = 1; i < 33; i++) {
-      options.push({ value: i, label: i + '-р хороо' }) 
+    options.push({ value: i, label: i + '-р хороо' })
   }
 
   const handleChange = (selectedOption) => {
@@ -258,7 +258,7 @@ export default function OrderInfo() {
                     <div className="flex district justify-between">
                       <div className="groupS mr-3 w-1/2">
                         <label htmlFor="" className="form-label">Дүүрэг</label>
-                        <Select 
+                        <Select
                           className='select w-full 9xl:text-4xl check'
                           id='district'
                           onChange={handleDistrict}
@@ -268,7 +268,7 @@ export default function OrderInfo() {
                       </div>
                       <div className="groupS w-1/2">
                         <label htmlFor="" className="form-label">Хороо</label>
-                        <Select 
+                        <Select
                           className='select w-full 9xl:text-4xl check'
                           id='committee'
                           onChange={handleChange}

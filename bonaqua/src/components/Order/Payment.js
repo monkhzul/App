@@ -91,7 +91,7 @@ export default function Payment() {
 
     if (reinvoice === null || reinvoice === '') {
       if (check == 0) {
-        fetch('http://192.168.244.6:8089/api/bonaqua/paymentSocial', {
+        fetch('http://192.168.244.6:8089/api/bonaqua/paymentSocial2', {
           method: "POST",
           headers: {
             'Content-Type': 'application/json'

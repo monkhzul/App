@@ -224,7 +224,7 @@ exports.confirmPhone = async(req, res) => {
     
     const random = Math.floor(100000 + Math.random() * 900000);
 
-    const response = axios.post("http://122.201.28.39:8080/api2/data/smsregister", {
+    const response = axios.post("http://66.181.175.237:8080/api2/data/smsregister", {
         number: number,
         text: `[Bonaqua zahialga] Sain baina uu. Tanid neg udaagiin nevtrekh kod ilgeelee. Tanii nevtrekh kod: ${random}`
     })
@@ -355,6 +355,26 @@ exports.PaymentSocial = async(req, res) => {
         headers: {
           'Content-Type': 'application/json',
           "Authorization": `Bearer ${token}`,
+        }
+      })
+      .then( ( response ) => {
+        res.status(200).send(response.data);
+      } )
+}
+
+exports.PaymentSocial2 = async(req, res) => {
+
+    const random = req.body.random;
+    const sum = req.body.sum;
+    const sha256 = req.body.sha256;
+
+    await axios.post('http://192.168.244.6:8089/api/bonaqua/paymentSocial', { 
+        sum: sum,
+        sha256: sha256,
+        random: random
+     }, {
+        headers: {
+          'Content-Type': 'application/json'
         }
       })
       .then( ( response ) => {
