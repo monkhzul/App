@@ -19,8 +19,7 @@ html {
   flex-direction: column;
   justify-content: space-between;
 }
-.header {
-}
+
 .popup {
   content: "";
   width: 12%;
@@ -72,15 +71,15 @@ a {
 
 @media (prefers-reduced-motion: no-preference) {
   .flower {
-    animation: logo-spin infinite 50s linear;
+    animation: logo-spin 50s linear infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
 @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
+  100% {
     transform: rotate(360deg);
   }
 }
@@ -407,7 +406,7 @@ a {
       .bona img {
         width: 65%;
         z-index: 1;
-        margin: 0 auto;
+        margin-left: 15%;
       }
       .flower {
         width: 70%;

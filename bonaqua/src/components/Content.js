@@ -232,11 +232,11 @@ export default function Content() {
             </div>
           </div>
 
-          <div className='bona flex justify-center items-end relative'>
+          <div className='bona flex justify-center items-end relative w-full'>
             <div className='flower absolute'>
               <img src={bigflower} alt="" className='bigflower' />
             </div>
-            <img src={image} alt=""/>
+              <img src={image} alt="" className=''/>
             <div className='toirog absolute'>
               <div className='white flex justify-center items-center'>
                 <div className='circle relative flex justify-center items-center'>
