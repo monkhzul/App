@@ -4,6 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
+import './css/style.css';
+import './css/mediaQuery.css';
 import 'tw-elements';
 import { BrowserRouter as Router} from 'react-router-dom';
 

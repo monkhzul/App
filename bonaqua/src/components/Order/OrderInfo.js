@@ -6,7 +6,6 @@ import location from "../../images/svg/order 2/Header-1.svg";
 import sags from "../../images/svg/order 2/Group 550.svg";
 import { AppContext } from "../../App";
 import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import SlideImage from "../SlideImage";
 import Social from "../Social";
 import Select from 'react-select';

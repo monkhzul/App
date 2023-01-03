@@ -19,7 +19,6 @@ import deleteButton from '../images/svg/order 1/x.svg';
 import rightArrow from '../images/svg/rightArrow.svg';
 import { AppContext } from '../App';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Social from './Social';
 import CreatableSelect from 'react-select/creatable';
 
@@ -208,7 +207,7 @@ export default function Content() {
 
         <div className='choosing w-full xl:w-1/2 flex items-center justify-center relative'>
           <div className='choose flex justify-center self-center relative'>
-            <div class="main">
+            <div className="main">
               <ul id='accordion'>
                 {data.map((res, i) => 
                 <div className='bonaqua' id={`heading${i}`} key={i}>
@@ -232,11 +231,11 @@ export default function Content() {
             </div>
           </div>
 
-          <div className='bona flex justify-center items-end relative w-full'>
+          <div className='bona flex justify-center items-end relative'>
             <div className='flower absolute'>
               <img src={bigflower} alt="" className='bigflower' />
             </div>
-              <img src={image} alt="" className=''/>
+            <img src={image} alt=""/>
             <div className='toirog absolute'>
               <div className='white flex justify-center items-center'>
                 <div className='circle relative flex justify-center items-center'>

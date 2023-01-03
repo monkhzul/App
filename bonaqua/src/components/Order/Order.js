@@ -15,7 +15,6 @@ import { AppContext } from "../../App";
 import { Modal, Button } from 'react-bootstrap';
 import SlideImage from "../SlideImage";
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Social from "../Social";
 import CreatableSelect from 'react-select/creatable';
 

@@ -5,7 +5,6 @@ import orderinfo from "../../images/svg/order 2/Header.svg";
 import sags from "../../images/svg/order 2/Group 550.svg";
 import instruction from '../../images/svg/order 3/Header-2.svg';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import SlideImage from "../SlideImage";
 import Social from "../Social";
 import crypto from "crypto-js";

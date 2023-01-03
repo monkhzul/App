@@ -1,6 +1,4 @@
 import React, { createContext, useState } from 'react';
-import './css/style.css';
-import './css/mediaQuery.css';
 import Header from './components/Header';
 import Order from './components/Order/Order';
 import Footer from './components/Footer';
