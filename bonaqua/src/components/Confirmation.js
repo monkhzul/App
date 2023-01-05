@@ -55,6 +55,7 @@ export default function Confirmation() {
                     value={OTP}
                     onChange={setOTP}
                     autoFocus
+                    autoComplete="autocomplete"
                     OTPLength={6}
                     otpType="number"
                     disabled={false}

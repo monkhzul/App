@@ -202,7 +202,7 @@ export default function OrderInfo() {
                       <p className=''>Хэмжээ/Тоо ширхэг</p>
                     </div>
 
-                    <div className='flex w-min'>
+                    <div className='flex'>
                       <p className=''>Нийт үнэ</p>
                     </div>
                   </div>

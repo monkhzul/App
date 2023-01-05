@@ -262,9 +262,11 @@ export default function Content() {
               <div className='flex inputForm'>
 
                 <form action="" id="mlform" className='flex relative flex-col md:flex-row text-center'>
-                  <select name="ml" id="mlselect" className='select w-full text-center flex justify-center items-center' onChange={setValue}>
+                  <select name="ml" id="mlselect" className='select w-full text-inherit flex justify-center items-center' onChange={setValue}>
                     {data.map((res, i) =>
-                      res.BPrice === null ? <option id="incase" className='' key={i} value={[res.Capacity, res.BPrice, res.InCase, res.Article]} disabled>{res.Capacity}</option> : <option id="incase" className='w-full text-center' key={i} value={[res.Capacity, res.BPrice, res.InCase, res.Article]}>{res.Capacity}</option>
+                      res.BPrice === null ? 
+                      <option id="incase" className='' key={i} value={[res.Capacity, res.BPrice, res.InCase, res.Article]} disabled>{res.Capacity}</option> 
+                      : <option id="incase" className='w-full text-inherit' key={i} value={[res.Capacity, res.BPrice, res.InCase, res.Article]}>{res.Capacity}</option>
                     )}
                   </select>
                   

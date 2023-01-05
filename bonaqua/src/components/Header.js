@@ -116,7 +116,7 @@ export default function Header() {
           <form className="was-validated d-flex flex-column" id="">
             <div className="row p-4">
               <p className='text-gray-400'>Захиалга өгсөн утасны дугаараа оруулна уу!</p>
-              <input className='py-2 px-3 w-100 input my-1' type="text" name="" id="phone" placeholder='Утасны дугаар' onChange={(e) => setPhone(e.target.value)} />
+              <input className='py-2 px-3 w-100 input my-1' type="number" name="" id="phone" placeholder='Утасны дугаар' onChange={(e) => setPhone(e.target.value)} />
             </div>
             <a type="submit" className="w-50 mx-auto continueButton flex justify-center text-white rounded py-1" onClick={Continue} >
               Үргэлжлүүлэх

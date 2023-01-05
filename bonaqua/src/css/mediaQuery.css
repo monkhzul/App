@@ -1,18 +1,51 @@
-@media (max-width: 371px) {
+@media (min-width: 0px) and (max-width: 371px) {
   p.yourBusket {
     font-size: 0.85rem !important;
+  }
+  p.busket {
+    font-size: 1rem;
+  }
+  p.total {
+    font-size: 1.5rem;
   }
   .bonaquaType {
     width: 0.5rem;
     height: 0.5rem;
     margin: 0.5rem;
   }
+  .group>label {
+    font-size: 0.6rem;
+  }
   .groupL>label {
     font-size: 0.6rem;
   }
+  .seeTotalInfo > * {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  .social {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .ProductAndOrder {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .logo img {
+    height: 5rem;
+  }
+  .link {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 }
 
-@media (max-width: 639px) {
+@media (min-width: 372px) and (max-width: 639px) {
   .ProductAndOrder {
     width: 100%;
     display: flex;
@@ -30,7 +63,6 @@
   .logo img {
     height: 6rem;
   }
-  
   p.busket {
     font-size: 1.3rem;
   }
@@ -46,7 +78,9 @@
     justify-content: space-around;
   }
   .seeTotalInfo > * {
-    width: 140%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
   }
   .total {
     font-size: 1.5rem !important;
