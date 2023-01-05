@@ -88,7 +88,9 @@ export default function Header() {
                 <p className='busket'>
                   { log == null ? `**** ****` : log }
                 </p>
-                <ToastContainer/>
+                <ToastContainer
+                  position='top-center'
+                />
                 {
                   log != null ? <Link to='/orderHistory' className="nav-link">
                     <p className='yourBusket'>Захиалгын түүх</p> 

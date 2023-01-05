@@ -362,7 +362,9 @@ export default function Order() {
                   </div>
 
                   <Link className="nav-link" to="#" id='submit' onClick={Busket}>
-                    <ToastContainer />
+                    <ToastContainer 
+                      position="top-center"
+                    />
                     <button className="sagslahButton text-xl 9xl:text-5xl" id='fly'>
                       Захиалга нэмэх
                     </button>

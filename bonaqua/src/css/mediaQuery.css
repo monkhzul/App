@@ -1,884 +1,910 @@
 @media (max-width: 371px) {
-    p.yourBusket {
-      font-size: 0.85rem !important;
-    }
-    .bonaquaType {
-      width: 0.5rem;
-      height: 0.5rem;
-      margin: 0.5rem;
-    }
-    .groupL>label {
-      font-size: 0.6rem;
-    }
+  p.yourBusket {
+    font-size: 0.85rem !important;
+  }
+  .bonaquaType {
+    width: 0.5rem;
+    height: 0.5rem;
+    margin: 0.5rem;
+  }
+  .groupL>label {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .ProductAndOrder {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin-top: 0.5rem;
+  }
+  .water img {
+    margin-top: 2rem;
+    width: 70%;
+  }
+  .header {
+    margin-bottom: 10%;
+  }
+  .logo img {
+    height: 6rem;
+  }
+  
+  p.busket {
+    font-size: 1.3rem;
+  }
+  p.yourBusket {
+    font-size: 0.95rem;
+  }
+  .group>label {
+    font-size: 0.7rem;
+  }
+  .social {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .seeTotalInfo > * {
+    width: 140%;
+  }
+  .total {
+    font-size: 1.5rem !important;
+  }
+  .zahialsanHeseg {
+    width: 100%;
+  }
+  .zahialsanHesegDetail {
+    width: 80%;
+  }
+  .order1Imgdt {
+    width: 20%;
+  }
+  .white {
+    width: 4rem;
+    height: 4rem;
+  }
+  .circle {
+    width: 3rem !important;
+    height: 3rem;
+  }
+  .flower {
+    left: 30%;
+  }
+  .link {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .ProductC {
+    margin-left: 0;
+  }
+  .order1selectTotal {
+    overflow: scroll;
+  }
+  .select {
+    border-right: none;
+    text-align: center;
+  }
+  .selectTotal {
+    width: 100% !important;
+    border-bottom: 0;
+  }
+  .tablenames {
+    margin-left: 0.3rem;
+  }
+  .tablename3 {
+    padding-top: 0.4rem;
+  }
+  .zahialga {
+    max-height: 30rem;
+    overflow: scroll;
+    padding: 1rem;
+    margin-bottom: 10%;
+  }
+  .orderName p {
+    line-height: 0.8rem;
+  }
+  .sagslahButton {
+    padding: 0.2rem;
+  }
+  .busket img {
+    width: 20%;
+    padding: 0.5rem;
+  }
+  .order2tablenames > * {
+    width: 40%;
+  }
+  .orderHistoryImg {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .orderHistoryImg img {
+    height: 60%;
+  }
+  .orderHistoryInfo p {
+    margin-bottom: 0.2rem;
+  }
+  .order1Img img {
+    width: 70%;
+  }
+  .bigflower {
+    height: 70%;
+  }
+  .choosing {
+    margin-top: 12%;
+  }
+  .slideshow {
+    margin: 1rem auto 8%;
+  }
+  #incase {
+    text-align: center;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .flower {
+    left: 35%;
+    height: 70%;
+  }
+  .bigflower {
+    height: 80%;
+  }
+  .water img {
+    width: 70%;
+  }
+  p.busket {
+    font-size: 1.6rem;
+  }
+  p.yourBusket {
+    font-size: 1.2rem;
+  }
+  .busket img {
+    width: 20%;
+    padding: 0.8rem;
+  }
+  .social {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .ProductAndOrder {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+  }
+  .choosing {
+    /* margin: 20% auto; */
+    margin-top: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .dun {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .sagslahButton {
+    padding: 0.2rem;
+  }
+  .selectTotal {
+    width: 100% !important;
+    border-bottom: 0;
+  }
+  .zahialga {
+    max-height: 22rem;
+    overflow: scroll;
+    margin-bottom: 10%;
+  }
+  .seeTotalInfo {
+    margin-bottom: 5%;
+  }
+  .order2tablenames > * {
+    width: 50%;
+    margin-left: 0.5rem;
+  }
+  .orderName p {
+    line-height: 0.8rem;
+  }
+  .logo img {
+    height: 7rem;
+  }
+  .select {
+    border-right: none;
+  }
+  .zahialsanHesegDetail {
+    width: 48%;
+  }
+  .order1Imgdt {
+    width: 20%;
+  }
+  .link {
+    width: 100%;
+  }
+  .slideshow {
+    margin: 1rem auto 8%;
+  }
+  #incase {
+    text-align: center;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 895px) {
+  .ProductAndOrder {
+    width: 100%;
+  }
+  .bona {
+    width: 50%;
+  }
+  .water img {
+    width: 60%;
+  }
+  p.busket {
+    font-size: 1.5rem;
+    height: 1.2rem;
+  }
+  p.yourBusket {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .header {
+    margin-bottom: 15%;
+  }
+  .choose {
+    margin-right: 0;
+  }
+  .choosing {
+    margin-right: 0;
+  }
+  .social {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .order2tablenames > * {
+    width: 50%;
+    margin-left: 0.5rem;
+  }
+  .logo img {
+    height: 7rem;
+  }
+  .orderName p {
+    line-height: 0.8rem;
+  }
+  .zahialsanHesegDetail {
+    width: 40%;
+  }
+  .slideshow {
+    margin: 1rem auto 8%;
+  }
+  #incase {
+    text-align: center;
+  }
+}
+
+@media (min-width: 896px) and (max-width: 1284px) {
+  .ProductAndOrder {
+    width: 90%;
+  }
+  p.yourBusket {
+    font-size: 1rem;
+  }
+  .bona {
+    width: 60%;
+  }
+  .bigflower {
+    width: 80% !important;
+  }
+  .water img {
+    width: 60%;
+  }
+  p.busket {
+    font-size: 1.5rem;
+    height: 1.2rem;
+  }
+  .bona {
+    margin-top: 10%;
+  }
+  .orderName p {
+    line-height: 12px;
+  }
+  .social {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .sc {
+    margin: 0 2rem;
+  }
+  .order2tablenames > * {
+    width: 50%;
+    margin-left: 0.5rem;
+  }
+  .contentInfo {
+    display: flex;
+    flex-direction: column !important;
+  }
+  .choosing {
+    width: 90% !important;
+    margin: 0 auto;
+  }
+  .info {
+    width: 100% !important;
+  }
+  .order1Img img {
+    width: 70%;
+  }
+  .orderHistoryImg img {
+    width: 20%;
+  }
+  .logo img {
+    height: 7rem;
+  }
+  .zahialsanHesegDetail {
+    width: 40%;
+  }
+  .slideshow {
+    margin: 1rem auto 8%;
+  }
+  #incase {
+    text-align: center;
+  }
+}
+
+@media (min-width: 1285px) and (max-width: 1440px) {
+ .busket img {
+   padding: 0;
+ }
+  p.busket {
+    font-size: 1.2rem;
+    height: 1.3rem;
+  }
+  p.yourBusket {
+    font-size: 0.9rem;
+  }
+  p.total {
+    font-size: 1.1rem;
+  }
+ .logo img {
+   height: 6rem;
+ }
+  .white {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+  .circle {
+    width: 4rem !important;
+    height: 4rem;
+  }
+  .order1selectTotal1 {
+    display: flex;
+    align-items: center;
+  }
+  .order1selectTotal2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .orderName p {
+    line-height: 12px;
+  }
+  .order1Img img {
+    width: 100%;
+  }
+  .order1tablenames {
+    width: 22rem !important;
+    margin-left: 0.5rem;
+  }
+  .order2tablenames > * {
+    width: 50%;
+    margin-left: 0.5rem;
+  }
+  .order1Price h3 {
+    font-size: 1.3rem;
+  }
+  .carousel-item img {
+    max-width: 0 !important;
+    margin-top: 20rem !important;
+  }
+  .dansMedeelel p {
+    font-size: 0.8rem;
+    line-height: 1rem;
+  }
+  .link .nav-link {
+    margin-left: 0;
+}
+.water {
+  width: 80%;
+}
+.slide {
+  margin-top: 10%;
+}
+.select::placeholder {
+  font-size: 0.6rem;
+}
+.order1Content {
+  margin-right: 5%;
+  /* height: 70vh; */
+}
+.contain  {
+  height: 95vh;
+  width: 90%;
+}
+.zahialga {
+  max-height: 14rem;
+  overflow: scroll;
+  margin-bottom: 5%;
+}
+.link {
+  width: 100%;
+}
+}
+
+@media (min-width: 1441px) and (max-width: 2048px) {
+  p.busket {
+    font-size: 1.4rem;
+    height: 1.2rem;
+  }
+  p.yourBusket {
+    font-size: 1.1rem;
+    color: #666363;
+  }
+  p.total {
+    font-size: 1.2rem;
+  }
+  .order1tablenames {
+    width: 24rem !important;
+    margin-left: 0.5rem;
+  }
+  .order2tablenames > * {
+    width: 50%;
+    margin-left: 0.5rem;
+  }
+  .order1Content {
+    margin-right: 5%;
+    /* height: 70vh; */
+}
+.zahialga {
+  max-height: 16rem;
+  overflow: scroll;
+  margin-bottom: 5%;
+}
+.contain  {
+  height: 95vh;
+  width: 90%;
+}
+.water {
+  width: 80%;
+}
+.bigflower {
+  height: 90%;
+}
+.link {
+  width: 100%;
+}
+
+}
+
+@media (min-width: 2049px) and (max-width: 3119px) {
+  .header {
+    height: 18vh;
+  }
+  .logo img {
+    height: 10rem;
+  }
+  p.busket {
+    font-size: 2rem;
+  }
+  p.yourBusket {
+    font-size: 1.4rem;
+    color: #666363;
+  }
+  p.total {
+    font-size: 1.5rem;
+  }
+  .productInfo img {
+    margin: 3rem 0;
+  }
+  .link {
+    font-size: 1.2rem;
+  }
+  .ProductC h4 {
+    font-size: 1.6rem;
+  }
+  .ProductC ul li {
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 2rem;
+  }
+  .water img {
+    width: 80%; 
+  }
+  .order1tablenames {
+    width: 24rem !important;
+    margin-left: 0.5rem;
+  }
+  .order2tablenames > * {
+    width: 50%;
+    margin-left: 0.5rem;
+  }
+  .sc {
+    width: 2rem;
+    margin: 2rem 0;
+  }
+  .chooseList li img {
+    width: 1rem !important;
+    margin: 1rem 0;
+  }
+  .order1Content {
+    margin-right: 5%;
+    height: 70vh;
+}
+.zahialga {
+  max-height: 25rem;
+  overflow: scroll;
+  margin-bottom: 5%;
+}
+.contain  {
+  height: 95vh;
+  width: 90%;
+}
+.choosing {
+  margin-top: 5%;
+}
+}
+
+@media (min-width: 3200px) {
+  .logo img {
+    height: 15rem;
+  }
+  p.busket {
+    font-size: 3rem;
+  }
+  p.yourBusket {
+    font-size: 2rem;
+    color: #666363;
+  }
+  p.total {
+    font-size: 2.8rem;
+    line-height: 5rem;
+  }
+  .select {
+    font-size: 1.5rem;
+    background-image: none;
+  }
+  .productInfo img {
+    margin: 3rem 0;
+  }
+  .link {
+    font-size: 3.2rem;
+  }
+  .ProductC h4 {
+    font-size: 3rem;
+    margin: 2rem 0;
+  }
+  .ProductC ul li {
+    font-size: 2.5rem;
+    font-weight: 500;
+    line-height: 3rem;
+  }
+  .water img {
+    width: 80%; 
+  }
+  .white {
+    width: 13rem;
+    height: 13rem;
+  }
+  .circle {
+    width: 12rem !important;
+    height: 12rem;
+  }
+  .footerwater{
+    width: 15%;
+  }
+  .footer1flower {
+    width: 100%;
+  }
+  .footer2flower {
+    width: 85%;
+  }
+  .chooseList li img {
+    width: 2rem;
+    margin: 2rem 0;
+  }
+  .order1Button {
+    width: 50%;
+  }
+  .order1tablenames {
+    width: 24rem !important;
+    margin-left: 0.5rem;
+  }
+  .order2tablenames > * {
+    width: 50%;
+    margin-left: 0.5rem;
+  }
+  .sc {
+    width: 3.5rem;
+    margin: 3rem 0;
+  }
+  .scf {
+    width: 2rem;
+  }
+  #userform > * {
+    width: 33%;
+  }
+  .back, .choosePayment {
+    font-size: 3rem;
+    height: 8rem;
+  }
+  .locate {
+    height: 45vh;
+  }
+  .groupL>input {
+    padding: 1rem;
+    font-size: 3rem;
+  }
+  .groupLa>input {
+    padding: 2rem;
+    font-size: 3rem;
+  }
+  .group>input {
+    padding: 1rem;
+    font-size: 2.5rem;
+  }
+  .locationInfo {
+    width: 100%;
+  }
+  .groupPay>input {
+    padding: 1rem;
+    font-size: 4rem;
+  }
+  .warning p {
+    line-height: 40px;
+  }
+  .dansMedeelel p {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+  .ProductC {
+    margin-left: 4rem;
+  }
+  .active {
+    margin-left: 0;
+  }
+  .nav-link {
+    font-weight: 500;
+    font-size: 2.8rem;
+  }
+  .slideshowDots {
+    margin-top: 2%;
+    margin-bottom: 5%;
+  }
+  .popup {
+    padding: 1.5rem;
+  }
+  .popup p {
+    top: 0.5rem;
+    font-size: 2rem;
+  }
+  #caseinunit {
+    margin-top: 2rem !important;
+    margin-bottom: 4rem !important;
+  }
+  .bonaquaType {
+    margin: 3rem 0;
+  }
+  #lists {
+    width: 1.5rem;
+  }
+  .sort select {
+    font-size: 2rem;
+    padding: 0 !important;
   }
 
-  @media (max-width: 639px) {
-    .ProductAndOrder {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      height: auto;
-      margin-top: 0.5rem;
-    }
-    .water img {
-      margin-top: 2rem;
-      width: 30%;
-    }
+  .order1Content {
+    margin-right: 5%;
+    height: 70vh;
+}
+.zahialga {
+  max-height: 25rem;
+  overflow: scroll;
+  margin-bottom: 5%;
+}
+.contain  {
+  height: 95vh;
+  width: 90%;
+}
+form input {
+  height: 80px;
+}
+.slide {
+  height: 80%;
+}
+}
+
+ /* @media (min-height: 1440px) {
     .header {
-      margin-bottom: 10%;
-    }
-    .logo img {
-      height: 6rem;
-    }
-    p.busket {
-      font-size: 1.3rem;
-    }
-    p.yourBusket {
-      font-size: 0.95rem;
-    }
-    .group>label {
-      font-size: 0.7rem;
-    }
-    .social {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-    }
-    .seeTotalInfo > * {
-      width: 140%;
-    }
-    .total {
-      font-size: 1.5rem !important;
-    }
-    .zahialsanHeseg {
-      width: 100%;
-    }
-    .zahialsanHesegDetail {
-      width: 80%;
-    }
-    .order1Imgdt {
-      width: 20%;
-    }
-    .white {
-      width: 4rem;
-      height: 4rem;
-    }
-    .circle {
-      width: 3rem !important;
-      height: 3rem;
-    }
-    .flower {
-      left: 30%;
-    }
-    .link {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-    }
-    .ProductC {
-      margin-left: 0;
-    }
-    .order1selectTotal {
-      overflow: scroll;
-    }
-    .select {
-      border-right: none;
-    }
-    .selectTotal {
-      width: 100% !important;
-      border-bottom: 0;
-    }
-    .tablenames {
-      margin-left: 0.3rem;
-    }
-    .tablename3 {
-      padding-top: 0.4rem;
-    }
-    .zahialga {
-      max-height: 30rem;
-      overflow: scroll;
-      padding: 1rem;
-      margin-bottom: 10%;
-    }
-    .orderName p {
-      line-height: 0.8rem;
-    }
-    .sagslahButton {
-      padding: 0.2rem;
-    }
-    .busket img {
-      width: 20%;
-      padding: 0.5rem;
-    }
-    .order2tablenames > * {
-      width: 40%;
-    }
-    .orderHistoryImg {
-      width: 40%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .orderHistoryImg img {
-      height: 60%;
-    }
-    .orderHistoryInfo p {
-      margin-bottom: 0.2rem;
-    }
-    .order1Img img {
-      width: 70%;
-    }
-    .bigflower {
-      height: 70%;
-    }
-    .choosing {
-      margin-top: 12%;
+      height: 12vh;
     }
   }
-
-  @media (min-width: 640px) and (max-width: 767px) {
-    .flower {
-      left: 35%;
-      height: 70%;
-    }
-    .bigflower {
-      height: 80%;
-    }
-    .water img {
-      width: 70%;
-    }
-    p.busket {
-      font-size: 1.6rem;
-    }
-    p.yourBusket {
-      font-size: 1.2rem;
-    }
-    .busket img {
-      width: 20%;
-      padding: 0.8rem;
-    }
-    .social {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-    }
-    .ProductAndOrder {
-      width: 100%;
-      height: auto;
-      display: flex;
-      flex-direction: column;
-      margin-top: 1rem;
-    }
-    .choosing {
-      /* margin: 20% auto; */
-      margin-top: 20%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .dun {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-    }
-    .sagslahButton {
-      padding: 0.2rem;
-    }
-    .selectTotal {
-      width: 100% !important;
-      border-bottom: 0;
-    }
-    .zahialga {
-      max-height: 22rem;
-      overflow: scroll;
-      margin-bottom: 10%;
-    }
-    .seeTotalInfo {
-      margin-bottom: 5%;
-    }
-    .order2tablenames > * {
-      width: 50%;
-      margin-left: 0.5rem;
-    }
-    .orderName p {
-      line-height: 0.8rem;
-    }
-    .logo img {
-      height: 7rem;
-    }
-    .select {
-      border-right: none;
-    }
-    .zahialsanHesegDetail {
-      width: 48%;
-    }
-    .order1Imgdt {
-      width: 20%;
-    }
-    .link {
-      width: 100%;
-    }
-  }
-
-  @media (min-width: 768px) and (max-width: 895px) {
-    .ProductAndOrder {
-      width: 100%;
-    }
-    .bona {
-      width: 50%;
-    }
-    .water img {
-      width: 60%;
-    }
-    p.busket {
-      font-size: 1.5rem;
-      height: 1.2rem;
-    }
-    p.yourBusket {
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-    .header {
-      margin-bottom: 15%;
-    }
-    .choose {
-      margin-right: 0;
-    }
-    .choosing {
-      margin-right: 0;
-    }
-    .social {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-    }
-    .order2tablenames > * {
-      width: 50%;
-      margin-left: 0.5rem;
-    }
-    .logo img {
-      height: 7rem;
-    }
-    .orderName p {
-      line-height: 0.8rem;
-    }
-    .zahialsanHesegDetail {
-      width: 40%;
-    }
-  }
-
-  @media (min-width: 896px) and (max-width: 1284px) {
-    .ProductAndOrder {
-      width: 90%;
-    }
-    p.yourBusket {
-      font-size: 1rem;
-    }
-    .bona {
-      width: 60%;
-    }
-    .bigflower {
-      width: 80% !important;
-    }
-    .water img {
-      width: 60%;
-    }
-    p.busket {
-      font-size: 1.5rem;
-      height: 1.2rem;
-    }
-    .bona {
-      margin-top: 10%;
-    }
-    .orderName p {
-      line-height: 12px;
-    }
-    .social {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-    }
-    .sc {
-      margin: 0 2rem;
-    }
-    .order2tablenames > * {
-      width: 50%;
-      margin-left: 0.5rem;
-    }
+  @media (max-width: 1768px) and (min-height: 3800px) {
     .contentInfo {
       display: flex;
       flex-direction: column !important;
     }
     .choosing {
-      width: 90% !important;
-      margin: 0 auto;
+      width: 100% !important;
     }
     .info {
       width: 100% !important;
     }
-    .order1Img img {
-      width: 70%;
-    }
-    .orderHistoryImg img {
-      width: 20%;
-    }
-    .logo img {
-      height: 7rem;
-    }
-    .zahialsanHesegDetail {
-      width: 40%;
-    }
-  }
-
-  @media (min-width: 1285px) and (max-width: 1440px) {
-   .busket img {
-     padding: 0;
-   }
-    p.busket {
-      font-size: 1.2rem;
-      height: 1.3rem;
+    .header {
+      height: 10vh;
     }
     p.yourBusket {
-      font-size: 0.9rem;
+      font-size: 1.4rem;
+      margin-right: 0.5rem;
     }
-    p.total {
-      font-size: 1.1rem;
+    .busket img {
+      width: 30%;
     }
-   .logo img {
-     height: 6rem;
-   }
-    .white {
-      width: 4.5rem;
-      height: 4.5rem;
+    .groupS .select {
+      height: 5rem !important;
     }
-    .circle {
-      width: 4rem !important;
-      height: 4rem;
-    }
-    .order1selectTotal1 {
-      display: flex;
-      align-items: center;
-    }
-    .order1selectTotal2 {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .orderName p {
-      line-height: 12px;
-    }
-    .order1Img img {
-      width: 100%;
-    }
-    .order1tablenames {
-      width: 22rem !important;
-      margin-left: 0.5rem;
-    }
-    .order2tablenames > * {
-      width: 50%;
-      margin-left: 0.5rem;
-    }
-    .order1Price h3 {
-      font-size: 1.3rem;
-    }
-    .carousel-item img {
-      max-width: 0 !important;
-      margin-top: 20rem !important;
-    }
-    .dansMedeelel p {
-      font-size: 0.8rem;
-      line-height: 1rem;
+    .nav-link {
+      font-size: 2rem;
     }
     .link .nav-link {
-      margin-left: 0;
-  }
-  .water {
-    width: 80%;
-  }
-  .slide {
-    margin-top: 10%;
-  }
-  .select::placeholder {
-    font-size: 0.6rem;
-  }
-  .order1Content {
-    margin-right: 5%;
-    /* height: 70vh; */
-  }
-  .contain  {
-    height: 95vh;
-    width: 90%;
-  }
-  .zahialga {
-    max-height: 14rem;
-    overflow: scroll;
-    margin-bottom: 5%;
-  }
-  .link {
-    width: 100%;
-  }
-}
-
-  @media (min-width: 1441px) and (max-width: 2048px) {
-    p.busket {
-      font-size: 1.4rem;
-      height: 1.2rem;
-    }
-    p.yourBusket {
-      font-size: 1.1rem;
-      color: #666363;
-    }
-    p.total {
-      font-size: 1.2rem;
-    }
-    .order1tablenames {
-      width: 24rem !important;
-      margin-left: 0.5rem;
-    }
-    .order2tablenames > * {
-      width: 50%;
-      margin-left: 0.5rem;
-    }
-    .order1Content {
-      margin-right: 5%;
-      /* height: 70vh; */
-  }
-  .zahialga {
-    max-height: 16rem;
-    overflow: scroll;
-    margin-bottom: 5%;
-  }
-  .contain  {
-    height: 95vh;
-    width: 90%;
-  }
-  .water {
-    width: 80%;
-  }
-  .bigflower {
-    height: 90%;
-  }
-  .link {
-    width: 100%;
-  }
-
-  }
-
-  @media (min-width: 2049px) and (max-width: 3119px) {
-    .header {
-      height: 18vh;
-    }
-    .logo img {
-      height: 10rem;
-    }
-    p.busket {
       font-size: 2rem;
     }
-    p.yourBusket {
-      font-size: 1.4rem;
-      color: #666363;
-    }
-    p.total {
-      font-size: 1.5rem;
-    }
-    .productInfo img {
-      margin: 3rem 0;
-    }
-    .link {
-      font-size: 1.2rem;
-    }
-    .ProductC h4 {
-      font-size: 1.6rem;
-    }
-    .ProductC ul li {
-      font-size: 1.4rem;
-      font-weight: 500;
-      line-height: 2rem;
-    }
-    .water img {
-      width: 80%; 
-    }
-    .order1tablenames {
-      width: 24rem !important;
-      margin-left: 0.5rem;
-    }
-    .order2tablenames > * {
-      width: 50%;
-      margin-left: 0.5rem;
-    }
-    .sc {
-      width: 2rem;
-      margin: 2rem 0;
-    }
-    .chooseList li img {
-      width: 1rem !important;
-      margin: 1rem 0;
-    }
-    .order1Content {
-      margin-right: 5%;
-      height: 70vh;
-  }
-  .zahialga {
-    max-height: 25rem;
-    overflow: scroll;
-    margin-bottom: 5%;
-  }
-  .contain  {
-    height: 95vh;
-    width: 90%;
-  }
-  .choosing {
-    margin-top: 5%;
-  }
-  }
-
-  @media (min-width: 3200px) {
-    .logo img {
-      height: 15rem;
-    }
-    p.busket {
-      font-size: 3rem;
-    }
-    p.yourBusket {
+    #capaInCircle {
       font-size: 2rem;
-      color: #666363;
     }
-    p.total {
-      font-size: 2.8rem;
-      line-height: 5rem;
+    #liCapacity {
+      font-size: 3rem;
     }
-    .select {
-      font-size: 1.5rem;
-      background-image: none;
-    }
-    .productInfo img {
+    #title {
+      font-size: 3.5rem;
       margin: 3rem 0;
     }
-    .link {
-      font-size: 3.2rem;
+    #caseinunit {
+      font-size: 1.8rem;
+      margin-bottom: 2.5rem !important;
+    }
+    .tablenames p {
+      font-size: 1.5rem;
+    }
+    .ProductC ul {
+      font-size: 1.6rem !important;
+      line-height: 2.5rem;
     }
     .ProductC h4 {
-      font-size: 3rem;
-      margin: 2rem 0;
-    }
-    .ProductC ul li {
-      font-size: 2.5rem;
-      font-weight: 500;
+      font-size: 2rem;
       line-height: 3rem;
     }
-    .water img {
-      width: 80%; 
+    .select::placeholder {
+      font-size: 1.4rem;
     }
-    .white {
-      width: 13rem;
-      height: 13rem;
+    p.total {
+      font-size: 2.5rem;
     }
-    .circle {
-      width: 12rem !important;
-      height: 12rem;
+    p.busket {
+      font-size: 2.5rem;
     }
-    .footerwater{
-      width: 15%;
+    .seeTotalInfo {
+      margin: 3rem 0;
+      height: 6rem;
     }
-    .footer1flower {
-      width: 100%;
+    .seeTotalInfo p.total {
+      font-size: 2.5rem;
     }
-    .footer2flower {
-      width: 85%;
+    .seeTotalInfo p {
+      font-size: 1.6rem;
     }
-    .chooseList li img {
-      width: 2rem;
+    .order1selectTotal {
+      padding: 0.8rem;
+    }
+    .sagslahButton {
+      font-size: 1.8rem !important;
+    }
+    #lists {
+      width: 1.2rem;
+    }
+    .productImg {
       margin: 2rem 0;
     }
-    .order1Button {
-      width: 50%;
+    .water img{
+      width: 90%;
     }
-    .order1tablenames {
-      width: 24rem !important;
-      margin-left: 0.5rem;
+    .waterfor {
+      height: 40vh;
     }
-    .order2tablenames > * {
-      width: 50%;
-      margin-left: 0.5rem;
+    .orderName h6 {
+      font-size: 2rem;
     }
-    .sc {
-      width: 3.5rem;
-      margin: 3rem 0;
+    .order1Price h3 {
+      font-size: 2.5rem;
     }
-    .scf {
+    .orderName p {
+      font-size: 1.2rem;
+    }
+    .order1Button button img {
       width: 2rem;
+    }
+    .order1Button p {
+      font-size: 1.8rem;
+    }
+    .locate {
+      height: 30vh;
+    }
+    .groupL>input {
+      font-size: 2rem;
+    }
+    .groupLa>input {
+      font-size: 2rem;
+    }
+    #userform {
+      font-size: 1.2rem;
+    }
+    .groupS label, .group label, .groupL label, .groupLa label {
+      font-size: 1.8rem;
+      top: -0.4rem;
+    }
+    .userImg, .flowerImg {
+      margin: 2rem 0;
+    }
+    .order1selectTotal2 p.total {
+      margin-top: 1rem;
     }
     #userform > * {
       width: 33%;
     }
-    .back, .choosePayment {
-      font-size: 3rem;
-      height: 8rem;
-    }
-    .locate {
-      height: 45vh;
-    }
-    .groupL>input {
-      padding: 1rem;
-      font-size: 3rem;
-    }
-    .groupLa>input {
-      padding: 2rem;
-      font-size: 3rem;
-    }
     .group>input {
-      padding: 1rem;
-      font-size: 2.5rem;
+      font-size: 2rem;
     }
-    .locationInfo {
-      width: 100%;
+    .sizecomment {
+      margin-left: 1rem;
+      margin-right: 1rem;
     }
-    .groupPay>input {
-      padding: 1rem;
-      font-size: 4rem;
+    .order2tablenames p {
+      font-size: 1.6rem;
+    }
+    .backButton {
+      font-size: 2rem;
+    }
+    .choosePayment a  {
+      font-size: 2rem;
+    }
+    .zahialga p {
+      font-size: 2rem;
+      line-height: 2rem;
+    }
+    .social {
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
     }
     .warning p {
-      line-height: 40px;
+      font-size: 1.8rem;
+      line-height: 2rem;
     }
-    .dansMedeelel p {
-      font-size: 2.5rem;
-      line-height: 3rem;
+    .back {
+      padding: 1rem;
     }
-    .ProductC {
-      margin-left: 4rem;
-    }
-    .active {
-      margin-left: 0;
-    }
-    .nav-link {
-      font-weight: 500;
-      font-size: 2.8rem;
-    }
-    .slideshowDots {
-      margin-top: 2%;
-      margin-bottom: 5%;
-    }
-    .popup {
-      padding: 1.5rem;
-    }
-    .popup p {
-      top: 0.5rem;
+    .removeOrder a {
       font-size: 2rem;
     }
-    #caseinunit {
-      margin-top: 2rem !important;
-      margin-bottom: 4rem !important;
-    }
-    .bonaquaType {
-      margin: 3rem 0;
-    }
-    #lists {
-      width: 1.5rem;
-    }
-    .sort select {
-      font-size: 2rem;
-      padding: 0 !important;
-    }
-  
-    .order1Content {
-      margin-right: 5%;
-      height: 70vh;
   }
-  .zahialga {
-    max-height: 25rem;
-    overflow: scroll;
-    margin-bottom: 5%;
-  }
-  .contain  {
-    height: 95vh;
-    width: 90%;
-  }
-  form input {
-    height: 80px;
-  }
-  .slide {
-    height: 80%;
-  }
-  }
-
-   @media (min-height: 1440px) {
-      .header {
-        height: 12vh;
-      }
-    }
-    @media (max-width: 1768px) and (min-height: 3800px) {
-      .contentInfo {
-        display: flex;
-        flex-direction: column !important;
-      }
-      .choosing {
-        width: 100% !important;
-      }
-      .info {
-        width: 100% !important;
-      }
-      .header {
-        height: 10vh;
-      }
-      p.yourBusket {
-        font-size: 1.4rem;
-        margin-right: 0.5rem;
-      }
-      .busket img {
-        width: 30%;
-      }
-      .groupS .select {
-        height: 5rem !important;
-      }
-      .nav-link {
-        font-size: 2rem;
-      }
-      .link .nav-link {
-        font-size: 2rem;
-      }
-      #capaInCircle {
-        font-size: 2rem;
-      }
-      #liCapacity {
-        font-size: 3rem;
-      }
-      #title {
-        font-size: 3.5rem;
-        margin: 3rem 0;
-      }
-      #caseinunit {
-        font-size: 1.8rem;
-        margin-bottom: 2.5rem !important;
-      }
-      .tablenames p {
-        font-size: 1.5rem;
-      }
-      .ProductC ul {
-        font-size: 1.6rem !important;
-        line-height: 2.5rem;
-      }
-      .ProductC h4 {
-        font-size: 2rem;
-        line-height: 3rem;
-      }
-      .select::placeholder {
-        font-size: 1.4rem;
-      }
-      p.total {
-        font-size: 2.5rem;
-      }
-      p.busket {
-        font-size: 2.5rem;
-      }
-      .seeTotalInfo {
-        margin: 3rem 0;
-        height: 6rem;
-      }
-      .seeTotalInfo p.total {
-        font-size: 2.5rem;
-      }
-      .seeTotalInfo p {
-        font-size: 1.6rem;
-      }
-      .order1selectTotal {
-        padding: 0.8rem;
-      }
-      .sagslahButton {
-        font-size: 1.8rem !important;
-      }
-      #lists {
-        width: 1.2rem;
-      }
-      .productImg {
-        margin: 2rem 0;
-      }
-      .water img{
-        width: 90%;
-      }
-      .waterfor {
-        height: 40vh;
-      }
-      .orderName h6 {
-        font-size: 2rem;
-      }
-      .order1Price h3 {
-        font-size: 2.5rem;
-      }
-      .orderName p {
-        font-size: 1.2rem;
-      }
-      .order1Button button img {
-        width: 2rem;
-      }
-      .order1Button p {
-        font-size: 1.8rem;
-      }
-      .locate {
-        height: 30vh;
-      }
-      .groupL>input {
-        font-size: 2rem;
-      }
-      .groupLa>input {
-        font-size: 2rem;
-      }
-      #userform {
-        font-size: 1.2rem;
-      }
-      .groupS label, .group label, .groupL label, .groupLa label {
-        font-size: 1.8rem;
-        top: -0.4rem;
-      }
-      .userImg, .flowerImg {
-        margin: 2rem 0;
-      }
-      .order1selectTotal2 p.total {
-        margin-top: 1rem;
-      }
-      #userform > * {
-        width: 33%;
-      }
-      .group>input {
-        font-size: 2rem;
-      }
-      .sizecomment {
-        margin-left: 1rem;
-        margin-right: 1rem;
-      }
-      .order2tablenames p {
-        font-size: 1.6rem;
-      }
-      .backButton {
-        font-size: 2rem;
-      }
-      .choosePayment a  {
-        font-size: 2rem;
-      }
-      .zahialga p {
-        font-size: 2rem;
-        line-height: 2rem;
-      }
-      .social {
-        margin: 2rem 0;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-      }
-      .warning p {
-        font-size: 1.8rem;
-        line-height: 2rem;
-      }
-      .back {
-        padding: 1rem;
-      }
-      .removeOrder a {
-        font-size: 2rem;
-      }
-    }
+*/
 
 
 
-
-    /* min-576, min-768, min-992, min-1200, min-1400, */
+  /* min-576, min-768, min-992, min-1200, min-1400, */

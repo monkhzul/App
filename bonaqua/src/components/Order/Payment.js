@@ -72,7 +72,7 @@ export default function Payment() {
   const check = sessionStorage.getItem("ordertopay");
 
   const key = "bsuTPNVvbM#sAI2#";
-  var checksum = random + (check == 0 ? sum : sumo) + "POST" + "http://192.168.244.6:8088/socialpay";
+  var checksum = random + (check == 0 ? sum : sumo) + "POST" + "http://localhost:3000/socialpay";
   var checksum1 = checksum.toString();
   const hash = crypto.HmacSHA256(`${checksum1}`, key);
   let sha256 = hash.toString(crypto.enc.Hex);
@@ -295,7 +295,9 @@ export default function Payment() {
 
                       <div className="removeOrder w-1/2 relative">
                         <Link className="nav-link" to="#">
-                          <ToastContainer />
+                          <ToastContainer 
+                            position="top-center"
+                          />
                           <button className="removeOrderButton text-white 9xl:text-5xl" onClick={CancelOrder}>
                             Захиалга цуцлах
                           </button>

@@ -175,7 +175,7 @@ export default function AllOrder() {
             {payment(data.orderno, data.totalPrice)}
           }>
             {data.status == 10 ? 
-            <div className="h-full flex justify-center items-center mx-auto cursor-pointer text-gray-600 hover:text-[#3dbee3]"> <p className="mx-auto flex justify-center text-sm items-center text-center">Төлбөх төлөх</p> </div> : ''}
+            <div className="h-full flex justify-center items-center mx-auto cursor-pointer text-gray-600 hover:text-[#3dbee3]"> <p className="mx-auto flex justify-center text-sm items-center text-center">Төлбөр төлөх</p> </div> : ''}
           </div>
         </div>
       )

@@ -261,10 +261,10 @@ export default function Content() {
               <p id='caseinunit' className='text-xs md:text-base 9xl:text-4xl text-gray-500 font-medium mb-3'>1 авдар доторх ширхэгийн тоо - {fincase[0]}ш</p>
               <div className='flex inputForm'>
 
-                <form action="" id="mlform" className='flex relative flex-col md:flex-row'>
-                  <select name="ml" id="mlselect" className='select' onChange={setValue}>
+                <form action="" id="mlform" className='flex relative flex-col md:flex-row text-center'>
+                  <select name="ml" id="mlselect" className='select w-full text-center flex justify-center items-center' onChange={setValue}>
                     {data.map((res, i) =>
-                      res.BPrice === null ? <option id="incase" key={i} value={[res.Capacity, res.BPrice, res.InCase, res.Article]} disabled>{res.Capacity}</option> : <option id="incase" key={i} value={[res.Capacity, res.BPrice, res.InCase, res.Article]}>{res.Capacity}</option>
+                      res.BPrice === null ? <option id="incase" className='' key={i} value={[res.Capacity, res.BPrice, res.InCase, res.Article]} disabled>{res.Capacity}</option> : <option id="incase" className='w-full text-center' key={i} value={[res.Capacity, res.BPrice, res.InCase, res.Article]}>{res.Capacity}</option>
                     )}
                   </select>
                   
@@ -300,7 +300,9 @@ export default function Content() {
                   </div>
 
                   <Link className="nav-link" to="#" id='submit' onClick={Busket}>
-                    <ToastContainer />
+                    <ToastContainer 
+                      position='top-center'
+                    />
                     <button className="sagslahButton text-xl 9xl:text-5xl" id='fly'>
                       Сагслах
                     </button>

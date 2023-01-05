@@ -168,7 +168,7 @@ export default function OrderInfo() {
   return (
     <div className="mx-auto flex flex-col justify-between">
       <div className="flex flex-col xl:flex-row">
-        <div className="w-full xl:w-1/2 flex items-center justify-center relative orderInfo mr-[5%] mt-[5%] 6xl:mt-8">
+        <div className="w-full xl:w-1/2 flex relative choosing">
           <SlideImage />
         </div>
 
@@ -202,7 +202,7 @@ export default function OrderInfo() {
                       <p className=''>Хэмжээ/Тоо ширхэг</p>
                     </div>
 
-                    <div className='flex'>
+                    <div className='flex w-min'>
                       <p className=''>Нийт үнэ</p>
                     </div>
                   </div>
@@ -309,7 +309,9 @@ export default function OrderInfo() {
                         </a>
                       </div>
 
-                      <ToastContainer />
+                      <ToastContainer 
+                        position="top-center"
+                      />
                       <div className="choosePayment w-1/2">
                         <div className="">
                           <div className="choosePaymentButton hover:font-semibold text-white cursor-pointer" onClick={getUserData}>

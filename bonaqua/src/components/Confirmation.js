@@ -17,7 +17,7 @@ export default function Confirmation() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                number: 86068196
+                number: dugaarc
             })
         })
             .then((res) => {

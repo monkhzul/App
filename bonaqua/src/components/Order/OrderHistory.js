@@ -68,7 +68,9 @@ export default function OrderHistory() {
         </div>
         <div className="info w-full xl:w-1/2 mr-14 mt-3">
           <h1 className="">Захиалгын түүх</h1>
-          <ToastContainer />
+          <ToastContainer 
+            position="top-center"
+          />
 
           <div className="orderHistoryLink">
             <div className="link flex justify-between py-3 w-full">
